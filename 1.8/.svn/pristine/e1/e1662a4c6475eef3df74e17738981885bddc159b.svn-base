@@ -1,7 +1,0 @@
-/vis/scene/add/text 0 4.5 7.5 m 20 0 0 Outer TOF 
-/vis/scene/add/text 0 4.2 5.3 m 20 0 0 DC R3
-/vis/scene/add/text 0 3.5 4.0 m 20 0 0 DC R2
-/vis/scene/add/text 0 1.5 2.6 m 20 0 0 DC R1
-/vis/scene/add/text 0 0.8 0.6 m 20 0 0 Inner TOF
-/vis/scene/add/scale 5 m z 1 1 1 manual 100 -600 500 cm
-

@@ -1,6 +1,0 @@
-Xwire      	 1 	1	 1	 Wire mean position
-id         	 2 	0	 1	 Segment ID
-sector     	 3 	0	 1	 CLAS12 Sector
-superlayer 	 4 	0	 1	 Superlayer
-layer      	 5 	0	 1	 Layer
-wire       	 6 	0	 1	 Wire

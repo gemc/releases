@@ -1,4 +1,0 @@
-use user_geometry;
-
-# SECTOR
-LOAD DATA LOCAL INFILE 'sector_copy.txt' into TABLE SECTOR;

@@ -1,5 +1,0 @@
-evn	       1	1	 1	   Event Number
-type	     2	1	 1	   Event Type
-beamPol	   3	1	 1	   Beam Polarization
-targetPol	 4	1	 1	   Target Polarization
-time	     5	1	 1	   Event Time

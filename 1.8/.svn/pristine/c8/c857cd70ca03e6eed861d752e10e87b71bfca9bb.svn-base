@@ -1,5 +1,0 @@
-LH2ScattChamCont	 root	              Vacuum Container For Chambers	        0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 44.00*mm 50.00*mm 0*deg 360*deg	   Vacuum	   no	1	 1	 1	 0	 0	no	
-ScattCham	         LH2ScattChamCont	  Rohacell Scattering Chambers	        0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 43.00*mm 48.00*mm 0*deg 360*deg	   Rohacell	 no	1	 1	 1	 1	 1	no	
-ScattChamVac	     ScattCham	        Rohacell Scattering Chambers Vacuum	  0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 40.00*mm 45.00*mm 0*deg 360*deg	   Vacuum	   no	1	 1	 1	 0	 0	no	
-TargetAlShell	     ScattChamVac	      Aluminum Target Shell	                0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ccccff	  Tube	 0.0*mm  5.02*mm 25.02*mm 0*deg 360*deg	   Aluminum	 no	1	 1	 1	 1	 1	no	
-LH2Target	         TargetAlShell	    LH2 Target	                          0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ff4444	  Tube	 0.0*mm  5.00*mm 25.00*mm 0*deg 360*deg	   G4_lH2	   no	1	 1	 1	 1	 1	no	

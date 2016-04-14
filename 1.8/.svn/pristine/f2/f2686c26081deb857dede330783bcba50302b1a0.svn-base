@@ -1,4 +1,0 @@
-CScattChamCont	 root	              Vacuum Container For Chambers	        0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 44.00*mm 50.00*mm 0*deg 360*deg	   Vacuum	   no	1	 1	 1	 0	 0	no	
-CScattCham	         CScattChamCont	  Rohacell Scattering Chambers	        0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 43.00*mm 48.00*mm 0*deg 360*deg	   Rohacell	 no	1	 1	 1	 1	 1	no	
-CScattChamVac	     CScattCham	        Rohacell Scattering Chambers Vacuum	  0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 40.00*mm 45.00*mm 0*deg 360*deg	   Vacuum	   no	1	 1	 1	 0	 0	no	
-CarbonTarget	     CScattChamVac	      Carbon Target, l=1.72mm	              0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ff4444	  Tube	 0.0*mm  5.00*mm  0.80*mm 0*deg 360*deg	   G4_C	     no	1	 1	 1	 1	 1	no

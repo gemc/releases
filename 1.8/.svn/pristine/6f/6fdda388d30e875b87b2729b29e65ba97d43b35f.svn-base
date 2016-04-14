@@ -1,2 +1,0 @@
-RICHBOX	root	RICH Detector	0*mm 0*mm 0*mm	0*deg 0*deg 0*deg	ff1bb1	Box	10000*mm 10000*mm 10000*mm	Air	no	1	1	1	0	0	no			1	1000000
-RADIATOR	RICHBOX	Aerogel Radiator	0*mm 0*mm 2000*mm	0*deg 0*deg 0*deg	ff1bb1	Box	600*mm 464*mm 20*mm	RichAerogel	no	1	1	1	1	1	no			1	1000000

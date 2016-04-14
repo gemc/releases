@@ -1,3 +1,0 @@
-BonusHeBag        	 root               	  Bonus Helium Bag   	0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ee3344	  Tube	 0.0*mm 19.45*mm 105.0*mm 0*deg 360*deg	   G4_He     	 no	1	 1	 1	 0	 0	no	
-TargetKaptonShell 	 BonusHeBag         	  Bonus Kapton Shell 	0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ccccff	  Tube	 0.0*mm  2.55*mm 105.0*mm 0*deg 360*deg	   G4_KAPTON 	 no	1	 1	 1	 1	 1	no	
-BonusLD2Target    	 TargetKaptonShell  	  Bonus LD2 Target   	0*cm 0*cm 0*cm	0.0*deg 0*deg 0*deg	ff4444	  Tube	 0.0*mm  2.50*mm 105.0*mm 0*deg 360*deg	   G4_He     	 no	1	 1	 1	 1	 1	no

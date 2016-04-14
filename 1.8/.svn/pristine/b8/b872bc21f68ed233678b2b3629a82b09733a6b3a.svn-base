@@ -1,7 +1,0 @@
-Air         |     1290      | 2 | G4_N 70 G4_O 30
-BusCable    |     1200      | 2 | G4_Cu 24 G4_POLYETHYLENE 76
-CarbonFiber |     1750      | 1 | G4_C 100.0
-Epoxy       |     1782      | 3 | G4_C 80.26 G4_H 7.86 G4_O 11.88
-PCBoardM    |     1860      | 3 | G4_Fe 30.0 G4_C 40.0 G4_Si 30
-Rohacell    |      100      | 4 | G4_C 64.65 G4_H 7.84 G4_N 8.39 G4_O 19.14
-Peek        |     1310      | 3 | G4_C 76 G4_H 8 G4_O 16 

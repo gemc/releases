@@ -1,5 +1,0 @@
-/vis/open DAWNFILE
-/vis/viewer/set/culling invisible
-/vis/viewer/set/lineSegmentsPerCircle 200
-/vis/drawVolume
-/vis/viewer/flush

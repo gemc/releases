@@ -1,4 +1,0 @@
-/vis/viewer/set/lineSegmentsPerCircle 400
-/vis/scene/add/axes 0 0 0 5 m
-/vis/viewer/set/hiddenMarker
-

@@ -1,2 +1,0 @@
-ec_tdc_time_to_channel   |  20 |  na      | conversion from time (ns) to TDC channels                | Gerry Gilfoyle | gilfoyle@jlab.org | link to document    | variable name on the document | document author| 12/12/12
-thetaEC_deg              |  25 |  degrees | angle of EC face to a line perpendicular to the beamline | Gerry Gilfoyle | gilfoyle@jlab.org | link to pdf drawing | variable name on the drawing | David Kashy | 12/12/12
