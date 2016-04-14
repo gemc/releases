@@ -1,0 +1,48 @@
+#!/bin/csh -f
+
+if($1 == "-h" || $1 == "" || $#argv < 1 || $#argv > 2) then
+ echo " "
+ echo "Usage:   "
+ echo  "  >> drop_geo_table tablename (database)"
+ echo  "     drops geometry table <tablename> from database <database>"
+ echo " "
+ echo "Default database if not specified: clas12_geometry."
+ echo "Alternative database: user_geometry."
+ echo " "
+ exit 0
+endif
+
+set table    = $1
+set database = $2
+if($database =="") then
+ set database = "clas12_geometry"
+endif
+
+echo Using database $database
+
+rm -f tmp.txt
+echo  "use $database ;"    > tmp.txt
+echo  "describe $table;"  >> tmp.txt
+#set out = `mysql -h clasdb.jlab.org -u $GEMC_USER < tmp.txt | grep Field | awk '{print $2}'`
+set out = `mysql -h $GEMC_HOST -u $GEMC_USER -p$GEMC_PASS < tmp.txt | grep Field | awk '{print $2}'`
+
+
+if($out == "Type") then
+  echo Deleting  $table".  Are you sure? y/n"
+  set confirm = $<
+  if($confirm == "y") then
+    rm -f tmp.txt
+    echo  "use $database  ;"   > tmp.txt
+    echo  "drop table if exists $table;" >> tmp.txt
+#    set out = `mysql -h clasdb.jlab.org -u $GEMC_USER  < tmp.txt`
+    set out = `mysql -h $GEMC_HOST -u $GEMC_USER -p$GEMC_PASS < tmp.txt`
+    echo Table $table deleted
+  endif
+else
+  echo Table $table does not exist
+endif
+rm -f tmp.txt
+
+
+
+

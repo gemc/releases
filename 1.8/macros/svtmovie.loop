@@ -1,0 +1,3 @@
+
+/vis/geometry/set/visibility {volume}{theta} 0 1
+/vis/geometry/set/visibility {volume}0{theta} 0 1

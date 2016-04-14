@@ -1,0 +1,36 @@
+use clas12_banks;
+
+drop table if exists SDId;
+
+create table clas12_banks.SDId (    name          VARCHAR(40));
+alter table SDId add column         id            int UNIQUE;
+alter table SDId add column         identifiers   TEXT;
+alter table SDId add column         minEnergy     VARCHAR(60);
+alter table SDId add column         TimeWindow    VARCHAR(60);
+alter table SDId add column         ProdThreshold VARCHAR(60);
+alter table SDId add column         MaxStep       VARCHAR(60);
+
+describe SDId;
+LOAD DATA LOCAL INFILE 'clas12_hits_def.txt'  into TABLE SDId;
+
+select name, id, identifiers, minEnergy, TimeWindow, ProdThreshold, MaxStep from SDId;
+
+
+use user_banks;
+
+drop table if exists SDId;
+
+create table user_banks.SDId (    name          VARCHAR(40));
+alter table SDId add column                id            int UNIQUE;
+alter table SDId add column                identifiers   TEXT;
+alter table SDId add column                minEnergy     VARCHAR(60);
+alter table SDId add column                TimeWindow    VARCHAR(60);
+alter table SDId add column                ProdThreshold VARCHAR(60);
+alter table SDId add column                MaxStep       VARCHAR(60);
+
+describe SDId;
+LOAD DATA LOCAL INFILE 'user_hits_def.txt'  into TABLE SDId;
+
+select name, id, identifiers, minEnergy, TimeWindow, ProdThreshold, MaxStep from SDId;
+
+

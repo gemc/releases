@@ -1,0 +1,76 @@
+<gcard version= "1.1"
+          date= "2011-2-5"
+        author= "Maurik"
+        e-mail= "maurik.holtrop@unh.edu">
+
+<!-- 
+********* Heavy Photon Test Run Setup *****************
+
+The hps_beamline  geometry contains the beamline with the magnets at 87.5" apart.
+The hps_beamlines geometry has the reduced length.
+This requires move of the pair_spectrometer by 4.80779 cm to center the system on the beam.
+Similarly, the field needs to be shifted, so the pair_spect entry in magnetic_fields reads:
+pair_spect | 601 -150.00 150.00 cm  51 -25 25 cm 4.8 0   45.7200 cm gauss
+
+-->
+
+   <sqltable name="hps_beamline"/>
+   <sqltable name="tungstenTarget0125rl"/>  
+
+   <sqltable name="silicon"/> 
+   <sqltable name="ecal"/>   
+
+   <sqltable name="monitor"/>   
+<!--   <sqltable name="flux_detectors"/>   -->
+
+
+
+<!--   <sqltable name="markers"/> -->
+
+	<detector name="alignment_tube1">
+		<existence exist="no" />
+	</detector>
+	<detector name="alignment_tube2">
+		<existence exist="no" />
+	</detector>
+
+	<detector name="ps_ecal_mother">
+		<position x="88.485*mm"  y="0*cm"  z="0*cm"  />
+	</detector>
+
+	<detector name="wTarget0125rl">
+		<position x="-29*mm"  y="0*cm"  z="0*cm"  />
+	</detector>
+
+<!--  
+ 
+   OPTIONS section. 
+   The following entries are commandline options encided here in the gcard.
+   They can be overridden on the command line.
+-->
+
+   <option name="HIT_PROCESS_LIST" value="aprime" />
+<!--   <option name="MAX_FIELD_STEP"  value="1" />     -->
+<!--   <option name="MAX_Z_POS"       value="30000" /> -->
+
+<!--   <option name="DBHOST"        value="localhost" />   -->
+   <option name="DBHOST"        value="improv.unh.edu" />  
+<!--   <option name="DBHOST"        value="10.0.0.249" />  -->
+   <option name="DATABASE"      value="hps_test" />
+   <option name="BANK_DATABASE" value="aprime_banks" />
+   <option name="HALL_MATERIAL" value="Vacuum" />
+   <option name="HALL_FIELD"    value="nullmf" />
+
+   <option name="BEAM_P"        value="e-,2200*MeV,0*deg,0*deg" />
+   <option name="BEAM_V"        value="(0.,0.,-1000)cm" />
+   <option name="SPREAD_V"      value="(0.0015, 0.0015)cm" />
+
+   <option name="LUMI_EVENT"    value="0, 8*ns, 2*ns" />
+   <option name="LUMI_P"        value="e-, 2200*MeV, 0*deg, 0*deg" />
+   <option name="LUMI_V"        value="(0.,0,-1000)cm" />
+   <option name="LUMI_SPREAD_V" value="(0.0015, 0.0015)cm" />
+
+
+   <option name="PRINT_EVENT"   value="1000" />
+   
+</gcard>

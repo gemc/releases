@@ -1,0 +1,7 @@
+
+/vis/viewer/set/viewpointThetaPhi 90 0
+
+
+
+/vis/viewer/set/cutawayMode intersection
+/vis/viewer/addCutawayPlane 5  0  0  cm  1 0  0

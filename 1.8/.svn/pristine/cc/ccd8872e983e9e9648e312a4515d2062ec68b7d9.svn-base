@@ -1,0 +1,124 @@
+from init_env import init_environment
+
+env = init_environment("qt4 geant4 clhep evio xercesc")
+
+
+# Include Path
+incpath = ['.', 'src', 'gui/src', 'materials', 'parameters']
+env.Append(CPPPATH = incpath)
+
+env.Append(LIBPATH = ['lib'])
+env.Append(LIBS = ['materials', 'parameters'])
+
+
+# Sources
+gemc_sources = Split("""gemc.cc 
+                        src/detector.cc
+                        src/detector_io_mysql.cc
+                        src/dmesg_init.cc
+                        src/identifier.cc
+                        src/run_conditions.cc
+                        src/usage.cc
+                        src/MagneticField.cc
+                        src/MBankdefs.cc
+                        src/MDetectorConstruction.cc
+                        src/MDetectorMessenger.cc
+                        src/MEventAction.cc
+                        src/MHit.cc
+                        src/MPHBaseClass.cc
+                        src/MOutputBaseClass.cc
+                        src/MPrimaryGeneratorAction.cc
+                        src/MSensitiveDetector.cc
+                        src/MSteppingAction.cc
+                        src/string_utilities.cc
+                        gui/src/gemc_MainGui.cc
+                        gui/src/detector_editor.cc
+                        gui/src/run_control.cc
+                        gui/src/camera_control.cc
+                        gui/src/detector_tree.cc
+                        gui/src/infos.cc
+                        gui/src/g4dialog.cc
+                        gui/src/gsignal.cc""")
+
+# Physics
+phys_sources = Split("""physics/EMPhysics.cc
+                        physics/GeneralPhysics.cc
+                        physics/HadronPhysics.cc
+                        physics/IonPhysics.cc
+                        physics/MPhysicsList.cc
+                        physics/OpticalPhysics.cc""")
+incpath = ['physics']
+env.Append(CPPPATH = incpath)
+
+
+
+# Materials
+materials_sources = Split("""materials/material_factory.cc
+                             materials/cpp_materials.cc
+                             materials/mysql_materials.cc""")
+
+# Parameters
+parameters_sources = Split("""parameters/parameter_factory.cc
+                              parameters/mysql_parameters.cc""")
+
+
+# Hit Processes
+hitp_sources = Split("""hitprocess/HitProcess_MapRegister.cc
+                        hitprocess/clas12/svt/BST_hitprocess.cc
+                        hitprocess/clas12/svt/bst_strip.cc
+                        hitprocess/clas12/svt/FST_hitprocess.cc
+                        hitprocess/clas12/svt/fst_strip.cc
+                        hitprocess/clas12/micromegas/FMT_hitprocess.cc	
+                        hitprocess/clas12/micromegas/fmt_strip.cc
+                        hitprocess/clas12/micromegas/BMT_hitprocess.cc	
+                        hitprocess/clas12/micromegas/bmt_strip.cc
+                        hitprocess/clas12/micromegas/FTM_hitprocess.cc	
+                        hitprocess/clas12/micromegas/ftm_strip.cc
+                        hitprocess/clas12/CND_hitprocess.cc
+                        hitprocess/clas12/CTOF_hitprocess.cc
+                        hitprocess/clas12/DC_hitprocess.cc
+                        hitprocess/clas12/IC_hitprocess.cc
+                        hitprocess/clas12/FT_hitprocess.cc
+                        hitprocess/clas12/FTH_hitprocess.cc
+                        hitprocess/clas12/OTOF_hitprocess.cc
+                        hitprocess/clas12/EC_hitprocess.cc
+                        hitprocess/clas12/ECwithG4strips_hitprocess.cc
+                        hitprocess/clas12/PCAL_hitprocess.cc
+                        hitprocess/clas12/raw_hitprocess.cc                       
+                        hitprocess/clas12/flux_hitprocess.cc
+                        hitprocess/clas12/RICH_hitprocess.cc
+                        hitprocess/clas12/LTCC_hitprocess.cc
+                        hitprocess/clas12/HTCC_hitprocess.cc
+                        hitprocess/Aprime/HS_hitprocess.cc
+                        hitprocess/Aprime/STR_hitprocess.cc
+                        hitprocess/Aprime/str_strip.cc                        
+                        hitprocess/GlueX/CVRT_hitprocess.cc""")
+                        
+incpath =  ['hitprocess', 'hitprocess/clas12', 'hitprocess/clas12/svt', 'hitprocess/clas12/micromegas']
+incpath += ['hitprocess/Aprime', 'hitprocess/GlueX', 'hitprocess/solid']
+env.Append(CPPPATH = incpath)
+
+
+# Outputs
+output_sources = Split("""output/Output_Register.cc
+                          output/evio_output.cc
+                          output/txt_output.cc""")
+incpath = ['output']
+env.Append(CPPPATH = incpath)
+
+env.Library(source = materials_sources,  target = "lib/materials")
+env.Library(source = parameters_sources, target = "lib/parameters")
+
+
+Target = 'gemc'
+env.Program(source = gemc_sources + phys_sources + hitp_sources + output_sources, target = Target)
+
+if env['LIBRARY'] == "static":
+	env.Library(source = gemc_sources + phys_sources + hitp_sources + output_sources, target = Target)
+
+if env['LIBRARY'] == "shared":
+	env.SharedLibrary(source = gemc_sources + phys_sources + hitp_sources + output_sources, target = Target)
+
+
+
+

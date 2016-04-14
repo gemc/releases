@@ -1,0 +1,39 @@
+E__hit	1	1	1	energy found	
+dE_hit	2	1	1	error on the energy found	
+t_hit	3	1	1	time found	
+dt_hit	4	1	1	error time found	
+i_hit	5	1	1	sector rectangular coordinate	
+j_hit	6	1	1	sector rectangular coordinate	
+di_hit	7	1	1	sector rectangular coordinate error	
+dj_hit	8	1	1	sector rectangular coordinate error	
+x_hit	9	1	1	lab coordinate	
+y_hits	10	1	1	lab coordinate	
+z_hit	11	1	1	lab coordinate	
+dx_hit	12	1	1	lab coordinate error	
+dy_hit	13	1	1	lab coordinate error	
+dz_hit	14	1	1	lab coordinate error	
+u2_hit	15	1	1	second moment of u_hit pattern	
+v2_hit	16	1	1	second moment of v_hit pattern	
+w2_hit	17	1	1	second moment of w_hit pattern	
+u3_hit	18	1	1	third moment of u_hit pattern	
+v3_hit	19	1	1	third moment of v_hit pattern	
+w3_hit	20	1	1	third moment of w_hit pattern	
+u4_hit	21	1	1	forth moment of u_hit pattern	
+v4_hit	22	1	1	forth moment of v_hit pattern	
+w4_hit	23	1	1	forth moment of w_hit pattern	
+center_U	24	1	1	peak position on U axis	
+center_V	25	1	1	peak position on V axis	
+center_W	26	1	1	peak position on W axis	
+path_U	27	1	1	path length from hit position to U axis	
+path_V	28	1	1	path length from hit position to V axis	
+path_W	29	1	1	path length from hit position to W axis	
+CH21	30	1	1	Quality measure of matching with layer1	
+CH22	31	1	1	Quality measure of matching with layer2	
+sector	32	0	1	sector in PCAL	
+layer	33	0	1	PCAL Layer	
+Nstrip_U	34	0	1	Number of U strips in the hit	
+Nstrip_V	35	0	1	Number of V strips in the hit	
+Nstrip_W	36	0	1	Number of W strips in the hit	
+MatchID1	37	0	1	Id of matched hit in the layer1	
+MatchID2	38	0	1	Id of matched hit in the layer2	
+istat	39	0	1	Number of hits & hit ID	

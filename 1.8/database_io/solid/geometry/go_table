@@ -1,0 +1,54 @@
+#!/bin/csh -f
+
+if($1 == "-h" || $#argv != 2) then
+	echo "Usage:   "
+	echo  "  >> go_table detector geometry_database"
+	echo  "     creates the geometry table from perl script into the geometry_database"
+	echo "Possible databases: solid_geometry, user_geometry etc."
+	exit 0
+endif
+
+set tables = $1
+set database = $2
+
+if($1 == "clean") then
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+else
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+
+#  if($database =="") then
+#     set database = $GEMC_DB
+#    # exit 1
+#  endif
+
+  echo "use database $database"
+
+  # creates files. Should match the tables name above
+  ./$tables".pl"
+
+  # Remaking the tables
+  foreach t ($tables)
+    #echo "y" | $GEMC/database_io/drop_geo_table  $t   $database
+    #$GEMC/database_io/create_new_geo_table  $t  $database
+    echo "y" | ./drop_geo_table $t   $database
+    ./create_new_geo_table $t   $database
+  end
+
+  set command = $tables".log"
+  rm -rf $command
+  echo use $database";" > $command;
+  foreach t ($tables)
+    echo  LOAD DATA LOCAL INFILE \'$t.txt\'   into TABLE $t";" >> $command
+    echo update $t" set time=NOW() where time=0;" >> $command;
+  end
+
+  mysql -h $GEMC_HOST -u $GEMC_USER -p$GEMC_PASS < $command
+
+
+endif

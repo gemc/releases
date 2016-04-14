@@ -1,0 +1,174 @@
+;						Central Turn Spacing Default			0.51	cm/turn
+;Coil turns	1300		endcap max angle	35		End Turn Spacing Default			0.489	cm/turn
+;			endcap min angle	15.3						
+;coil radius (ave)	155		target offset from center	50						
+;Coil Current	3250									
+;central turn density	0.550023596	central turns	318.1681683	total turns	1300.000001		endcap max angle	35		
+;End turn density	0.527375565	End Turn	165.915916				endcap min angle	17		
+;coil half length	175				0.721654851					
+;Central Region Half Length	87.5	yokexhi	261	polendyhi	266.7					
+;coil inner radius	154	detendyhi	175.26	bpradius	26.0096					
+;coil outer radius	156	fixedin rad	95							
+CLEO Magnet										
+;										
+&reg kprob=	0	,           	; Declares a POISSON problem							
+;mode=	-1		; Use fixed gamma for material 2							
+mode=	0		; Use variable gamma for material 2							
+icylin=	1	,               	; Cylindrical symmetry							
+dx=	0.05	,	! Mesh size intervals							
+dy=	0.05	,	! Mesh size intervals							
+rhogam=	0.008	,								
+nbslo=	0	,	! Dirichlet boundary condition on lower edge							
+nbsup=	0	,	! Dirichlet boundary condition on upper edge							
+nbslf=	0	,	! Dirichlet boundary condition on left edge							
+nbsrt=	0	,	! Dirichlet boundary condition on right edge							
+;										
+; Define X (physical) and K (logical) line regions:										
+xreg1=	20	, kreg1=	2	; percentage	0.01					
+xreg2=	145	, kreg2=	100	;	0.4					
+xreg3=	280	, kreg3=	237	;	0.95					
+kmax=	250									
+; Define Y (physical) and L (logical) line regions:										
+yreg1=	-275	, lreg1=	22	; percentage	0.03					
+yreg2=	150	, lreg2=	412	;	0.55					
+yreg3=	400	, lreg3=	675	;	0.9					
+yreg4=	500	, lreg4=	712	;	0.95					
+lmax=	750	&								
+;	Region	1								
+&po y=	-400	,x=	0	&         	; Start of the air-region points					
+&po y=	600	,x=	0	&						
+&po y=	600	,x=	400	&						
+&po y=	-400	,x=	400	&						
+&po y=	-400	,x=	0	&						
+;										
+! Upstream coil	Region	2								
+&reg 	mat=1	, cur=	1078453.454	&						
+&po	y=	-175.00	, x=	156	&					
+&po	y=	-87.50	, x=	156.00	&					
+&po	y=	-87.50	, x=	154.00	&					
+&po	y=	-175.00	, x=	154.00	&					
+&po	y=	-175.00	, x=	156.00	&					
+;										
+! Central coil	Region	3								
+&reg 	mat=1	, cur=	2068093.094	&						
+&po	y=	-87.50	, x=	156.00	&					
+&po	y=	87.50	, x=	156.00	&					
+&po	y=	87.50	, x=	154.00	&					
+&po	y=	-87.50	, x=	154.00	&					
+&po	y=	-87.50	, x=	156.00	&					
+;										
+! Downstream coil	Region	4								
+&reg 	mat=1	, cur=	1078453.454	&						
+&po	y=	175.00	, x=	156.00	&					
+&po	y=	87.50	, x=	156.00	&					
+&po	y=	87.50	, x=	154.00	&					
+&po	y=	175.00	, x=	154.00	&					
+&po	y=	175.00	, x=	156.00	&					
+;										
+! Return yoke	Region	5								
+&reg	mat=2	&								
+&po	y=	-175.26	, x=	225.00	&					
+&po	y=	175.26	, x=	225.00	&					
+&po	y=	175.26	, x=	261.00	&					
+&po	y=	-175.26	, x=	261.00	&					
+&po	y=	-175.26	, x=	225.00	&					
+;										
+! Return Yoke	Region	6								
+&reg	mat=2	&								
+&po	y=	-175.26	, x=	216.00	&					
+&po	y=	175.26	, x=	216.00	&					
+&po	y=	175.26	, x=	180.00	&					
+&po	y=	-175.26	, x=	180.00	&					
+&po	y=	-175.26	, x=	216.00	&					
+;										
+;										
+! Yoke end pieces downstream	Region	7								
+&reg	mat=2	&								
+&po	y=	-175.26	, x=	261.00	&					
+&po	y=	-266.70	, x=	261.00	&					
+&po	y=	-266.70	, x=	95.00	&					
+&po	y=	-175.26	, x=	95.00	&					
+&po	y=	-175.26	, x=	130.00	&					
+&po	y=	-181.93	, x=	142.00	&					
+&po	y=	-181.93	, x=	168.00	&					
+&po	y=	-175.26	, x=	180.00	&					
+&po	y=	-175.26	, x=	261.00	&					
+;										
+! Upstream pole tip	Region	8								
+&reg	mat=2	&								
+&po	y=	-175.26	, x=	26.01	&					
+&po	y=	-244.86	, x=	26.01	&					
+&po	y=	-244.86	, x=	55.88	&					
+&po	y=	-266.70	, x=	71.12	&					
+&po	y=	-266.70	, x=	95.00	&					
+&po	y=	-175.26	, x=	95.00	&					
+&po	y=	-175.26	, x=	26.01	&					
+;										
+Nose cone	Region	9								
+&reg	mat=2	&								
+&po	y=	145.26	, x=	26.01	&	;ext into solenoid	30			
+&po	y=	395.26	, x=	26.01	&	; detector space	150			
+&po	y=	395.26	, x=	99.44	&	; flux thickness	70			
+&po	y=	325.26	, x=	99.44	&					
+&po	y=	145.26	, x=	44.41	&					
+&po	y=	145.26	, x=	26.01	&					
+;										
+! Downsteam front magnet pole	Region	10								
+&reg	mat=2	&								
+&po	y=	175.26	, x=	261.00	&	; thickness	20			
+&po	y=	195.26	, x=	276.00	&	;Top above	15			
+&po	y=	195.26	, x=	159.00	&	;	39.15704267			
+&po	y=	188.59	, x=	149.00	&	;	38.31197298			
+&po	y=	181.93	, x=	149.00	&	; below coil	5			
+&po	y=	181.93	, x=	164.50	&					
+&po	y=	175.26	, x=	180.00	&					
+&po	y=	175.26	, x=	261.00	&					
+;										
+! Downsteam top	Region	11								
+&reg	mat=2	&								
+&po	y=	195.26	, x=	276.00	&					
+&po	y=	395.26	, x=	276.00	&	; Top Thickness	40			
+&po	y=	395.26	, x=	236.00	&					
+&po	y=	195.26	, x=	236.00	&					
+&po	y=	195.26	, x=	276.00	&					
+;										
+; Calorimeter area in layers	Region	12				;No. Layer	5			
+&reg	mat=2	&				;Layer Thick	7.777777778			
+&po	y=	325.26	, x=	99.44	&					
+&po	y=	333.04	, x=	99.44	&					
+&po	y=	333.04	, x=	236.00	&					
+&po	y=	325.26	, x=	236.00	&					
+&po	y=	325.26	, x=	99.44	&					
+;										
+; Calorimeter area in layers	Region	13								
+&reg	mat=2	&								
+&po	y=	340.82	, x=	99.44	&					
+&po	y=	348.59	, x=	99.44	&					
+&po	y=	348.59	, x=	236.00	&					
+&po	y=	340.82	, x=	236.00	&					
+&po	y=	340.82	, x=	99.44	&					
+;										
+; Calorimeter area in layers	Region	14								
+&reg	mat=2	&								
+&po	y=	356.37	, x=	99.44	&					
+&po	y=	364.15	, x=	99.44	&					
+&po	y=	364.15	, x=	236.00	&					
+&po	y=	356.37	, x=	236.00	&					
+&po	y=	356.37	, x=	99.44	&					
+;										
+; Calorimeter area in layers	Region	15								
+&reg	mat=2	&								
+&po	y=	371.93	, x=	99.44	&					
+&po	y=	379.70	, x=	99.44	&					
+&po	y=	379.70	, x=	236.00	&					
+&po	y=	371.93	, x=	236.00	&					
+&po	y=	371.93	, x=	99.44	&					
+;										
+; Calorimeter area in layers	Region	16								
+&reg	mat=2	&								
+&po	y=	387.48	, x=	99.44	&					
+&po	y=	395.26	, x=	99.44	&					
+&po	y=	395.26	, x=	236.00	&					
+&po	y=	387.48	, x=	236.00	&					
+&po	y=	387.48	, x=	99.44	&					
+;										

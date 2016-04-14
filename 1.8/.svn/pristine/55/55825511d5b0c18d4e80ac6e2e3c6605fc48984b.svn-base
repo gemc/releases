@@ -1,0 +1,42 @@
+<gcard>
+
+
+
+  <!-- Forward Detectors: -->
+  <sqltable name="BST"/>
+  <sqltable name="BMT"/>
+   
+   <detector name="SL2_1">
+	   <existence exist="no" />
+   </detector>
+   <detector name="SL2_2">
+	   <existence exist="no" />
+   </detector>
+   <detector name="SL2_3">
+	   <existence exist="no" />
+   </detector>
+   <detector name="SL2_4">
+	   <existence exist="no" />
+   </detector>
+
+	<option name="DBHOST"     value="clasdb" />
+	<option name="DBUSER"     value="ungaro" />
+	<option name="HALL_FIELD"     value="srr-solenoid" />
+
+
+	<option name="OUTPUT"     value="evio, out.ev" />
+
+<option name="LUMI_EVENT"     value="62000, 130*ns, 2*ns" />
+<option name="LUMI_P"         value="e-, 11*GeV, 0*deg, 0*deg" />
+<option name="LUMI_V"         value="(0.,0.,-10.)cm" />
+<option name="LUMI_SPREAD_V"  value="(0.01, 0.01)cm" />
+
+<option name="PRINT_EVENT"    value="1" />
+<option name="RECORD_PASSBY"  value="1" />
+<option name="USE_QT"  value="0" />
+
+
+
+
+</gcard>
+

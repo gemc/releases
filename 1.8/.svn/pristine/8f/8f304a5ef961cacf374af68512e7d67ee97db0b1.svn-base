@@ -1,0 +1,76 @@
+#!/bin/csh -f
+
+if($1 == "-h" || $1 == ""  || $#argv != 1) then
+ echo " "
+ echo "Usage:   "
+ echo  "  >> edit_bank bankname"
+ echo  "     edit bank bankname"
+ echo " "
+ exit 0
+endif
+
+rm -rf tmp6.txt
+echo  "use clas12_geometry;" > tmp6.txt
+echo  "select name, id, identifiers from SDId " 'where name = "'$1'";' >> tmp6.txt 
+
+set idname      = (`mysql -h clasdb.jlab.org -u clasuser < tmp6.txt | grep $1 | awk -F"	" '{print $1}'`)
+set Id          = (`mysql -h clasdb.jlab.org -u clasuser < tmp6.txt | grep $1 | awk -F"	" '{print $2}'`)
+set identifiers = (`mysql -h clasdb.jlab.org -u clasuser < tmp6.txt | grep $1 | awk -F"	" '{print $3}'`)
+
+rm -f tmp.txt
+echo " "                                                                     > tmp.txt
+echo " Identifier:  $idname "                                               >> tmp.txt
+echo " "                                                                    >> tmp.txt
+echo " -------------------------------------------------------------------" >> tmp.txt
+echo " "                                                                    >> tmp.txt
+echo " Bank Name                                    ==  $idname"            >> tmp.txt
+echo " Bank Id                                      ==  $Id"                >> tmp.txt
+echo " Bank Element name, max numbner of elements   ==  $identifiers"       >> tmp.txt
+echo " "                                                                    >> tmp.txt
+echo " -------------------------------------------------------------------" >> tmp.txt
+
+$EDITOR tmp.txt
+
+set idname      = (`cat tmp.txt | grep "Bank Name"        | awk -F"==" '{print $2}'`)
+set Id          = (`cat tmp.txt | grep "Bank Id"          | awk -F"==" '{print $2}'`)
+set identifiers = (`cat tmp.txt | grep "Bank Element"     | awk -F"==" '{print $2}'`)
+
+echo
+echo Bank Name:                                    $idname
+echo Bank Id:                                      $Id
+echo Bank Volume name, max number of elements::    "$identifiers"
+echo
+echo 'Proceed? y/n'
+echo 
+set confirm = $<
+
+if($confirm == "y") then
+  
+  checkid:
+  # checking that bank ID doesn't exist yet. 
+  rm -rf tmp4.txt
+  echo  'use clas12_geometry;'                              > tmp4.txt
+  echo  "select name, id from SDId where id =  $Id AND name != " '"'$idname'";'   >> tmp4.txt;
+  set out = `mysql -h clasdb.jlab.org -u clasuser        < tmp4.txt  | grep $Id` 
+
+  # if bank id is taken, you must pick another one 
+  if("$out" != "") then
+    echo 
+    echo "Bank id $Id already exists. Please enter a new bank id. "
+    set Id = $<
+    goto checkid
+  endif
+
+  insert_identifier:
+    rm -f tmp3.txt
+    echo  "use clas12_geometry;"                                > tmp3.txt
+    echo  'replace into SDId values("'$idname'", '$Id', "'"$identifiers"'");' >> tmp3.txt;
+    set out = `mysql -h clasdb.jlab.org -u clasuser < tmp3.txt` 
+    echo Bank Identifier $idname replaced.
+  
+endif
+
+rm -rf tmp.txt tmp4.txt tmp3.txt tmp6.txt
+
+
+

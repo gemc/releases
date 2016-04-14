@@ -1,0 +1,320 @@
+# Setting Start Position
+
+
+/vis/viewer/set/targetPoint 0 0 0 cm
+
+/vis/viewer/zoom 20
+/vis/viewer/pan 0 0 cm
+/control/alias phi 0
+/vis/viewer/set/projection perspective 30 deg
+
+# Hide everything from view
+/vis/geometry/set/visibility all -1 0
+
+
+
+# Target
+/vis/viewer/zoom 1
+/vis/geometry/set/visibility LH2ScattChamCont 1 1
+/vis/geometry/set/visibility LH2ScattChamCont 0 0
+/control/loop macros/theta.loop theta 0 10 0.008
+
+
+# BST 1
+/vis/geometry/set/visibility BST_SL_1 -1 1
+/vis/geometry/set/visibility BST_SL_1 0 0
+/control/loop macros/theta.loop theta 11 20 0.024
+
+# BST 2
+/vis/geometry/set/visibility BST_SL_2 -1 1
+/vis/geometry/set/visibility BST_SL_2 0 0
+/control/loop macros/theta.loop theta 21 40 0.09
+
+# BST 3
+/vis/geometry/set/visibility BST_SL_3 -1 1
+/vis/geometry/set/visibility BST_SL_3 0 0
+/control/loop macros/theta.loop theta 41 80 0.2
+
+# FST
+/vis/geometry/set/visibility FST -1 1
+/vis/geometry/set/visibility FST  0 0
+/control/loop macros/theta.loop theta 81 150 0.6
+
+
+
+# BMT R1
+/vis/geometry/set/visibility SL2_1 -1 1
+/vis/geometry/set/visibility SL2_2 -1 1
+/vis/geometry/set/visibility SL2_1 0 0
+/vis/geometry/set/visibility SL2_2 0 0
+/control/loop macros/theta.loop theta 151 170 0.3
+
+# BMT R2
+/vis/geometry/set/visibility SL2_3 -1 1
+/vis/geometry/set/visibility SL2_4 -1 1
+/vis/geometry/set/visibility SL2_3 0 0
+/vis/geometry/set/visibility SL2_4 0 0
+/control/loop macros/theta.loop theta 172 200 0.4
+
+# BMT R2
+/vis/geometry/set/visibility SL2_5 -1 1
+/vis/geometry/set/visibility SL2_6 -1 1
+/vis/geometry/set/visibility SL2_5 0 0
+/vis/geometry/set/visibility SL2_6 0 0
+/control/loop macros/theta.loop theta 202 240 0.45
+
+
+# CTOF
+/vis/geometry/set/visibility CTOF -1 1
+/vis/geometry/set/visibility CTOF  0 0
+/control/loop macros/theta.loop theta 242 270 0.5
+/control/alias zoomfactor 0.99
+/control/loop macros/zoom.loop theta 0 1 0.03
+
+
+# CND
+/vis/geometry/set/visibility CND -1 1
+/vis/geometry/set/visibility CND  0 0
+/control/alias zoomfactor 0.996
+/control/loop macros/zoom.loop theta 0 1 0.02
+
+/control/loop macros/theta.loop theta 270 360 0.8
+
+
+/control/alias zoomfactor 0.99
+/control/loop macros/zoom.loop theta 0 1 0.02
+
+
+# Solenoid
+/vis/geometry/set/visibility solenoid -1 1
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.015
+
+/control/loop macros/theta.loop theta 0 30 0.6
+/control/alias theta 30
+/control/loop macros/phi.loop phi 0 30 0.6
+
+
+/control/alias zoomfactor 0.99
+/control/loop macros/zoom.loop theta 0 1 0.02
+
+# HTCC
+/vis/geometry/set/visibility HTCC -1 1
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.04
+
+/control/alias panhori -5
+/control/loop macros/panhori.loop theta 0 1 0.03
+
+
+
+# Beamline
+/vis/geometry/set/visibility W_cone -1 1
+/vis/geometry/set/visibility Cone_2_Torus_Tube_F -1 1
+/control/alias zoomfactor 0.99
+/control/loop macros/zoom.loop theta 0 1 0.06
+
+/control/loop macros/theta.loop theta 30 40 1
+
+
+/vis/geometry/set/visibility downstream_vacuum_pipe -1 1
+/vis/geometry/set/visibility lead_shield -1 1
+
+/control/alias zoomfactor 0.98
+/control/loop macros/zoom.loop theta 0 1 0.05
+
+/control/loop macros/theta.loop theta 40 90 2
+
+
+/vis/geometry/set/visibility shield_pipe_after_torus_ring -1 1
+
+/control/alias panhori -10
+/control/loop macros/panhori.loop theta 0 1 0.03
+
+/control/alias zoomfactor 0.99
+/control/loop macros/zoom.loop theta 0 1 0.1
+
+
+
+
+# Drift Chamber R1
+/vis/geometry/set/visibility regionb1 -1 1
+/vis/geometry/set/visibility regionb1  0 0
+
+/control/alias zoomfactor 0.9999
+/control/loop macros/zoom.loop theta 0 1 0.1
+
+
+# Drift Chamber R2
+/vis/geometry/set/visibility regionb2 -1 1
+/vis/geometry/set/visibility regionb2  0 0
+
+/control/alias zoomfactor 0.9999
+/control/loop macros/zoom.loop theta 0 1 0.1
+
+
+# Drift Chamber R3
+/vis/geometry/set/visibility regionb3 -1 1
+/vis/geometry/set/visibility regionb3  0 0
+/control/alias zoomfactor 0.9999
+/control/loop macros/zoom.loop theta 0 1 0.1
+
+/control/loop macros/theta.loop theta 90 100 0.6
+
+
+# LTCC
+# Will do one by one
+/vis/geometry/set/visibility LTCC 0 1
+/vis/geometry/set/visibility el_mir_left_1 0 1
+/vis/geometry/set/visibility el_mir_left_2 0 1
+/vis/geometry/set/visibility el_mir_left_3 0 1
+/vis/geometry/set/visibility el_mir_left_4 0 1
+/vis/geometry/set/visibility el_mir_left_5 0 1
+/vis/geometry/set/visibility el_mir_left_6 0 1
+/vis/geometry/set/visibility el_mir_left_7 0 1
+/vis/geometry/set/visibility el_mir_left_8 0 1
+/vis/geometry/set/visibility el_mir_left_10 0 1
+/vis/geometry/set/visibility el_mir_left_11 0 1
+/vis/geometry/set/visibility el_mir_left_12 0 1
+/vis/geometry/set/visibility el_mir_left_13 0 1
+/vis/geometry/set/visibility el_mir_left_14 0 1
+/vis/geometry/set/visibility el_mir_left_15 0 1
+/vis/geometry/set/visibility el_mir_left_16 0 1
+/vis/geometry/set/visibility el_mir_left_17 0 1
+/vis/geometry/set/visibility el_mir_left_10 0 1
+/vis/geometry/set/visibility el_mir_right_1 0 1
+/vis/geometry/set/visibility el_mir_right_2 0 1
+/vis/geometry/set/visibility el_mir_right_3 0 1
+/vis/geometry/set/visibility el_mir_right_4 0 1
+/vis/geometry/set/visibility el_mir_right_5 0 1
+/vis/geometry/set/visibility el_mir_right_6 0 1
+/vis/geometry/set/visibility el_mir_right_7 0 1
+/vis/geometry/set/visibility el_mir_right_8 0 1
+/vis/geometry/set/visibility el_mir_right_10 0 1
+/vis/geometry/set/visibility el_mir_right_11 0 1
+/vis/geometry/set/visibility el_mir_right_12 0 1
+/vis/geometry/set/visibility el_mir_right_13 0 1
+/vis/geometry/set/visibility el_mir_right_14 0 1
+/vis/geometry/set/visibility el_mir_right_15 0 1
+/vis/geometry/set/visibility el_mir_right_16 0 1
+/vis/geometry/set/visibility el_mir_right_17 0 1
+/vis/geometry/set/visibility el_mir_right_10 0 1
+/vis/geometry/set/visibility hyp_mirror_left_1 0 1
+/vis/geometry/set/visibility hyp_mirror_left_2 0 1
+/vis/geometry/set/visibility hyp_mirror_left_3 0 1
+/vis/geometry/set/visibility hyp_mirror_left_4 0 1
+/vis/geometry/set/visibility hyp_mirror_left_5 0 1
+/vis/geometry/set/visibility hyp_mirror_left_6 0 1
+/vis/geometry/set/visibility hyp_mirror_left_7 0 1
+/vis/geometry/set/visibility hyp_mirror_left_8 0 1
+/vis/geometry/set/visibility hyp_mirror_left_10 0 1
+/vis/geometry/set/visibility hyp_mirror_left_11 0 1
+/vis/geometry/set/visibility hyp_mirror_left_12 0 1
+/vis/geometry/set/visibility hyp_mirror_left_13 0 1
+/vis/geometry/set/visibility hyp_mirror_left_14 0 1
+/vis/geometry/set/visibility hyp_mirror_left_15 0 1
+/vis/geometry/set/visibility hyp_mirror_left_16 0 1
+/vis/geometry/set/visibility hyp_mirror_left_17 0 1
+/vis/geometry/set/visibility hyp_mirror_left_10 0 1
+/vis/geometry/set/visibility hyp_mirror_right_1 0 1
+/vis/geometry/set/visibility hyp_mirror_right_2 0 1
+/vis/geometry/set/visibility hyp_mirror_right_3 0 1
+/vis/geometry/set/visibility hyp_mirror_right_4 0 1
+/vis/geometry/set/visibility hyp_mirror_right_5 0 1
+/vis/geometry/set/visibility hyp_mirror_right_6 0 1
+/vis/geometry/set/visibility hyp_mirror_right_7 0 1
+/vis/geometry/set/visibility hyp_mirror_right_8 0 1
+/vis/geometry/set/visibility hyp_mirror_right_10 0 1
+/vis/geometry/set/visibility hyp_mirror_right_11 0 1
+/vis/geometry/set/visibility hyp_mirror_right_12 0 1
+/vis/geometry/set/visibility hyp_mirror_right_13 0 1
+/vis/geometry/set/visibility hyp_mirror_right_14 0 1
+/vis/geometry/set/visibility hyp_mirror_right_15 0 1
+/vis/geometry/set/visibility hyp_mirror_right_16 0 1
+/vis/geometry/set/visibility hyp_mirror_right_17 0 1
+/vis/geometry/set/visibility hyp_mirror_right_10 0 1
+/vis/geometry/set/visibility pmt_left_1 0 1
+/vis/geometry/set/visibility pmt_left_2 0 1
+/vis/geometry/set/visibility pmt_left_3 0 1
+/vis/geometry/set/visibility pmt_left_4 0 1
+/vis/geometry/set/visibility pmt_left_5 0 1
+/vis/geometry/set/visibility pmt_left_6 0 1
+/vis/geometry/set/visibility pmt_left_7 0 1
+/vis/geometry/set/visibility pmt_left_8 0 1
+/vis/geometry/set/visibility pmt_left_10 0 1
+/vis/geometry/set/visibility pmt_left_11 0 1
+/vis/geometry/set/visibility pmt_left_12 0 1
+/vis/geometry/set/visibility pmt_left_13 0 1
+/vis/geometry/set/visibility pmt_left_14 0 1
+/vis/geometry/set/visibility pmt_left_15 0 1
+/vis/geometry/set/visibility pmt_left_16 0 1
+/vis/geometry/set/visibility pmt_left_17 0 1
+/vis/geometry/set/visibility pmt_left_10 0 1
+/vis/geometry/set/visibility pmt_right_1 0 1
+/vis/geometry/set/visibility pmt_right_2 0 1
+/vis/geometry/set/visibility pmt_right_3 0 1
+/vis/geometry/set/visibility pmt_right_4 0 1
+/vis/geometry/set/visibility pmt_right_5 0 1
+/vis/geometry/set/visibility pmt_right_6 0 1
+/vis/geometry/set/visibility pmt_right_7 0 1
+/vis/geometry/set/visibility pmt_right_8 0 1
+/vis/geometry/set/visibility pmt_right_10 0 1
+/vis/geometry/set/visibility pmt_right_11 0 1
+/vis/geometry/set/visibility pmt_right_12 0 1
+/vis/geometry/set/visibility pmt_right_13 0 1
+/vis/geometry/set/visibility pmt_right_14 0 1
+/vis/geometry/set/visibility pmt_right_15 0 1
+/vis/geometry/set/visibility pmt_right_16 0 1
+/vis/geometry/set/visibility pmt_right_17 0 1
+/vis/geometry/set/visibility pmt_right_10 0 1
+
+
+/control/alias zoomfactor 0.99
+/control/loop macros/zoom.loop theta 0 1 0.1
+
+
+
+
+# FTOF
+/vis/geometry/set/visibility FTOF_Panel_1a -1 1
+/vis/geometry/set/visibility FTOF_Panel_1a 0 0 
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.2
+/vis/geometry/set/visibility FTOF_Panel_1b -1 1
+/vis/geometry/set/visibility FTOF_Panel_1b 0 0 
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.2
+/vis/geometry/set/visibility FTOF_Panel_2 -1 1
+/vis/geometry/set/visibility FTOF_Panel_2 0 0 
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.2
+
+/control/loop macros/theta.loop theta 100 104 0.2
+
+# PCAL
+/vis/geometry/set/visibility PCAL -1 1
+/vis/geometry/set/visibility PCAL 0 0 
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.2
+
+/control/loop macros/theta.loop theta 104 108 0.2
+
+
+# EC
+/vis/geometry/set/visibility EC -1 1
+/vis/geometry/set/visibility EC 0 0 
+/control/alias zoomfactor 0.999
+/control/loop macros/zoom.loop theta 0 1 0.2
+
+
+
+/control/loop macros/theta.loop theta 108 112 0.2
+
+/vis/viewer/set/lightsThetaPhi 120 30
+
+
+
+
+/run/beamOn 1
+
+

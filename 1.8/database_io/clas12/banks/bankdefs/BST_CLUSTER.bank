@@ -1,0 +1,4 @@
+id         	 1 	0	 1	 Cluster ID
+layer      	 2 	0	 1	 Layer
+sector     	 3 	0	 1	 BST Sector
+strip	       4 	0	 1	 strip

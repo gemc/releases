@@ -1,0 +1,14 @@
+#  List of geometry tables to validate
+# The validation will check:
+# 
+# 1. volume overlaps
+# 2. material mysql factory
+# 3. event validation?
+
+# Columns:
+# 
+# Detector |   GT or gcard to use  
+
+BST        |   GT
+
+

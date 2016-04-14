@@ -1,0 +1,12 @@
+Sector	1	0	1	Sector Number 
+Status	2	0	1	Status Word (not used in clas6) 
+MeanSegment	3	0	1	Mean segment Number 
+MinSegment	4	0	1	Minimum Segment Number in the cluster 
+MaxSegment	5	0	1	Maximum Segment Number in the cluster 
+NPhoto	6	1	1	Number of photoelectrons obtained 
+TimeChan	7	1	1	TOF in ADC Channels (50psec/channe) (clas12 20ps/channel) 
+Theta	8	1	1	Estimated angle Theta 
+dTheta	9	1	1	Estimated error of angle Theta 
+PhiIndex	10	1	1	Phi Angle index (-1 if Phi<0;1 if Phi>0;0 for Phi~0) 
+ECcoordI	11	1	1	Estimated i-coordinate in EC 
+dECcoordI	12	1	1	Estimated error of i-coordinate in EC 

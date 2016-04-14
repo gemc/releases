@@ -1,0 +1,17 @@
+ fort/fil 55 minhyp.ps
+ meta 55 -111
+
+ ve/cre  ncc(18) 'r' 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
+ ve/cre minh(18) 'r' 0. 0. 6.7 12.7 20.6 27.3 33.2 37.7 44.0 45.2 _
+ 49.0 51.7 55.8 59.6 63.1 64.8 68.0 75.6
+ ve/cre minhy(18) 'r' 622.1 617.9 613.5 610.1 607.0 603.4 598.9 _
+ 596.7 592.2 588.3 582.9 579.0 573.9 568.6 562.4 556.8 550.5 542.7
+ ve/cre ex(18) 'r' 18*0.1
+ ve/cre ey(18) 'r' 18*0.3
+ GRA/HPLOT/ERRORS ncc minh EX EY 18 24 0.4 W
+ atit NCC MinHyp
+
+ GRA/HPLOT/ERRORS ncc minhy EX EY 18 24 0.4 W
+ atit NCC 'Y hyperb'
+
+ close 55

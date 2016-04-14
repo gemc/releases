@@ -1,0 +1,2 @@
+ft_shield	root	FT Shielding	0*mm 0.0*mm 44*cm	0*deg 0*deg 0*deg	0000ff	Polycone	0.0*deg 360*deg 2 0*cm 0*cm 1.46*cm 5.87*cm 0*cm 133*cm	Tungsten	no	1	1	1	1	1	no			1	1000000
+moeller_shield_vac	moeller_shield	Moeller Shielding Vacuum	0*cm 0.0*cm 0*mm	0*deg 0*deg 0*deg	aaffff	Polycone	0.0*deg 360*deg 2 0*cm 0*cm 1.46*cm 5.87*cm 0*cm 133*cm	Vacuum	no	1	1	1	0	0	no			1	1000000

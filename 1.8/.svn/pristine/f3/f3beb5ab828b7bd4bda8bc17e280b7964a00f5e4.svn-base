@@ -1,0 +1,7 @@
+PID	10	1	1	Particle ID
+px	20	1	1	momentum in x direction
+py	30	1	1	momentum in y direction
+pz	40	1	1	momentum in z direction
+vx	50	1	1	x coordinate of vertex 
+vy	60	1	1	y coordinate of vertex 
+vz	70	1	1	z coordinate of vertex 

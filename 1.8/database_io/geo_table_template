@@ -1,0 +1,28 @@
+use db_geometry;
+
+create table template (
+name         VARCHAR(200) UNIQUE,
+mother       VARCHAR(100),
+description  VARCHAR(200),
+pos          VARCHAR(60),
+rot          VARCHAR(60),
+col          VARCHAR(8),
+type         VARCHAR(200),
+dimensions   TEXT,
+material     VARCHAR(60),
+magfield     VARCHAR(40),
+ncopy        int,
+pMany        int,
+exist        int,
+visible      int,
+style        int,
+sensitivity  VARCHAR(40),
+hitType      VARCHAR(100),
+identity     VARCHAR(200),
+rmin         int,
+rmax         int,
+time         TIMESTAMP
+);
+
+describe template;
+

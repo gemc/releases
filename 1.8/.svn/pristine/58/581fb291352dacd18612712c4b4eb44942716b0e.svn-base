@@ -1,0 +1,19 @@
+<x>    	  1	1	 1	   Average global x position
+<y>    	  2	1	 1	   Average global y position
+<z>    	  3	1	 1	   Average global z position
+<lx>   	  4	1	 1	   Average local x position
+<ly>   	  5	1	 1	   Average local y position
+<lz>   	  6	1	 1	   Average local z position
+<t>    	  7	1	 1	   Average time
+vx     	  8	1	 1	   x coordinate of primary vertex 
+vy     	  9	1	 1	   y coordinate of primary vertex 
+vz     	 10	1	 1	   z coordinate of primary vertex 
+E      	 11	1	 1	   Energy of the track at the entrance point
+mpid   	 12	1	 1	   Mother  Particle ID
+mvx    	 13	1	 1	   x coordinate of mother vertex
+mvy    	 14	1	 1	   y coordinate of mother vertex
+mvz    	 15	1	 1	   z coordinate of mother vertex
+sector	 20	0	 1	   sector index of hit
+ring	   21	0	 1	   theta index of hit
+half	   22	0	 1	   half-sector index of hit
+nphe	   23	0	 1	   number of photoelectrons

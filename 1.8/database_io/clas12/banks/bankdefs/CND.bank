@@ -1,0 +1,27 @@
+ETot   	  1	1	 1	   Total Energy Deposited
+<x>    	  2	1	 1	   Average global x position
+<y>    	  3	1	 1	   Average global y position
+<z>    	  4	1	 1	   Average global z position
+<lx>   	  5	1	 1	   Average local x position
+<ly>   	  6	1	 1	   Average local y position
+<lz>   	  7	1	 1	   Average local z position
+<t>    	  8	1	 1	   Average time
+pid    	  9	1	 1	   Particle ID
+vx     	 10	1	 1	   x coordinate of primary vertex 
+vy     	 11	1	 1	   y coordinate of primary vertex 
+vz     	 12	1	 1	   z coordinate of primary vertex 
+E      	 13	1	 1	   Energy of the track at the entrance point
+mpid   	 14	1	 1	   Mother  Particle ID
+mvx    	 15	1	 1	   x coordinate of mother vertex
+mvy    	 16	1	 1	   y coordinate of mother vertex
+mvz    	 17	1	 1	   z coordinate of mother vertex
+layer  	 20	0	 1	   layer
+paddle 	 21	0	 1	   paddle number
+ADCL   	 22	0	 1	   ADC Left
+ADCR   	 23	0	 1	   ADC Right
+TDCL   	 24	0	 1	   TDC Left
+TDCR   	 25	0	 1	   TDC Right
+ADCB   	 26	0	 1	   ADC Backward (u-turn geometry, same paddle as hit)
+ADCF   	 27	0	 1	   ADC Forward (u-turn geometry, lightguide paddle)
+TDCB   	 28	0	 1	   TDC Backward (u-turn geometry)
+TDCF   	 29	0	 1	   TDC Forward (u-turn geometry)

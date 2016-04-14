@@ -1,0 +1,33 @@
+<gcard version= "1.0"
+          date= "2010-5-13"
+        author= "Maurik"
+        e-mail= "maurik.holtrop@unh.edu">
+
+   <sqltable name="aprime_magnet"/>
+   <sqltable name="aprime_target"/> 
+   <sqltable name="aprime_silicon"/> 
+   <sqltable name="aprime_monitor"/>       <!-- These are useful FLUX locations. --> 
+   <sqltable name="aprime_ecal"/> 
+   <sqltable name="aprime_muon"/> 
+   <sqltable name="markers"/> 
+
+
+   <option name="HIT_PROCESS_LIST" value="aprime" />
+
+   <option name="DBHOST"        value="localhost" /> 
+   <option name="DATABASE"      value="aprime_geometry" />
+   <option name="BANK_DATABASE" value="aprime_banks" />
+   <option name="HALL_MATERIAL" value="Vacuum" />
+   <option name="HALL_FIELD"    value="nullmf" />
+   <option name="BEAM_P"        value="e-,6.6*GeV,0*deg,0*deg" />
+   <option name="BEAM_V"        value="(0.,0.,-1.)cm" />
+   <option name="SPREAD_V"      value="(0.0015, 0.0015)cm" />
+   <option name="LUMI_EVENT"    value="10000, 4*ns, 2*ns" />
+   <option name="LUMI_P"        value="e-, 6.6*GeV, 0*deg, 0*deg" />
+   <option name="LUMI_V"        value="(0.,0.,-1.)cm" />
+   <option name="LUMI_SPREAD_V" value="(0.0015, 0.0015)cm" />
+<!--   <option name="ENERGY_CUT"    value="1.0" /> -->
+
+   <option name="PRINT_EVENT"   value="5" />
+   
+</gcard>

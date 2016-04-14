@@ -1,0 +1,74 @@
+-- MySQL dump 10.13  Distrib 5.1.42, for apple-darwin10.2.0 (i386)
+--
+-- Host: roentgen    Database: aprime_geometry
+-- ------------------------------------------------------
+-- Server version	5.0.77
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Not dumping tablespaces as no INFORMATION_SCHEMA.FILES table on this server
+--
+
+--
+-- Table structure for table `aprime_target2`
+--
+
+DROP TABLE IF EXISTS `aprime_target2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `aprime_target2` (
+  `name` varchar(40) default NULL,
+  `mother` varchar(100) default NULL,
+  `description` varchar(200) default NULL,
+  `pos` varchar(60) default NULL,
+  `rot` varchar(60) default NULL,
+  `col` varchar(8) default NULL,
+  `type` varchar(60) default NULL,
+  `dimensions` text,
+  `material` varchar(60) default NULL,
+  `magfield` varchar(40) default NULL,
+  `ncopy` int(11) default NULL,
+  `pMany` int(11) default NULL,
+  `exist` int(11) default NULL,
+  `visible` int(11) default NULL,
+  `style` int(11) default NULL,
+  `sensitivity` varchar(40) default NULL,
+  `hitType` varchar(100) default NULL,
+  `identity` varchar(200) default NULL,
+  `rmin` int(11) default NULL,
+  `rmax` int(11) default NULL,
+  `time` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `aprime_target2`
+--
+
+LOCK TABLES `aprime_target2` WRITE;
+/*!40000 ALTER TABLE `aprime_target2` DISABLE KEYS */;
+INSERT INTO `aprime_target2` VALUES ('wTarget','wTgtContainer','        Thungsten Target','                0*cm 0*cm  0*cm','0.0*deg 0*deg 0*deg','1c8743','  Tube','0.*mm 140.*mm 0.00219*mm 0*deg 360*deg','   Tungsten','   no',1,1,1,1,1,'no','',NULL,NULL,NULL,'2010-11-04 01:50:06'),('wTgtContainer','AnaMagnet','                Vacuum Container For Target','0*cm 0*cm -45*cm','0.0*deg 0*deg 0*deg','ee3344','  Tube','0.*mm 150.*mm 10.*mm 0*deg 360*deg','   Vacuum','   no',1,1,1,0,0,'no','',NULL,NULL,NULL,'2010-11-04 01:47:49');
+/*!40000 ALTER TABLE `aprime_target2` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2011-01-26  8:24:54

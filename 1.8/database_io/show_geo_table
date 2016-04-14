@@ -1,0 +1,21 @@
+#!/bin/csh -f
+
+if($1 == "-h" || $1 == "" || $#argv != 1) then
+ echo " "
+ echo "Usage:   "
+ echo  "  >> show_geo_table tablename"
+ echo  "     lists volumes in <tablename>"
+ echo " "
+ exit 0
+endif
+
+set table = $1
+rm -f tmp.txt
+echo  "use clas12_geometry;" > tmp.txt
+echo  "select name, mother, pos, rot, type, dimensions, material, magfield, sensitivity, hitType, identity from $table;" >> tmp.txt 
+mysql -h clasdb.jlab.org -u clasuser < tmp.txt 
+rm -f tmp.txt
+
+
+
+

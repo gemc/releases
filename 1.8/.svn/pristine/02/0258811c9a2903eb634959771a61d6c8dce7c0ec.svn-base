@@ -1,0 +1,5 @@
+id         	 1 	0	 1	 Cluster ID
+sector     	 2 	0	 1	 CLAS12 Sector
+superlayer 	 3 	0	 1	 Superlayer
+layer      	 4 	0	 1	 Layer
+wire       	 5 	0	 1	 Wire

@@ -1,0 +1,24 @@
+# Configuration file for EC
+
+#####################
+# Mandatory variables
+#####################
+
+# Notice: run ranges will apply to geometry, materials and parameters
+
+geometry_table: EC
+author:         Gilfoyle
+author_email:   gilfoyle@jlab.org
+
+run_min:       1
+run_max:       10000
+
+dbhost: clasdb.jlab.org
+dbname: ec_devel
+dbuser: ec_user
+dbpass: ec_devel
+
+# Verbosity controls the perl script output
+verbosity: 1
+
+# Optional variables

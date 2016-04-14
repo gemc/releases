@@ -1,0 +1,6 @@
+sector	 root	 Sector 1 	0*cm  0*cm 500*cm	0.0*deg 0*deg   90*deg	 ee11aa	         Tube	  15*cm 5*m 3.4*m 60.5*deg 59*deg	Air	clas12-torus	 1	1	1	0	0	no			1	1000000	20090528104407
+sector2	 root	 Sector 2 	0*cm  0*cm 500*cm	0.0*deg 0*deg   30*deg	 ee11aa	CopyOf sector	                                0	Air	clas12-torus	 2	1	1	0	0	no			1	1000000	20090528104407
+sector3	 root	 Sector 3 	0*cm  0*cm 500*cm	0.0*deg 0*deg  -30*deg	 ee11aa	CopyOf sector	                                0	Air	clas12-torus	 3	1	1	0	0	no			1	1000000	20090528104407
+sector4	 root	 Sector 4 	0*cm  0*cm 500*cm	0.0*deg 0*deg  -90*deg	 ee11aa	CopyOf sector	                                0	Air	clas12-torus	 4	1	1	0	0	no			1	1000000	20090528104407
+sector5	 root	 Sector 5 	0*cm  0*cm 500*cm	0.0*deg 0*deg -150*deg	 ee11aa	CopyOf sector	                                0	Air	clas12-torus	 5	1	1	0	0	no			1	1000000	20090528104407
+sector6	 root	 Sector 6 	0*cm  0*cm 500*cm	0.0*deg 0*deg -210*deg	 ee11aa	CopyOf sector	                                0	Air	clas12-torus	 6	1	1	0	0	no			1	1000000	20090528104407

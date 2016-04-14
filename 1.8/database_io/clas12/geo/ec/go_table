@@ -1,0 +1,102 @@
+#!/bin/csh -f
+
+# first fill the tables for the standard EC geometry with slabs for the scintillator.
+
+echo "Filling EC geometry table with scintillator slabs."
+
+set tables = (EC)
+
+if($1 == "clean") then
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+else
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+
+  # Default database - first argument defines new one
+  set database = $1
+  if($database =="") then
+    set database = "user_geometry"
+  endif
+
+  # creates files. Should match the tables name above
+  ./ec_build.pl
+
+
+# Remaking the tables
+  foreach t ($tables)
+    echo "y" | $GEMC/database_io/drop_geo_table  $t   $database
+    $GEMC/database_io/create_new_geo_table  $t  $database
+  end
+
+  rm -rf tmp.txt
+  echo use $database";" > tmp.txt;
+  foreach t ($tables)
+    echo  LOAD DATA LOCAL INFILE \'$t.txt\'   into TABLE $t";" >> tmp.txt
+    echo update $t" set time=NOW() where time=0;" >> tmp.txt;
+  end
+
+  mysql -h $GEMC_HOST -u $GEMC_USER < tmp.txt
+
+
+endif
+
+# now fill the tables for the ECwithG4strips geometry where the scintillator layerss are now composed 34 G4 strips.  ***********************
+
+echo " "
+echo " "
+echo "Filling EC geometry table with scintillator strips for each layer.  *********************** "
+
+set tables = (ECwithG4strips)
+
+if($1 == "clean") then
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+else
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+
+  # Default database - first argument defines new one
+  set database = $1
+  if($database =="") then
+    set database = "user_geometry"
+  endif
+
+  # creates files. Should match the tables name above
+  ./ec_G4strips_build.pl
+
+
+# Remaking the tables
+  foreach t ($tables)
+    echo "y" | $GEMC/database_io/drop_geo_table  $t   $database
+     $GEMC/database_io/create_new_geo_table  $t  $database
+  end
+
+  rm -rf tmp.txt
+  echo use $database";" > tmp.txt;
+  foreach t ($tables)
+    echo  LOAD DATA LOCAL INFILE \'$t.txt\'   into TABLE $t";" >> tmp.txt
+    echo update $t" set time=NOW() where time=0;" >> tmp.txt;
+  end
+
+  mysql -h $GEMC_HOST -u $GEMC_USER < tmp.txt
+
+
+endif
+
+
+
+
+
+
+
+
+

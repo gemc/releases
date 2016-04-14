@@ -1,0 +1,17 @@
+<gcard>
+
+<!-- Central Detectors: -->
+
+
+<!-- Forward Detectors: -->
+	<sqltable name="SECTOR"/>
+	<sqltable name="EC"/>
+
+
+<!-- Magnets: -->
+	<sqltable name="solenoid"/>
+
+
+
+</gcard>
+

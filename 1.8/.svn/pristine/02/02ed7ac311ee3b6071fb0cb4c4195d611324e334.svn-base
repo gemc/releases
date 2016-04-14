@@ -1,0 +1,28 @@
+# to use:
+# ungaro for clas12_geometry
+# clasuser for user_geometry
+# mysql -h clasdb.jlab.org -u ungaro < magf_table_commands
+# mysql -h clasdb.jlab.org -u clasuser < magf_table_commands
+
+
+use clas12_geometry;
+#drop table magnetic_fields;
+create table clas12_geometry.magnetic_fields (  name          VARCHAR(40) UNIQUE);
+alter table magnetic_fields add column          type          VARCHAR(150);
+alter table magnetic_fields add column          magnitude     VARCHAR(240);
+alter table magnetic_fields add column          swim_method   VARCHAR(40);
+alter table magnetic_fields add column          description   VARCHAR(100);
+LOAD DATA LOCAL INFILE 'magnetic_fields.txt'  into TABLE magnetic_fields;
+
+#use user_geometry;
+#drop table magnetic_fields;
+#create table user_geometry.magnetic_fields (  name          VARCHAR(40) UNIQUE);
+#alter table magnetic_fields add column          type          VARCHAR(150);
+#alter table magnetic_fields add column          magnitude     VARCHAR(240);
+#alter table magnetic_fields add column          swim_method   VARCHAR(40);
+#alter table magnetic_fields add column          description   VARCHAR(100);
+#LOAD DATA LOCAL INFILE 'magnetic_fields.txt'  into TABLE magnetic_fields;
+
+
+
+

@@ -1,0 +1,23 @@
+<gcard>
+
+  <!-- Detectors Present: -->
+  <sqltable name="LTCC_EL_Mirrors"/>
+  <sqltable name="LTCC_HP_Mirrors"/>
+  <sqltable name="LTCC_PMTS"/>
+  <sqltable name="LTCC"/>
+
+	<option name="BEAM_P"    value="e-, 6*GeV, 20*deg, 90*deg" />
+	<option name="SPREAD_P"  value="0*eV, 20*deg, 14*deg" />
+
+	<option name="USE_PHYSICSL"  value="gemc" />
+	<option name="OPT_PH"        value="1" />
+
+	<option name="geometry"      value="1400x1300" />
+	<option name="HALL_MATERIAL" value="Vacuum" />
+	
+  
+  <option name="DATABASE"   value="user_geometry" />
+	<option name="EXEC_MACRO" value="axis.vis" />
+
+
+</gcard>

@@ -1,0 +1,194 @@
+BaBar Magnet for PVDIS & transversity, attempts to compensate the axial force 
+
+&reg kprob=	0	,           		
+;mode=	-1			
+mode=	0			
+icylin=	1	,               		
+dx=	0.05	, dy=	0.05	,          
+rhogam=	0.008	,		
+nbsup=	0	,                		
+nbslf=	0	,                		
+nbsrt=	0	,                		
+nbslo=	0	,                		
+; Define X (physical) and K (logical) line regions:
+xreg1=	20	, kreg1=	10	
+xreg2=	130	, kreg2=	100	
+xreg3=	300	, kreg3=	360	
+kmax=	400			
+; Define Y (physical) and L (logical) line regions:
+yreg1=	-295	, lreg1=	60	
+yreg2 =	-165	, lreg2=	248	
+yreg3=	170	, lreg3=	460	
+yreg4=	240	, lreg4=	600	
+yreg5=	500	, lreg5=	720	
+lmax=	800	&		
+
+&po y=	-400	,x=	0	&         
+&po y=	600	,x=	0	&
+&po y=	600	,x=	400	&
+&po y=	-400	,x=	400	&
+&po y=	-400	,x=	0	&
+
+; Cryostat IR=	140	cm	, OR=	173
+; Coil     R_wind_centr=	149.85	cm	,length=	3455
+&reg mat=	1	,cur=	1706400	& 
+&po y=	-86.4	,x=	152	&
+&po y=	86.4	,x=	152	&
+&po y=	86.4	,x=	154	&
+&po y=	-86.4	,x=	154	&
+&po y=	-86.4	,x=	152	&
+
+&reg mat=	1	,cur=	1706400	& 
+&po y=	-172.8	,x=	152	&
+&po y=	-86.4	,x=	152	&
+&po y=	-86.4	,x=	154	&
+&po y=	-172.8	,x=	154	&
+&po y=	-172.8	,x=	152	&
+
+&reg mat=	1	,cur=	1706400	& 
+&po y=	172.8	,x=	152	&
+&po y=	86.4	,x=	152	&
+&po y=	86.4	,x=	154	&
+&po y=	172.8	,x=	154	&
+&po y=	172.8	,x=	152	&
+
+; Cylindified BaBar barrel
+&reg mat=	2	&            	; 	2
+&po y=	-187.2	,x=	180	&
+&po y=	187.2	,x=	180	&
+&po y=	187.2	,x=	182	&
+&po y=	-187.2	,x=	182	&
+&po y=	-187.2	,x=	180	&
+
+;&reg mat=	2	&            	; 	4
+;&po y=	-187.2	,x=	185.2	&
+;&po y=	187.2	,x=	185.2	&
+;&po y=	187.2	,x=	189.2	&
+;&po y=	-187.2	,x=	189.2	&
+;&po y=	-187.2	,x=	185.2	&
+
+&reg mat=	2	&            	; 	4
+&po y=	-187.2	,x=	195.6	&
+&po y=	187.2	,x=	195.6	&
+&po y=	187.2	,x=	199.6	&
+&po y=	-187.2	,x=	199.6	&
+&po y=	-187.2	,x=	195.6	&
+
+&reg mat=	2	&            	; 	4
+&po y=	-187.2	,x=	206	&
+&po y=	187.2	,x=	206	&
+&po y=	187.2	,x=	210	&
+&po y=	-187.2	,x=	210	&
+&po y=	-187.2	,x=	206	&
+
+&reg mat=	2	&            	; 	4
+&po y=	-187.2	,x=	216.4	&
+&po y=	187.2	,x=	216.4	&
+&po y=	187.2	,x=	220.4	&
+&po y=	-187.2	,x=	220.4	&
+&po y=	-187.2	,x=	216.4	&
+
+&reg mat=	2	&            	; 	4
+&po y=	-187.2	,x=	226.8	&
+&po y=	187.2	,x=	226.8	&
+&po y=	187.2	,x=	230.8	&
+&po y=	-187.2	,x=	230.8	&
+&po y=	-187.2	,x=	226.8	&
+
+&reg mat=	2	&            	; 	9
+&po y=	-187.2	,x=	237	&
+&po y=	187.2	,x=	237	&
+&po y=	187.2	,x=	246	&
+&po y=	-187.2	,x=	246	&
+&po y=	-187.2	,x=	237	&
+
+&reg mat=	2	&            	; 	9
+&po y=	-187.2	,x=	255.6	&
+&po y=	187.2	,x=	255.6	&
+&po y=	187.2	,x=	264.6	&
+&po y=	-187.2	,x=	264.6	&
+&po y=	-187.2	,x=	255.6	&
+
+&reg mat=	2	&            	; 	15
+&po y=	-187.2	,x=	275	&
+&po y=	187.2	,x=	275	&
+&po y=	187.2	,x=	290	&
+&po y=	-187.2	,x=	290	&
+&po y=	-187.2	,x=	275	&
+
+&reg mat=	2	&            	; Downstream - additional endcap ring	
+&po y=	192.5	,x=	290	&
+&po y=	222	,x=	290	&
+&po y=	222	,x=	265	&
+&po y=	207	,x=	257	&
+&po y=	207	,x=	240	&
+&po y=	222	,x=	188	&
+&po y=	222	,x=	166	&
+&po y=	207	,x=	152	&
+&po y=	197.5	,x=	152	&
+&po y=	197.5	,x=	188	&
+&po y=	192.5	,x=	210	&
+&po y=	192.5	,x=	290	&
+
+&reg mat=	2	&            	; Downstream - pipe	
+&po y=	222	,x=	270	&
+&po y=	380	,x=	270	&
+&po y=	380	,x=	290	&
+&po y=	222	,x=	290	&
+&po y=	222	,x=	270	&
+
+&reg mat=	2	&            	; Downstream endcap	
+&po y=	380	,x=	290	&
+&po y=	400	,x=	290	&
+&po y=	420	,x=	120	&
+&po y=	420	,x=	70	&
+&po y=	380	,x=	30	&
+&po y=	290	,x=	30	&
+&po y=	200	,x=	22	&
+&po y=	200	,x=	58	&
+&po y=	380	,x=	128	&
+&po y=	380	,x=	290	&
+
+&reg mat=	2	&            	; Upstream - additional endcap ring	
+&po y=	-192.5	,x=	290	&
+&po y=	-222	,x=	290	&
+&po y=	-222	,x=	265	&
+&po y=	-207	,x=	257	&
+&po y=	-207	,x=	240	&
+&po y=	-222	,x=	188	&
+&po y=	-222	,x=	166	&
+&po y=	-207	,x=	152	&
+&po y=	-197.5	,x=	152	&
+&po y=	-197.5	,x=	188	&
+&po y=	-192.5	,x=	210	&
+&po y=	-192.5	,x=	290	&
+
+&reg mat=	2	&            	; Upstream endcap	
+&po y=	-222	,x=	290	&
+&po y=	-222	,x=	265	&
+&po y=	-226.5	,x=	265	&
+&po y=	-226.5	,x=	45	&
+&po y=	-262.5	,x=	35	&
+&po y=	-262.5	,x=	290	&
+&po y=	-222	,x=	290	&
+
+&reg mat=	2	&            	; Upstream transversity shield	
+&po y=	-266.5	,x=	290	&
+&po y=	-266.5	,x=	34	&
+&po y=	-276.5	,x=	31.5	&
+&po y=	-276.5	,x=	290	&
+&po y=	-266.5	,x=	290	&
+
+&reg mat=	2	&            	; Upstream transversity shield	
+&po y=	-278.5	,x=	290	&
+&po y=	-278.5	,x=	31	&
+&po y=	-282.5	,x=	30	&
+&po y=	-282.5	,x=	290	&
+&po y=	-278.5	,x=	290	&
+
+&reg mat=	2	&            	; Upstream transversity shield	
+&po y=	-284.5	,x=	290	&
+&po y=	-284.5	,x=	29.5	&
+&po y=	-288.5	,x=	28.5	&
+&po y=	-288.5	,x=	290	&
+&po y=	-284.5	,x=	290	&

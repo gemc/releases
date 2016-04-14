@@ -1,0 +1,20 @@
+#!/bin/csh -f
+
+echo
+echo "  gemc database help"
+echo
+create_new_geo_table -h
+drop_geo_table -h
+show_geo_table -h
+import_geo_from_table -h
+echo
+show_magf -h
+echo
+add_volume_into_table -h
+edit_volume_in_table -h
+drop_from_table_volume -h
+echo
+add_bank -h
+edit_bank -h
+drop_bank -h
+echo

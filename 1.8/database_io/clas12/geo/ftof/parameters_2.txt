@@ -1,0 +1,15 @@
+ftof.2.1.X | 150.1444094| inches | Paddle X coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.1.Z | 206.1602205| inches | Paddle Z coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.1.L | 146.18| inches | Paddle Length | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.2.X | 154.6888976| inches | Paddle X coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.2.Z | 198.649| inches | Paddle Z coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.2.L | 151.58| inches | Paddle Length | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.3.X | 159.2893307| inches | Paddle X coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.3.Z | 191.1716378| inches | Paddle Z coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.3.L | 156.98| inches | Paddle Length | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.4.X | 163.7781496| inches | Paddle X coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.4.Z | 183.6267165| inches | Paddle Z coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.4.L | 162.39| inches | Paddle Length | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.5.X | 168.3234252| inches | Paddle X coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.5.Z | 176.1142362| inches | Paddle Z coordinate | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012
+ftof.2.5.L | 167.79| inches | Paddle Length | Gagik Gavalian | gavalian@jlab.org  | link to drawing | variable name | 03/10/2012

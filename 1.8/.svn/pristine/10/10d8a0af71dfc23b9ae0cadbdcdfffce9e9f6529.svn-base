@@ -1,0 +1,33 @@
+#!/bin/csh -f
+
+
+# This script will copy all *__parameters tables from the selected DB into clas12_geometry 
+set password = $1
+
+
+set tables = (svt_devel.BST__parameters \
+              ec_devel.EC__parameters \
+              ftof_devel.FTOF__parameters \
+              micromegas_devel.FTM__parameters \
+              micromegas_devel.BMT__parameters \
+              pcal_devel.PCAL__parameters)
+
+
+
+foreach t ($tables)
+
+	set db = `echo $t | awk -F. '{print $1}'`
+  set tb = `echo $t | awk -F. '{print $2}'`
+  echo Database: $db  Table: $tb
+
+	# dropping table in clas12_geometry
+	mysql -h clasdb -u $GEMC_USER -p$password clas12_geometry -e "drop table if exists $tb"
+	mysql -h clasdb -u $GEMC_USER -p$password clas12_geometry -e "create table $tb like $db.$tb"
+	mysql -h clasdb -u $GEMC_USER -p$password clas12_geometry -e "insert into $tb select * from $db.$tb"
+  
+  
+
+end
+
+
+

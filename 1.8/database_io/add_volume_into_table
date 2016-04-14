@@ -1,0 +1,145 @@
+#!/bin/csh -f
+
+if($1 == "-h" || $1 == "" || $#argv != 2) then
+ echo " "
+ echo "Usage:   "
+ echo  "  >> add_volume_into_table tablename"
+ echo  "     add new volume to table <tablename>"
+ echo " "
+ exit 0
+endif
+
+set table = $1
+
+rm -f tmp.txt
+echo " "                                          > tmp.txt
+echo " Adding new volume to table:" $1           >> tmp.txt
+echo " "                                         >> tmp.txt
+echo " -----------------------------------------------------" >> tmp.txt
+echo " "                                                      >> tmp.txt
+echo " Volume Name                    ==  "                   >> tmp.txt
+echo " Mother Volume                  ==  "                   >> tmp.txt
+echo " Volume Description             ==  "                   >> tmp.txt
+echo " Position                       ==  0*cm 0*cm 0*cm"     >> tmp.txt
+echo " Rotation                       ==  0*deg 0*deg 0*deg"  >> tmp.txt
+echo " Color rrggbb                   ==  ff99bb"             >> tmp.txt
+echo " Solid Type                     ==  "                   >> tmp.txt
+echo " Solid Dimensions               ==  "                   >> tmp.txt
+echo " Material                       ==  Air"                >> tmp.txt
+echo " Magnetic Field                 ==  no"                 >> tmp.txt
+echo " copy number                    ==  1"                  >> tmp.txt
+echo " pMany                          ==  1"                  >> tmp.txt
+echo " exist                          ==  1"                  >> tmp.txt
+echo " visible                        ==  1"                  >> tmp.txt
+echo " style                          ==  1"                  >> tmp.txt
+echo " Sensitivity                    ==  no"                 >> tmp.txt
+echo " Hit Type                       ==  no"                 >> tmp.txt
+echo " Identifiers                    ==  no"                 >> tmp.txt
+echo " "                                                      >> tmp.txt
+echo " "                                                      >> tmp.txt
+echo " -----------------------------------------------------" >> tmp.txt
+
+$EDITOR tmp.txt
+
+set vname  = (`cat tmp.txt | grep "Volume Name"      | awk -F"==" '{print $2}'`)
+set mvname = (`cat tmp.txt | grep "Mother Volume"    | awk -F"==" '{print $2}'`)
+set descri = (`cat tmp.txt | grep "Description"      | awk -F"==" '{print $2}'`)
+set vposi  = (`cat tmp.txt | grep "Position"         | awk -F"==" '{print $2}'`)
+set vrota  = (`cat tmp.txt | grep "Rotation"         | awk -F"==" '{print $2}'`)
+set vcolor = (`cat tmp.txt | grep "Color"            | awk -F"==" '{print $2}'`)
+set solid  = (`cat tmp.txt | grep "Solid Type"       | awk -F"==" '{print $2}'`)
+set dimens = (`cat tmp.txt | grep "Solid Dimensions" | awk -F"==" '{print $2}'`)
+set materi = (`cat tmp.txt | grep "Material"         | awk -F"==" '{print $2}'`)
+set mfield = (`cat tmp.txt | grep "Magnetic"         | awk -F"==" '{print $2}'`)
+set ncopy  = (`cat tmp.txt | grep "copy number"      | awk -F"==" '{print $2}'`)
+set pmany  = (`cat tmp.txt | grep "pMany"            | awk -F"==" '{print $2}'`)
+set exist  = (`cat tmp.txt | grep "exist"            | awk -F"==" '{print $2}'`)
+set visibl = (`cat tmp.txt | grep "visible"          | awk -F"==" '{print $2}'`)
+set style  = (`cat tmp.txt | grep "style"            | awk -F"==" '{print $2}'`)
+set sensi  = (`cat tmp.txt | grep "Sensitivity"      | awk -F"==" '{print $2}'`)
+set hitype = (`cat tmp.txt | grep "Hit Type"         | awk -F"==" '{print $2}'`)
+set identi = (`cat tmp.txt | grep "Identifiers"      | awk -F"==" '{print $2}'`)
+
+echo
+echo Volume Name: $vname
+echo Mother Volume: $mvname
+echo Description: "$descri"
+echo Position in the mother volume: "$vposi"
+echo Rotation in the mother volume: "$vrota"
+echo Color: $vcolor
+echo Solid Type: $solid
+echo Dimensions: "$dimens"
+echo Material: $materi
+echo Magnetic Field: $mfield
+echo copy number: $ncopy
+echo pmany: $pmany
+echo Existance: $exist 
+echo Visibility: $visibl
+echo Style: $style
+echo Sensitivity: $sensi
+echo Hit Type: $hitype
+echo Identifiers: "$identi"
+echo
+echo 'Proceed? y/n'
+echo 
+set confirm = $<
+
+if($confirm == "y") then
+  
+  # checking that volume doesn't exist yet. 
+  rm -rf tmp4.txt
+  echo  'use clas12_geometry;'                                     > tmp4.txt
+  echo  'select name from ' $1 ' where name = "'"$vname"'";'   >> tmp4.txt;
+  set out = `mysql -h clasdb.jlab.org -u clasuser               < tmp4.txt | grep $vname` 
+
+  # if it exists, you can replace it or rename it
+  if($out == $vname) then
+    echo 
+    echo 'A volume $vname already exists. Do you want to Replace it or use a Different name? R/D '
+    set choice = $<
+    if($choice == "D") then
+      echo Please enter the new name:
+      set vname = $<
+      echo New name: $vname
+      goto insert_element    
+    endif
+    if($choice == "R") then
+      rm -f tmp3.txt
+      echo  "use clas12_geometry;"                                > tmp3.txt
+      echo  'replace into ' $table ' values("'$vname'" , "'$mvname'"  , "'\
+                                         "$descri" '", "'\
+                                         "$vposi"  '", "'\
+                                         "$vrota"  '", "'$vcolor  '", "'$solid   '", "'\
+                                         "$dimens" '", "'$materi'", "'$mfield'", '\
+                                          $ncopy', '\
+                                          $pmany', '\
+                                          $exist', '\
+                                          $visibl', '\
+                                          $style', "'$sensi'", "'$hitype'", "'"$identi"'");' >> tmp3.txt;
+      set out = `mysql -h clasdb.jlab.org -u clasuser < tmp3.txt` 
+     echo Volume $vname replaced into $table
+    endif
+  else
+  insert_element:
+    rm -f tmp3.txt
+    echo  "use clas12_geometry;"                                > tmp3.txt
+    echo  'insert into ' $table ' values("'$vname'", "'$mvname'"  , "'\
+                                      "$descri"'", "'\
+                                      "$vposi"'", "'\
+                                      "$vrota"'", "'$vcolor  '", "'$solid   '", "'\
+                                      "$dimens"'", "'$materi'", "'$mfield'", '\
+                                       $ncopy', '\
+                                       $pmany', '\
+                                       $exist', '\
+                                       $visibl', '\
+                                       $style', "'$sensi'", "'$hitype'", "'"$identi"'");' >> tmp3.txt;
+    set out = `mysql -h clasdb.jlab.org -u clasuser < tmp3.txt` 
+    echo Volume $vname added into $table
+  endif
+  
+endif
+
+rm -rf tmp.txt tmp4.txt tmp3.txt
+
+
+

@@ -1,0 +1,6 @@
+id         	 1 	0	 1	 region segment ID
+qf         	 2 	0	 1	 Quality Factor: number of segments
+sector     	 3 	0	 1	 CLAS12 Sector
+superlayer 	 4 	0	 1	 Superlayer
+layer      	 5 	0	 1	 Layer
+wire       	 6 	0	 1	 Wire

@@ -1,0 +1,7 @@
+/vis/open RayTracer
+/vis/drawVolume
+/vis/viewer/set/lineSegmentsPerCircle 150
+/vis/rayTracer/column 100
+/vis/rayTracer/row 100
+/vis/rayTracer/span 1 degree
+/vis/rayTracer/trace aaa.jpg

@@ -1,0 +1,40 @@
+DROP TABLE IF EXISTS `magnetic_fields`;
+CREATE TABLE `magnetic_fields` (
+  `name` varchar(40) DEFAULT NULL,
+  `type` varchar(150) DEFAULT NULL,
+  `magnitude` varchar(240) DEFAULT NULL,
+  `swim_method` varchar(40) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  UNIQUE KEY `name` (`name`)
+);
+
+LOCK TABLES `magnetic_fields` WRITE;
+INSERT INTO `magnetic_fields` VALUES 
+('pair_spect',   'mapped txt Dipole-y pair_spectrometer.dat','601 -150.00 150.00 cm  51 -25 25 cm 8.8485 0  45.7200 cm gauss','RungeKutta  ','Pair Spectrometer Map'),
+('pair_spect_10','mapped txt Dipole-y pair_spectrometer.dat','601 -150.00 150.00 cm  51 -25 25 cm 7.6856 0  45.7200 cm gauss','RungeKutta  ','Pair Spectrometer Map'),
+('hps_dip1',     'mapped txt Dipole-y frascati_magnet_I403.9.dat','53  -331.66 328.74 mm   5 -34 34 mm 0.0 0 -172.3898 cm T','RungeKutta  ','Frascati Magnet 167.9 current, for HPS experiment'),
+('hps_dip2        ','mapped txt Dipole-y frascati_magnet_I403.9.dat','53  -331.66 328.74 mm   5 -34 34 mm 0.0 0  263.8298 cm T','RungeKutta  ','Frascati Magnet 167.9 current, for HPS experiment'),
+('hps_dip1s        ','mapped txt Dipole-y frascati_magnet_I403.9.dat','53  -331.66 328.74 mm   5 -34 34 mm 0.0 0 -124.4600 cm T','RungeKutta  ','Frascati Magnet 167.9 current, for HPS experiment'),
+('hps_dip2s        ','mapped txt Dipole-y frascati_magnet_I403.9.dat','53  -331.66 328.74 mm   5 -34 34 mm 0.0 0  215.9000 cm T','RungeKutta  ','Frascati Magnet 167.9 current, for HPS experiment'),
+('nullmf'          ,'uniform','0*T 0*T 0*T','0','Null Magnetic Field'),
+('uniformZ5T'      ,'uniform','0*T 0*T 5*T','0','Uniform 5T Magnetic Field along z-axis'),
+('uniformZ4T'      ,'uniform','0*T 0*T 4*T','0','Uniform 4T Magnetic Field along z-axis'),
+('uniformX5T'      ,'uniform','5*T 0*T 0*T','0','Uniform 5T Magnetic Field along x-axis'),
+('french-solenoid' ,'mapped txt cylindrical fsolenoid.dat','401 0 200 cm   801  -200  200 cm 0 0 0 cm gauss','RungeKutta  ','French Solenoid Map'),
+('srr-solenoid    ','mapped txt cylindrical srr-solenoid.dat','601 0   3  m  1201    -3    3 m 0 0 0 m  T','RungeKutta  ','SRR Solenoid Map'),
+('clas12-torus-s  ','mapped txt phi-segmented clas12_torus_fieldmap.txt','51  0 500 cm    61 -1800 1800 arcmin  51 100 600 cm  0 0 0 cm kilogauss','RungeKutta  ','CLAS12 Torus MAP: Small Version'),
+('clas12-torus    ','mapped txt phi-segmented clas12_torus_fieldmap.dat','61  0  30 deg  126     0  500 cm     126 100 600 cm  0 0 0 cm kilogauss','RungeKutta  ','CLAS12 Torus MAP'),
+('uniformX1T      ','uniform','1*T    0*T 0*T','0',' Uniform 1T Magnetic Field along x-axis'),
+('uniformY1T      ','uniform','0*T    1*T 0*T','0',' Uniform 1T Magnetic Field along y-axis'),
+('uniformY-1T     ','uniform','0*T   -1*T 0*T','0',' Uniform 1T Magnetic Field along -y-axis'),
+('uniformY-05T    ','uniform','0*T -0.5*T 0*T','0',' Uniform 1/2T Magnetic Field along -y-axis'),
+('uniformY0.5T    ','uniform','0*T 0.5*T 0*T','0','Uniform 0.5T Mag Field along y-axis'),
+('hps_ps_fast'     ,'uniform','0*T -0.5*T 0*T','0',' Uniform 1/2T Magnetic Field along -y-axis'),
+('hps_id_fast'     ,'uniform','0*T 0.695325*T 0*T','0','Uniform 0.5T Mag Field along y-axis'),
+('uniformY-0.5T   ','uniform','0*T -0.5*T 0*T','0','Uniform 0.5T Mag Field along neg y-axis'),
+('uniformY0.25T   ','uniform','0*T 0.25*T 0*T','0','Uniform 0.25T Mag Field along y-axis'),
+('uniformY-0.25T  ','uniform','0*T -0.25*T 0*T','0','Uniform 0.25T Mag Field along neg y-axis');
+UNLOCK TABLES;
+
+
+

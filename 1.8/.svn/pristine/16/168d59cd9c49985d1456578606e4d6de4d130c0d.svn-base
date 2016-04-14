@@ -1,0 +1,8 @@
+<gcard>
+
+<!-- Forward Detectors: -->
+        <sqltable name="SECTOR"/>
+	<sqltable name="PCAL"/>
+
+</gcard>
+

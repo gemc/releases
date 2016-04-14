@@ -1,0 +1,31 @@
+#!/bin/csh
+echo
+#
+# This script will attempt to get and compile gemc
+# If compilation is not successful, a page will be sent to ungaro (LTCC pager)
+
+
+
+cd
+svn co https://clas12svn.jlab.org/repos/trunk/clas12/gemc/production gemc
+cd gemc
+
+rm -rf log.txt
+# 32 bit compiling
+if(`echo $OSRELEASE | grep i386 | wc | awk '{print $1}'` == "1" || `echo $OSRELEASE | grep i686 | wc | awk '{print $1}'` == "1" ) then
+	scons ARCHI=x86 >& log.txt
+else
+	scons >& log.txt
+endif
+echo $OSRELEASE >> log.txt
+
+# If there is no executable, compilation was wrong.
+# Paging!
+if(`ls gemc | wc | awk '{print $1}'` == "0") then
+	mail ungaro@jlab.org -s" $OSRELEASE failure"             < log.txt
+  mail -s " $OSRELEASE failure" 7573571019@usamobility.net < log.txt
+endif
+
+
+
+

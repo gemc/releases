@@ -1,0 +1,5 @@
+Air             |     1.29      | 2 | G4_N 70 G4_O 30
+HTCCGas         |     1.84      | 2 | G4_C 70 G4_O 30
+HTCCAlMgF2      |     2.9007    | 3 | G4_Al 33.1 G4_Mg 26.1 G4_F 40.8
+Rohacell31      |     0.032     | 4 | G4_C 64.63 G4_H 7.84 G4_N 8.39 G4_O 19.14
+HTCCPMTquartz   |     2.32      | 1 | G4_SILICON_DIOXIDE 100

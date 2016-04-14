@@ -1,0 +1,20 @@
+#!/bin/csh
+echo
+
+set list_of_detectors = (`grep -v "\#" geometries.txt | awk -F\| '{print $1}'`)
+
+
+foreach d ($list_of_detectors)
+	set method = (`grep -v "\#" geometries.txt | grep $d | awk -F\| '{print $2}'`)
+	
+  if($method == "GT") then
+  
+		echo "Validating clas12 geometry for: "$d" using option: GT"
+ 	 	gemc -GT=$D -USE_QT=0 -CHECK_OVERLAPS=10
+		
+   
+	endif
+end
+
+
+echo

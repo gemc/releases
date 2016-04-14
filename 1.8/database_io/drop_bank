@@ -1,0 +1,34 @@
+#!/bin/csh -f
+
+if($1 == "-h" || $1 == ""  || $#argv != 1) then
+ echo " "
+ echo "Usage:   "
+ echo  "  >> drop_bank bankname"
+ echo  "     drops bank <bankname>"
+ echo " "
+ exit 0
+endif
+
+set bank = $1
+rm -f tmp.txt
+echo  "use clas12_banks;" > tmp.txt
+echo  "show banks;"     >> tmp.txt 
+set out = `mysql -h clasdb.jlab.org -u clasuser < tmp.txt | grep $bank` 
+if($out == $bank) then
+  echo Deleting  $bank".  Are you sure? y/n"
+  set confirm = $<
+  if($confirm == "y") then
+    rm -f tmp.txt
+    echo  "use clas12_banks;"   > tmp.txt
+    echo  "drop $bank from SDId;" >> tmp.txt
+    set out = `mysql -h clasdb.jlab.org -u clasuser < tmp.txt` 
+    echo bank $bank deleted
+  endif
+else
+  echo bank $bank does not exist
+endif
+rm -f tmp.txt
+
+
+
+

@@ -1,0 +1,130 @@
+<gcard>
+
+
+  <!-- 
+  To remove a detector, remove it from this list.
+  Other detectors available:
+  
+  FMT  (Forward Micromegas tracker
+  FTM  (Forward Tagger Micromegas)
+  -->
+
+  <!-- 
+  Central Detectors: 
+  In the standard CLAS12 configuration there are 
+  3 layers of BST and 3 of micromegas in the central part
+  So here we remove the 4th layer of BST
+  -->
+  <sqltable name="LH2target"/>
+  <sqltable name="BST"/>
+  <sqltable name="BMT"/>
+  
+  
+  <sqltable name="CTOF"/>
+  <sqltable name="CND"/>
+  <detector name="BST_SL_4">
+    <existence exist="no" />
+  </detector>  
+  <sqltable name="FMT"/>
+
+  <sqltable name="HTCC"/>
+  
+  
+  <!-- Forward Detectors: -->
+  <sqltable name="SECTOR"/>
+  <sqltable name="DC12"/>
+  <sqltable name="FTOF"/>
+  <sqltable name="EC"/>
+  <sqltable name="PCAL"/>
+  <sqltable name="LTCC"/>
+  <sqltable name="LTCC_EL_Mirrors"/>
+  <sqltable name="LTCC_HP_Mirrors"/>
+  <sqltable name="LTCC_PMTS"/>
+  
+  
+  <!-- Beam Line: --> 
+  <sqltable name="downstream_shielding"/>
+  <sqltable name="noft_shielding"/>
+  
+  <!-- Magnets: -->
+  <sqltable name="solenoid"/>
+  <sqltable name="torus"/>
+  
+  
+  <!-- 
+  From here on, these options are available at command line.
+  The command line will overwrite the gcard option.
+  To use it: -OPTION=value 
+  Example:  -INPUT_GEN_FILE="LUND, input.dat" 
+  -->
+
+  <!-- Database: -->
+  <option name="DBHOST"         value="clasdb.jlab.org" />
+  <option name="DATABASE"       value="user_geometry" />
+  <option name="BANK_DATABASE"  value="clas12_banks" />
+  
+  
+  <!-- Magnetic Field, Hall Material: -->
+  <option name="HALL_FIELD"     value="srr-solenoid" />
+  <option name="HALL_MATERIAL"  value="G4_Galactic" />
+  
+  
+  <!-- Output file. Notice you can also choose "txt" format. -->
+  <option name="OUTPUT"         value="evio, out.ev" />
+  
+  
+  <!-- 
+  This will run gemc in batch mode. Change to "1" or 
+ 	overwrite at command line to run it interactively
+  Also, use -N=1000 to simulate some number of events
+	For background events, I suggest you set PRINT_EVENT to 1
+  -->
+  <option name="USE_QT"         value="0" />
+  <option name="USE_PHYSICSL"   value="gemc" />
+  <option name="PRINT_EVENT"    value="100" />
+
+
+  <!-- 
+  External Generator: 
+  This is mutually exclusive with "Internal Generator"
+  But it can be used with the beam 
+  <option name="INPUT_GEN_FILE"  value="LUND, input.dat" />
+  -->
+
+  <!-- 
+  Internal Generator: 
+  This can generate events flat in momentum, theta and phi
+  -->
+	<option name="BEAM_P"        value="e-, 3.0*GeV, 20*deg, 0*deg" />
+  <option name="BEAM_V"        value="(0.,0.,0.)cm" />
+ 	<option name="SPREAD_V"      value="(0.0015, 2.5)cm" />
+	<option name="SPREAD_P"      value="0.0*GeV, 12*deg, 180*deg" />
+
+
+  <!-- 
+  Beam: 
+  This will simulate the beam on target
+  At CLAS12 luminosity on LH2 for example, there are 62K electrons 
+  in a 130 ns window, bunched every 2ns
+  -->
+  <option name="LUMI_EVENT"     value="0, 130*ns, 2*ns" />
+  <option name="LUMI_P"         value="e-, 11*GeV, 0*deg, 0*deg" />
+  <option name="LUMI_V"         value="(0.,0.,-10.)cm" />
+  <option name="LUMI_SPREAD_V"  value="(0.01, 0.01)cm" />
+
+
+  <!-- 
+  To displace a detector:
+  
+  <detector name="BST">
+  	<position x="0*cm"  y="0*cm"  z="6.63*cm"  />
+  </detector>
+
+  -->
+  
+  
+  
+
+
+</gcard>
+

@@ -1,0 +1,14 @@
+TackId	1	0	1	Track id number 
+Sector	2	0	1	Sector number
+Detector	3	0	1	Detector Id number 
+Layer	4	0	1	Detector Layer 
+Position	5	0	1	Position of the detector (0 - at the enterance, 1 - at the exit) 
+Momentum	6	1	1	Momentum of the track
+Charge		7	1	1	Charge of the track
+x	8	1	1	X coordinate at the detector 
+y	9	1	1	Y coordinate at the detector 
+z	10	1	1	Z coordinate at the detector 
+cx	11	1	1	direction cosines (x,y,z) for track at coord.{x,y,z} 
+cy	12	1	1	direction cosines (x,y,z) for track at coord.{x,y,z} 
+cz	13	1	1	direction cosines (x,y,z) for track at coord.{x,y,z} 
+Length	14	1	1	track length [cm] from origin to this plane 

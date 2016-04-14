@@ -1,0 +1,13 @@
+Sector	1	0	1	TOF sector 
+PaddleId	2	0	1	Paddle Id 
+Status	3	0	1	Status information 
+x	4	1	1	x position in sector coodinate system 
+y	5	1	1	y position in sector coodinate system 
+z	6	1	1	z position in sector coodinate system 
+dx	7	1	1	x error in sector coodinate system 
+dy	8	1	1	y error in sector coodinate system 
+dz	9	1	1	z error in sector coodinate system 
+Energy	10	1	1	Energy (MeV) 
+dEnergy	11	1	1	uncertainty in Energy (MeV) 
+Time	12	1	1	time (ns) 
+dTime	13	1	1	uncertainty in time (ns) 

@@ -1,0 +1,53 @@
+#!/bin/csh -f
+
+echo 'VADO'
+
+set tables = (HDice HDiceN101_target)
+#setenv GEMC_HOST hermes6.fe.infn.it
+#setenv GEMC_USER gemcuser
+#setenv GEMC_HOST clasdb.jlab.org
+#setenv GEMC_USER clasuser
+#setenv GEMC_USER gemc
+
+echo $GEMC_HOST $GEMC_USER
+
+if($1 == "clean") then
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+else
+  foreach t ($tables)
+    rm -rf $t".txt"
+  end
+  rm -rf tmp.txt
+
+  # Default database - first argument defines new one
+  set database = $1
+  if($database =="") then
+    set database = "user_geometry"
+  endif
+
+  # creates files. Should match the tables name above
+  ./HDice.pl
+  ./HDice_N101.pl
+
+  echo "fatto il file"
+
+  # Remaking the tables
+  foreach t ($tables)
+    echo "y" | $GEMC/database_io/drop_geo_table  $t   $database
+    $GEMC/database_io/create_new_geo_table  $t  $database
+  end
+
+  rm -rf tmp.txt
+  echo use $database";" > tmp.txt;
+  foreach t ($tables)
+    echo  LOAD DATA LOCAL INFILE \'$t.txt\'   into TABLE $t";" >> tmp.txt
+    echo update $t" set time=NOW() where time=0;" >> tmp.txt;
+  end
+
+  mysql -h $GEMC_HOST -u $GEMC_USER  < tmp.txt
+
+
+endif
