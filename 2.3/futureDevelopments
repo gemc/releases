@@ -1,0 +1,79 @@
+GEMC Future Development
+
+New features:
+=============
+
+- hybrid banks (for FADC)
+- multihit
+- geant4 multithreading
+- hit process routines > plugins to be stored with the geometry routines
+- proMC output
+
+Code Improvements:
+==================
+
+- physics details choices (disable some physics, etc on the GUI)
+- culling options combobox
+- move timewindow to general generator tab - make all other the same
+- remove obsolete cpp materials
+- "ahit" general function to get infos (with auto, c++11) getVector(string), get3Vector(string)
+  check performance hit
+- speed up the search for same identifier
+- add generic "system" that contains a list detectors, sensitive det, materials?
+- optimize eventaction - too many vector<hitOutput> definitions? Can they br grouped?
+- add DEBUG ifdefs for debugging part of code
+- general color map to be used by geant4 / gui , maybe part of options?
+- bring some guis out of main gui, pop up windows?
+- re-define and document all verbosities
+- get screen resolution and adjust gui dimensions to that
+- match detector types to geant4
+- add /tracking/storeTrajectory 4 button
+- add track verbosity output
+- add options for particles color
+- is atof thread safe?
+- move all user actions in their directory:
+  ActionInitialization
+  PrimaryGenerator
+  SteppingAction
+- gemcOptions make it a library, pass it by reference not value!
+  make calls like gemcOpt->get3Vector("BEAM_V")
+
+Add production cut verbosity?
+
+If you want to know the traslation from an energy cut value to a range cut value for a given
+particle in a given material, you can do with the following instructions.
+First you have to instantiate the user action
+
+/gamos/userAction GmCutsEnergy2RangeUA
+
+and then you can use the command
+
+/gamos/physics/ECuts2RangeCuts MATERIAL_NAME CUT_VALUE PARTICLE_NAME
+
+You may use in the material name an '*' if you want to name several materials at the same time.
+For the particle name only the following names have a meaning: gamma, e-, e+, e*, *.
+This will produce a table with the conversion for each material and particle similar to the following one:
+
+GmCutsEnergy2RangeUA:  MATERIAL:  G4_AIR  PART: gamma
+ENERGY CUT: 0.1 (MeV)  = RANGE CUT: 286588
+GmCutsEnergy2RangeUA:  MATERIAL:  G4_AIR  PART: e-
+ENERGY CUT: 0.1 (MeV)  = RANGE CUT: 129.155
+GmCutsEnergy2RangeUA:  MATERIAL:  G4_AIR  PART: e+
+ENERGY CUT: 0.1 (MeV)  = RANGE CUT: 131.938
+GmCutsEnergy2RangeUA:  MATERIAL:  G4_WATER  PART: gamma
+ENERGY CUT: 0.1 (MeV)  = RANGE CUT: 334.152
+GmCutsEnergy2RangeUA:  MATERIAL:  G4_WATER  PART: e-
+ENERGY CUT: 0.1 (MeV)  = RANGE CUT: 0.134781
+GmCutsEnergy2RangeUA:  MATERIAL:  G4_WATER  PART: e+
+ENERGY CUT: 0.1 (MeV)  = RANGE CUT: 0.137686
+
+
+
+Code Reorganization:
+====================
+
+- bring output structure out of gemc - general library
+- bring options out of gemc - general library 
+- bring splash screen out of util - general library
+- re-organize primary generator, use external library project
+
