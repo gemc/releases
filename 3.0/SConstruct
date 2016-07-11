@@ -1,0 +1,11 @@
+from init_env import init_environment
+
+env = init_environment("qt5 mlibrary")
+
+
+gsources = Split("""
+	gemc.cc
+	""")
+
+gemc = env.Program(source = gsources, target = "gemc")
+

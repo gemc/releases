@@ -1,0 +1,25 @@
+// xcode project - start with empty project
+//
+// 1. on the general project add "settings.xcconfig" configuration for debug and release
+//
+// 2. add gemc target "gemc"
+//    a. remove gemc.cpp and other files created
+//    b. source is gemc.cc (build phases)
+//
+// 3. add dependencies:
+//    a. add options library
+
+
+// Assigning a relative path to JLAB_SOFTWARE (copy from environment)
+JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
+
+// Sourcing local version
+#include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
+
+// installation of libraries and binaries
+CONFIGURATION_BUILD_DIR = .
+
+// including MLIBRARY
+HEADER_SEARCH_PATHS =  $MLIB_HEADS $QT_HEADS
+
+

@@ -1,0 +1,50 @@
+file /opt/jlab_software/devel/scons_bm/devel/loadmlibrary.py,line 18:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking for C library options... 
+scons: Configure: ".sconf_temp/conftest_0.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_0.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_0.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_0.o -c -F/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtCore.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtGui.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtWidgets.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtOpenGL.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtXml.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtSql.framework/Headers -I/opt/projects/mlibrary/options .sconf_temp/conftest_0.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_0" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_0 -F/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib -framework QtCore -framework QtGui -framework QtWidgets -framework QtOpenGL -framework QtXml -framework QtSql -rpath /opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib .sconf_temp/conftest_0.o -loptions
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for C library translationTable... 
+scons: Configure: ".sconf_temp/conftest_1.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_1.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_1.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1.o -c -F/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtCore.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtGui.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtWidgets.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtOpenGL.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtXml.framework/Headers -I/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib/QtSql.framework/Headers -I/opt/projects/mlibrary/options .sconf_temp/conftest_1.c
+  |
+scons: Configure: Building ".sconf_temp/conftest_1" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1 -F/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib -framework QtCore -framework QtGui -framework QtWidgets -framework QtOpenGL -framework QtXml -framework QtSql -rpath /opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0/qt/5.6.0/5.6/clang_64/lib .sconf_temp/conftest_1.o -ltranslationTable
+  |
+scons: Configure: (cached) no
+
