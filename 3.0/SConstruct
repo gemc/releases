@@ -1,6 +1,13 @@
 from init_env import init_environment
 
 env = init_environment("qt5 mlibrary")
+env.Append(LIBPATH = ['lib'])
+
+# loads the goptions map
+optionLib = env.Library(source = 'goptions.cc', target = "lib/goptions")
+env.Prepend(LIBS = 'goptions')
+
+
 
 
 gsources = Split("""

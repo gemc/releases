@@ -1,14 +1,21 @@
-// xcode project - start with empty project
+// xcode project - start with c
 //
 // 1. on the general project add "settings.xcconfig" configuration for debug and release
 //
-// 2. add gemc target "gemc"
+// 2. Drag frameworks to project - remember to COPY
+//
+//    Qt:
+//    open  $QTDIR/lib
+//    QtCore QtXml QtGui QtWidgets
+//
+// 3. add gemc target "gemc"
 //    a. remove gemc.cpp and other files created
 //    b. source is gemc.cc (build phases)
 //
-// 3. add dependencies:
-//    a. add options library
-
+// 4. add dependencies:
+//    a. add options, splash, etc libraries
+//
+// 5. add environment variable
 
 // Assigning a relative path to JLAB_SOFTWARE (copy from environment)
 JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"

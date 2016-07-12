@@ -19,14 +19,43 @@
 
 const char *GEMC_VERSION = "gemc 3.0";
 
+// gsplash include options
+#include "gsplash.h"
 
-// options
-#include "options.h"
-#include "goptions.cc"
+// loads the option map
+map<string, GOption> defineOptions();
+
+// distinguishing between graphical and batch mode
+QCoreApplication* createApplication(int &argc, char *argv[], bool gui)
+{
+	if(!gui)
+		return new QCoreApplication(argc, argv);
+	return new QApplication(argc, argv);
+}
+
 
 int main(int argc, char* argv[])
 {
+	// init option map
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
+	bool gui = gopts->getBoolValue("gui");
+
+	// init qt app
+	QScopedPointer<QCoreApplication> app(createApplication(argc, argv, gui));
+
+	// init splash screen
+	GSplash gsplash(gopts);
+
+	if(gui) {
+		QMainWindow window;
+		window.show();
+
+		for(int i=0; i<200; i++)
+			gsplash.message(to_string(i));
+
+		gsplash.finish(&window);
+		return app->exec();
+	}
 
 	
 
