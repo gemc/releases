@@ -1,0 +1,11 @@
+Import('env')
+
+# utilities
+env.Append(CPPPATH = 'utilities')
+env.Prepend(LIBS = 'utilities')
+utilsSrc = Split("""
+	utilities.cc
+	""")
+utils = env.Library(source =utilsSrc, target = "#lib/utilities")
+
+

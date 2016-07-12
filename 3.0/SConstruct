@@ -2,17 +2,12 @@ from init_env import init_environment
 
 env = init_environment("qt5 mlibrary")
 env.Append(LIBPATH = ['lib'])
+Export('env')
 
 
 
 # utilities
-env.Append(CPPPATH = 'utilities')
-env.Prepend(LIBS = 'utilities')
-utilsSrc = Split("""
-	utilities/utilities.cc
-	""")
-utils = env.Library(source =utilsSrc, target = "lib/utilities")
-
+SConscript('utilities/SConscript', 'env')
 
 
 gsources = Split("""
