@@ -1,8 +1,14 @@
-/// \file options.cc
-/// Defines the gemc options
+// gemc utilities
+#include "utilities.h"
 
-// options
-#include "options.h"
+
+// distinguishing between graphical and batch mode
+QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
+{
+	if(!gui)
+		return new QCoreApplication(argc, argv);
+	return new QApplication(argc, argv);
+}
 
 
 map<string, GOption> defineOptions()
@@ -25,9 +31,6 @@ map<string, GOption> defineOptions()
 
 
 
-
-
-
 	// Log options
 	optionsMap["header"] = GOption("Message to display on (splash)screen", " > ", "log");
 
@@ -35,3 +38,4 @@ map<string, GOption> defineOptions()
 
 	return optionsMap;
 }
+
