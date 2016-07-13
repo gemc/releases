@@ -22,7 +22,7 @@ const char *GEMC_VERSION = "gemc 3.0";
 // gsplash include options
 #include "gsplash.h"
 
-// utilities
+// utilities - include goptions map
 #include "utilities.h"
 
 

@@ -2,7 +2,7 @@
 #define GUTILITIES_H
 
 // options framework
-#include "options.h"
+#include "goptions.h"
 
 // qt
 #include <QApplication>
