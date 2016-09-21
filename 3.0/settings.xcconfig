@@ -1,32 +1,35 @@
-// xcode project - start with c
+// Version 1.1 - Sept 21 2016
 //
-// 1. on the general project add "settings.xcconfig" configuration for debug and release
+// xcode project - start with empty project. Add all the files.
 //
-// 2. Drag frameworks to project - remember to COPY
+// 1. On the general project add "settings.xcconfig" configuration for debug and release
 //
-//    Qt:
-//    open  $QTDIR/lib
-//    QtCore QtXml QtGui QtWidgets
+// 2. Create Frameworks group - drag frameworks to project - link
 //
-// 3. add gemc target "gemc"
-//    a. remove gemc.cpp and other files created
-//    b. source is gemc.cc (build phases)
+//    Qt: open  $QTDIR/lib
 //
-// 4. add dependencies:
-//    a. add options, splash, etc libraries
+// 3. add library target "libraryName". Static to archive the executable
+//    a. remove libraryName dir
+//    b. source is libraryName.cc (build phases)
 //
-// 5. add environment variable
-
-// Assigning a relative path to JLAB_SOFTWARE (copy from environment)
-JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
+// 4. add command tools exampleName, source is example.cc
+//    a. remove exampleName dir
+//    b. add libraryName in the target dependencies (build phases)
+//    c. add frameworks and products/libraryName in the exampleName target membership
+//
+// 5. remember to manually copy the frameworks/libraries in the products location
+//    pointed by the CONFIGURATION_BUILD_DIR below.
+//
+// 6. For archiving purposes, in build phases copy nexessary items in
+//    executables destination - this includes the rcc file
 
 // Sourcing local version
 #include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
 
 // installation of libraries and binaries
-CONFIGURATION_BUILD_DIR = .
+CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
-// including MLIBRARY
-HEADER_SEARCH_PATHS =  $MLIB_HEADS $QT_HEADS
+// includes
+HEADER_SEARCH_PATHS = $MLIB_HEADS $QT_HEADS
 
 

@@ -17,12 +17,16 @@
 /// \author \n &copy; Maurizio Ungaro
 /// \author e-mail: ungaro@jlab.org\n\n\n
 
-const char *GEMC_VERSION = "gemc 3.0";
+// c++
+#include <string>
+using namespace std;
 
-// gsplash include options
+const string GEMC_VERSION = "gemc 3.0";
+
+// mlibrary
 #include "gsplash.h"
 
-// utilities - include goptions map
+// utilities - define goptions map
 #include "utilities.h"
 
 
@@ -36,14 +40,16 @@ int main(int argc, char* argv[])
 	createQtApplication(argc, argv, gui);
 
 	// init splash screen
-	GSplash gsplash(gopts);
+	GSplash gsplash(gopts, gui);
 
+	for(int i=0; i<200; i++)
+		gsplash.message(to_string(i));
+
+	// init gui
 	if(gui) {
 		QMainWindow window;
 		window.show();
 
-		for(int i=0; i<200; i++)
-			gsplash.message(to_string(i));
 
 		gsplash.finish(&window);
 		return qApp->exec();

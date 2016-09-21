@@ -1,9 +1,23 @@
 clock class
 random number class
-graph class
 
 runs, random seeds: examples/extended/common
 class grandom is inside runAction
 
 class gruns - how many runs, and event / run - also inside runAction - external library.
+
+
+
+QT Interface
+------------
+
+layout:
+http://doc.qt.io/qt-5/layout.html#layout-examples
+
+tabs: http://doc.qt.io/qt-5/qtwidgets-dialogs-tabdialog-example.html
+
+graph class: use qt charts:
+http://doc.qt.io/qt-5/qtcharts-index.html
+
+
 
