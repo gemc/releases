@@ -1,11 +1,8 @@
 // gemc utilities
 #include "utilities.h"
 
-
-// needed for options constructors
+// mlibrary options constructors
 #include "gsplash.h"  // gsplash
-
-//#include <QtCore>
 
 
 // distinguishing between graphical and batch mode
@@ -30,14 +27,14 @@ map<string, GOption> defineOptions()
 	optionsMap["gui"].addHelp("1. run the program in interactive mode\n");
 
 
-	// GSplash 
+	// mlibrary 
 	optionsMap += GSplash::defineOptions();
 
 
 	return optionsMap;
 }
 
-// loading a qt resource
+// loads a qt resource (images)
 int loadQResource(char* argv[], string resourceName)
 {
 	QFileInfo qrcFileInfoExecutable(argv[0]);

@@ -49,9 +49,10 @@ int main(int argc, char* argv[])
 	if(gui) {
 		QMainWindow window;
 		window.show();
-
-
 		gsplash.finish(&window);
+
+
+		
 		return qApp->exec();
 	}
 
