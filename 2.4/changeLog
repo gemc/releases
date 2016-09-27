@@ -1,6 +1,9 @@
 Changelog for GEMC
 ==================
 
+9/27/16
+ - fixed cosmic routine, was not generating cosmics vertices correctly.
+
 6/13/16
  - reinstated G4HadronPhysicsShielding
  - update help on physics list

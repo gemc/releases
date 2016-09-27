@@ -222,9 +222,9 @@ void MPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 			// point generated inside spherical or cylindrical volume 
 			if(cosmicGeo == "sph" || cosmicGeo == "sphere"){
 			  // point inside spherical volume
-			  cosmicVX = -cosmicRadius + 2*cosmicRadius*G4UniformRand();
-			  cosmicVY = -cosmicRadius + 2*cosmicRadius*G4UniformRand();
-			  cosmicVZ = -cosmicRadius + 2*cosmicRadius*G4UniformRand();
+				cosmicVX = cosmicTarget.x() - cosmicRadius + 2*cosmicRadius*G4UniformRand();
+				cosmicVY = cosmicTarget.y() - cosmicRadius + 2*cosmicRadius*G4UniformRand();
+				cosmicVZ = cosmicTarget.z() - cosmicRadius + 2*cosmicRadius*G4UniformRand();
 			}else{
 			  // point inside a cylinder, height of the cylinder = cosmicRadius/2.
 			  double h = cosmicRadius/2.;
