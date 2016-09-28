@@ -20,9 +20,23 @@ map<string, double> bst_HitProcess :: integrateDgt(MHit* aHit, int hitn)
 	// double checking dimensions
 	double SensorLength = 2.0*aHit->GetDetector().dimensions[2]/mm;  // length of 1 card
 	double SensorWidth  = 2.0*aHit->GetDetector().dimensions[0]/mm;  // width 1 card
+
+    double diffLen = SensorLength - bsts.SensorLength;
+    double diffWid = SensorWidth - bsts.SensorWidth;
+
+    //printf("SensorLength=%11.6f\n", SensorLength );
+    //printf("bsts.SensorLength=%11.6f\n", bsts.SensorLength );
+    //printf("SensorWidth=%11.6f\n", SensorWidth );
+    //printf("bsts.SensorWidth=%11.6f\n", bsts.SensorWidth );
+    //printf("diffLen=%11.6f\n", diffLen );
+    //printf("diffWid=%11.6f\n", diffWid );
+    //printf("\n");
 	
-	if(SensorLength != bsts.SensorLength || SensorWidth != bsts.SensorWidth)
-		cout << "  Warning: dimensions mismatch between sensor reconstruction dimensions and gemc card dimensions." << endl << endl;
+	//if(SensorLength != bsts.SensorLength || SensorWidth != bsts.SensorWidth)
+    if( diffLen > 1E-3 || diffWid > 1E-3 )
+    {
+        cout << "  Warning: dimensions mismatch between sensor reconstruction dimensions and gemc card dimensions." << endl << endl;
+    }
 	
 	int layer  = 2*identity[0].id + identity[1].id - 2 ;
 	int sector = identity[2].id;
