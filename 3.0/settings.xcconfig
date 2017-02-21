@@ -1,28 +1,4 @@
-// Version 1.3 - Sept 21 2016
-//
-// xcode project - start with empty project. Add all the files.
-//
-// 1. On the general project add "settings.xcconfig" configuration for debug and release
-//
-// 2. Create Frameworks group - drag frameworks to project - link
-//
-//    Qt: open  $QTDIR/lib
-//
-// 3. add library target "libraryName". Static to archive the executable
-//    a. remove libraryName dir
-//    b. source is libraryName.cc (build phases)
-//
-// 4. add command tools exampleName, source is example.cc
-//    a. remove exampleName dir
-//    b. add libraryName in the target dependencies (build phases)
-//    c. add frameworks and products/libraryName in the exampleName target membership
-//
-// 5. remember to manually copy the frameworks/libraries in the products location
-//    pointed by the CONFIGURATION_BUILD_DIR below.
-//
-// 6. For archiving purposes, in build phases copy nexessary items in
-//    executables destination - this includes the rcc file
-//    To run the app by command line, add @executable_path to run path in Linking
+// see frameworksREADME
 
 // Sourcing local version
 #include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"

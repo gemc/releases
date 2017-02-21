@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 {
 	// init option map
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
-	bool gui = gopts->getBoolValue("gui");
+	bool gui = gopts->getOption("gui").getBoolValue();
 
 	// init qt app
 	createQtApplication(argc, argv, gui);
