@@ -27,7 +27,7 @@ const string GEMC_VERSION = "gemc 3.0";
 #include "gsplash.h"
 
 // utilities - define goptions map
-#include "utilities.h"
+#include "utilities/utilities.h"
 
 
 int main(int argc, char* argv[])
@@ -50,8 +50,6 @@ int main(int argc, char* argv[])
 		QMainWindow window;
 		window.show();
 		gsplash.finish(&window);
-
-
 		
 		return qApp->exec();
 	}

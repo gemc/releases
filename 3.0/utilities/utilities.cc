@@ -13,7 +13,7 @@ QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
 	return new QApplication(argc, argv);
 }
 
-
+// define all gemc options
 map<string, GOption> defineOptions()
 {
 	map<string, GOption> optionsMap;
