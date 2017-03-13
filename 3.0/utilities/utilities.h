@@ -1,6 +1,8 @@
 #ifndef GUTILITIES_H
 #define GUTILITIES_H
 
+// general utility functions needed by gemc
+
 // options framework
 #include "goptions.h"
 

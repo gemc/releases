@@ -21,12 +21,13 @@
 #include <string>
 using namespace std;
 
+// this gemc version
 const string GEMC_VERSION = "gemc 3.0";
 
 // mlibrary
 #include "gsplash.h"
 
-// utilities - define goptions map
+// gemc
 #include "utilities/utilities.h"
 
 

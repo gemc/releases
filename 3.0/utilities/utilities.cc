@@ -27,7 +27,7 @@ map<string, GOption> defineOptions()
 	optionsMap["gui"].addHelp("1. run the program in interactive mode\n");
 
 
-	// mlibrary 
+	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();
 
 

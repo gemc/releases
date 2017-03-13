@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+   <qresource>
+      <file>images/firstButton_curre.png</file>
+      <file>images/firstButton_hover.png</file>
+      <file>images/firstButton_norma.png</file>
+   </qresource>
+</RCC>
