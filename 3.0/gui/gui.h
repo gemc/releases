@@ -4,7 +4,7 @@
 // gemc master gui
 
 // c++
-// #include <string>
+#include <string>
 using namespace std;
 
 // qt
@@ -16,9 +16,10 @@ class GemcGUI : public QWidget
 	// metaobject required for non-qt slots
 	Q_OBJECT
 
-
 public:
-	GemcGUI(string resources);
+
+	GemcGUI(string resources, QWidget *parent = 0);
+	~GemcGUI();
 
 private:
 

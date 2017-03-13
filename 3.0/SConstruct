@@ -9,6 +9,9 @@ Export('env')
 # utilities
 SConscript('utilities/SConscript', 'env')
 
+# gui
+SConscript('gui/SConscript', 'env')
+
 
 gsources = Split("""
 	gemc.cc
