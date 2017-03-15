@@ -1,0 +1,123 @@
+3/15/17
+ - resumed changelong (still need past logs formatting)
+ - proper splash messages
+ - added GemcGUI instead of general window
+ - added images resource
+
+3/13/17
+ - added gui code, and moc header compilation for xcode
+ - created image dir
+
+3/10/17
+ - minor changes
+
+3/21/17
+ - compatibility with xcode 8
+
+commit ebea9ff3c63b59e78719e55dcc7d3c103e7c47e8
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Thu Sep 22 14:34:21 2016 -0400
+
+cosmetic
+
+commit 9f75b38e384bb8652472820d87067d2c6ba22408
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Wed Sep 21 16:58:38 2016 -0400
+
+added additional options for splash. added loadResource function for qt qrc resources
+
+commit d95146ddf7f49b583d8540ee12978c3f86e2bb76
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Wed Jul 13 11:47:19 2016 -0400
+
+option library changed name to goptions
+
+commit af5f1bee9e49cc1f4291d65c978c6818ec920bb9
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Jul 12 16:44:21 2016 -0400
+
+added SConscript in utilities
+
+commit 84adb33ea1e638d97ce8c5ec3e60530fb3e416f8
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Jul 12 14:05:55 2016 -0400
+
+added utilities library
+
+commit 13e8fe2b53f0614d25d6b188b4871bb7346795a1
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Jul 12 11:51:25 2016 -0400
+
+added splash
+%>git log .
+commit db6ab91c9405e6df7a9c837cd69348bd9ae99f43
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Mon Mar 13 16:39:29 2017 -0400
+
+added gui code, and moc header compilation for xcode
+
+commit c65d9da171836f2ef901512af42d6e4a73ed0628
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Mon Mar 13 15:33:57 2017 -0400
+
+added gui code
+
+commit 363c349dcc88cb8c9bf4d1031a7866ce2a9f5d99
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Mon Mar 13 14:04:05 2017 -0400
+
+created image dir
+
+commit 234f24e27fb9aeeb4bba9849505fefbe6ae5dc73
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Fri Mar 10 16:48:18 2017 -0500
+
+minor changes
+
+commit c445da691d605f121824c7191527c35392a3a229
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Feb 21 11:50:22 2017 -0500
+
+compatibility with xcode 8
+
+commit ebea9ff3c63b59e78719e55dcc7d3c103e7c47e8
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Thu Sep 22 14:34:21 2016 -0400
+
+cosmetic
+
+commit 9f75b38e384bb8652472820d87067d2c6ba22408
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Wed Sep 21 16:58:38 2016 -0400
+
+added additional options for splash. added loadResource function for qt qrc resources
+
+commit d95146ddf7f49b583d8540ee12978c3f86e2bb76
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Wed Jul 13 11:47:19 2016 -0400
+
+option library changed name to goptions
+
+commit af5f1bee9e49cc1f4291d65c978c6818ec920bb9
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Jul 12 16:44:21 2016 -0400
+
+added SConscript in utilities
+
+commit 84adb33ea1e638d97ce8c5ec3e60530fb3e416f8
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Jul 12 14:05:55 2016 -0400
+
+added utilities library
+
+commit 13e8fe2b53f0614d25d6b188b4871bb7346795a1
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Tue Jul 12 11:51:25 2016 -0400
+
+added splash
+
+commit ac7198cb3faafd0bfd38233238dd5166525c9690
+Author: Maurizio Ungaro <maurizio.ungaro@cnu.edu>
+Date:   Mon Jul 11 14:18:01 2016 -0400
+
+3.0 is the gemc re-write using c++11 and mlibrary

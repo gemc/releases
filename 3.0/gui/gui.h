@@ -10,6 +10,8 @@ using namespace std;
 // qt
 #include <QtWidgets>
 
+// mlibrary
+#include "qtButtonsWidget.h"
 
 class GemcGUI : public QWidget
 {
@@ -23,7 +25,7 @@ public:
 
 private:
 
-	int createLeftButtons();
+	QtButtonsWidget* createLeftButtons();
 
 };
 

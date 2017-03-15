@@ -28,8 +28,8 @@ const string GEMC_VERSION = "gemc 3.0";
 #include "gsplash.h"
 
 // gemc
-#include "utilities/utilities.h"
-
+#include "utilities.h"
+#include "gui.h"
 
 int main(int argc, char* argv[])
 {
@@ -42,15 +42,22 @@ int main(int argc, char* argv[])
 
 	// init splash screen
 	GSplash gsplash(gopts, gui);
+	gsplash.message(" Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
-	for(int i=0; i<200; i++)
-		gsplash.message(to_string(i));
 
 	// init gui
 	if(gui) {
-		QMainWindow window;
-		window.show();
-		gsplash.finish(&window);
+//		QMainWindow window;
+//		window.show();
+		gsplash.message("Starting GUI...");
+		qApp->processEvents();
+
+		// passing executable to retrieve full path
+		GemcGUI gemcGui(argv[0]);
+		gemcGui.show();
+
+
+		gsplash.finish(&gemcGui);
 		
 		return qApp->exec();
 	}

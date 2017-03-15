@@ -10,10 +10,20 @@ GemcGUI::GemcGUI(string resources, QWidget *parent) : QWidget(parent)
 	// compiles exampleResources.qrc directly
 
 	QFileInfo qrcFileInfoExecutable(resources.c_str());
-	QString rccPath = qrcFileInfoExecutable.absolutePath() + "/" + "exampleResources.rcc";
+	QString rccPath = qrcFileInfoExecutable.absolutePath() + "/" + "gemcResources.rcc";
 	QResource::registerResource(rccPath);
 
-	return;
+
+
+
+	QHBoxLayout *bottomLayout = new QHBoxLayout;
+	bottomLayout->addWidget(createLeftButtons());
+
+	QVBoxLayout *mainLayout = new QVBoxLayout;
+	mainLayout->addLayout(bottomLayout);
+	setLayout(mainLayout);
+	setWindowTitle(tr("GEMC: Geant4 Monte-Carlo"));
+
 
 }
 
