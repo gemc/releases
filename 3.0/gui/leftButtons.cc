@@ -3,13 +3,13 @@
 
 QtButtonsWidget* GemcGUI::createLeftButtons()
 {
-	map<string, string> bmodel;
 
-	bmodel[":/images/buttons/firstButton"]  = "add monkey 1";
-	bmodel[":/images/buttons/secondButton"] = "add monkey 2";
-	bmodel[":/images/buttons/thidButton"]   = "add monkey 3";
+	vector<string> bicons;
 
-	QtButtonsWidget *window = new QtButtonsWidget(128, 128, bmodel);
+	bicons.push_back(":/images/buttons/firstButton");
+	bicons.push_back(":/images/buttons/secondButton");
+
+	QtButtonsWidget *window = new QtButtonsWidget(128, 128, bicons);
 
 
 	return window;

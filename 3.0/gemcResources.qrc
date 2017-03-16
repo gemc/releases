@@ -1,11 +1,9 @@
 <!DOCTYPE RCC><RCC version="1.0">
    <qresource>
-	   <file>images/buttons/firstButton_curre.png</file>
-	   <file>images/buttons/firstButton_hover.png</file>
-	   <file>images/buttons/firstButton_norma.png</file>
-	   <file>images/buttons/secondButton_curre.png</file>
-	   <file>images/buttons/secondButton_hover.png</file>
-	   <file>images/buttons/secondButton_norma.png</file>
+	   <file>images/buttons/firstButton_1.png</file>
+	   <file>images/buttons/firstButton_2.png</file>
+	   <file>images/buttons/secondButton_1.png</file>
+	   <file>images/buttons/secondButton_2.png</file>
 	  <file>images/gemcArchitecture.png</file>
    </qresource>
 </RCC>
