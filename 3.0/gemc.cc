@@ -47,15 +47,12 @@ int main(int argc, char* argv[])
 
 	// init gui
 	if(gui) {
-//		QMainWindow window;
-//		window.show();
-		gsplash.message("Starting GUI...");
+		gsplash.message("Starting GUI");
 		qApp->processEvents();
 
 		// passing executable to retrieve full path
 		GemcGUI gemcGui(argv[0]);
 		gemcGui.show();
-
 
 		gsplash.finish(&gemcGui);
 		

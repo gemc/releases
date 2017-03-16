@@ -24,12 +24,11 @@ map<string, GOption> defineOptions()
 	optionsMap["gui"] = GOption("Use the QT interface", 1, "gui");
 	optionsMap["gui"].addHelp("Possible choices are:\n");
 	optionsMap["gui"].addHelp("0: run the program in batch mode\n");
-	optionsMap["gui"].addHelp("1. run the program in interactive mode\n");
+	optionsMap["gui"].addHelp("1. run the program in interactive qt mode\n");
 
 
 	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();
-
 
 	return optionsMap;
 }
