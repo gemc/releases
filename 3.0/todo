@@ -6,7 +6,14 @@ class grandom is inside runAction
 
 class gruns - how many runs, and event / run - also inside runAction - external library.
 
+move constructors
+http://blog.smartbear.com/c-plus-plus/c11-tutorial-introducing-the-move-constructor-and-the-move-assignment-operator/
 
+use functions pointers http://thispointer.com/designing-callbacks-in-c-part-1-function-pointers/
+
+unique_ptr: https://mbevin.wordpress.com/2012/11/18/smart-pointers/
+
+http://thispointer.com/c11-tutorial/
 
 QT Interface
 ------------
