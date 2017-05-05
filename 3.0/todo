@@ -15,6 +15,9 @@ unique_ptr: https://mbevin.wordpress.com/2012/11/18/smart-pointers/
 
 http://thispointer.com/c11-tutorial/
 
+
+plugin class to define GEMC options
+
 QT Interface
 ------------
 
