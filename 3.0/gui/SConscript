@@ -5,8 +5,8 @@ env.Append(CPPPATH = ['gui'])
 env.Prepend(LIBS = 'gui')
 
 guiSrc = Split("""
-    gui.cc
-    leftButtons.cc
+    Gui.cc
+    LeftButtons.cc
 	""")
 
 gui = env.Library(source =guiSrc, target = "#lib/gui")

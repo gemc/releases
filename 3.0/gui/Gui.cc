@@ -1,5 +1,5 @@
 // gemc
-#include "gui.h"
+#include "Gui.h"
 
 GemcGUI::GemcGUI(string resources, QWidget *parent) : QWidget(parent)
 {

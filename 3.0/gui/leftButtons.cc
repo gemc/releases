@@ -1,5 +1,5 @@
 // gemc
-#include "gui.h"
+#include "Gui.h"
 
 QtButtonsWidget* GemcGUI::createLeftButtons()
 {
