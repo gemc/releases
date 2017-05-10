@@ -27,6 +27,10 @@ const string GEMC_VERSION = "gemc 3.0";
 // mlibrary
 #include "gsplash.h"
 
+// geant4
+#include "G4MTRunManager.hh"
+
+
 // gemc
 #include "utilities.h"
 #include "gui.h"
@@ -34,19 +38,24 @@ const string GEMC_VERSION = "gemc 3.0";
 int main(int argc, char* argv[])
 {
 	// init option map
-	// the option needed by the core gemc are in utilities/utilities.cc in defineOptions()
+	// the option are loaded in utilities/defineOptions.cc
+	// they include the gemc core options and any frameworks options
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
 	bool gui = gopts->getOption("gui").getBoolValue();
 
 	// init qt app
+	// function defined in utilities, returns a QCore application either in interactive or batch mode
 	createQtApplication(argc, argv, gui);
 
 	// init splash screen
 	GSplash gsplash(gopts, gui);
 	gsplash.message(" Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
+// geant4 run manager is the multithread version
+	G4MTRunManager * runManager = new G4MTRunManager;
 
-	// init gui
+	
+	// initialize gemc gui
 	if(gui) {
 		gsplash.message("Starting GUI");
 		qApp->processEvents();
@@ -64,3 +73,5 @@ int main(int argc, char* argv[])
 
 	return 1;
 }
+
+
