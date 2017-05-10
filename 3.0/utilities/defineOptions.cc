@@ -17,6 +17,9 @@ map<string, GOption> defineOptions()
 	optionsMap["gui"].addHelp("0: run the program in batch mode\n");
 	optionsMap["gui"].addHelp("1. run the program in interactive qt mode\n");
 
+	optionsMap["nthreads"] = GOption("Number of threads to use", 0, "control");
+	optionsMap["nthreads"].addHelp("0: use all available threads (default)\n");
+
 
 	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();

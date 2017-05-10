@@ -1,5 +1,10 @@
+// geant4
 #include "GActionInitialization.h"
 #include "GRunAction.h"
+
+// c++
+#include <iostream>
+using namespace std;
 
 GActionInitialization::GActionInitialization()
 {;}
@@ -18,3 +23,20 @@ void GActionInitialization::BuildForMaster() const
 //	SetUserAction(run_action);
 }
 
+// instantiate run manager and assign number of cores
+G4MTRunManager* gRunManager(int nthreads)
+{
+	int useThreads = nthreads;
+	int allThreads = G4Threading::G4GetNumberOfCores();
+
+	if(useThreads == 0) useThreads = allThreads;
+
+	G4MTRunManager *runManager = new G4MTRunManager;
+	runManager->SetNumberOfThreads(useThreads);
+
+	cout << " > gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
+
+
+
+	return runManager;
+}

@@ -30,6 +30,6 @@ class GActionInitialization : public G4VUserActionInitialization
 // useful guide: https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
 #include "G4MTRunManager.hh"
 
-G4MTRunManager* gRunManager();
+G4MTRunManager* gRunManager(int cores);
 
 #endif

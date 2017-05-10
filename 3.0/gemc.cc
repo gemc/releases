@@ -30,7 +30,7 @@ const string GEMC_VERSION = "gemc 3.0";
 
 // gemc
 #include "utilities.h"
-#include "gui.h"
+#include "Gui.h"
 #include "GActionInitialization.h"
 
 int main(int argc, char* argv[])
@@ -50,8 +50,7 @@ int main(int argc, char* argv[])
 	gsplash.message(" Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
 	// geant4 run manager is the multithread version
-	G4MTRunManager * runManager = new G4MTRunManager;
-	cout << " Number of available cores: " << G4Threading::G4GetNumberOfCores() << endl;
+	G4MTRunManager *runManager = gRunManager(gopts->getOption("nthreads").getIntValue());
 
 
 	// initialize gemc gui

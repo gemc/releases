@@ -2,6 +2,7 @@
  - respecting naming convention for source files containin classes definition
  - starting geant4 run manager
  - added template for run and run action
+ - added nthread options, 0 will use all available
 
 3/15/17
  - resumed changelong (still need past logs formatting)
