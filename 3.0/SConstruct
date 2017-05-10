@@ -12,6 +12,8 @@ SConscript('utilities/SConscript', 'env')
 # gui
 SConscript('gui/SConscript', 'env')
 
+# run, run action, action initialization
+SConscript('run/SConscript', 'env')
 
 gsources = Split("""
 	gemc.cc

@@ -1,0 +1,15 @@
+Import('env')
+
+# utilities
+env.Append(CPPPATH = ['run'])
+env.Prepend(LIBS = 'grun')
+
+utilsSrc = Split("""
+	GRun.cc
+    GRunAction.cc
+    GActionInitialization.cc
+	""")
+
+utils = env.Library(source =utilsSrc, target = "#lib/grun")
+
+

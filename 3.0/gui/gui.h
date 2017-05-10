@@ -18,12 +18,12 @@ class GemcGUI : public QWidget
 	// metaobject required for non-qt slots
 	Q_OBJECT
 
-public:
+	public:
 
 	GemcGUI(string resources, QWidget *parent = 0);
 	~GemcGUI();
 
-private:
+	private:
 
 	QtButtonsWidget* createLeftButtons();
 

@@ -16,7 +16,9 @@ unique_ptr: https://mbevin.wordpress.com/2012/11/18/smart-pointers/
 http://thispointer.com/c11-tutorial/
 
 
-plugin class to define GEMC options
+- plugin class to define GEMC options
+- move doxygen documentation in a separate file
+
 
 QT Interface
 ------------
