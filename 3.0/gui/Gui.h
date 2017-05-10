@@ -1,5 +1,5 @@
 #ifndef GGUI_H
-#define GGUI_H
+#define GGUI_H 1
 
 // gemc master gui
 

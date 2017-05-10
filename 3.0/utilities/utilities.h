@@ -1,5 +1,5 @@
 #ifndef GUTILITIES_H
-#define GUTILITIES_H
+#define GUTILITIES_H 1
 
 // general utility functions needed by gemc
 

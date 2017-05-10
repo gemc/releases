@@ -1,5 +1,5 @@
 #ifndef GACTIONINITIALIZATION_H
-#define GACTIONINITIALIZATION_H
+#define GACTIONINITIALIZATION_H 1
 
 // geant4
 #include "G4VUserActionInitialization.hh"
