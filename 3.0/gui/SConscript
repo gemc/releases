@@ -1,7 +1,7 @@
 Import('env')
 
 # utilities
-env.Append(CPPPATH = 'gui')
+env.Append(CPPPATH = ['gui'])
 env.Prepend(LIBS = 'gui')
 
 guiSrc = Split("""

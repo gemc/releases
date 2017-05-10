@@ -34,6 +34,7 @@ const string GEMC_VERSION = "gemc 3.0";
 int main(int argc, char* argv[])
 {
 	// init option map
+	// the option needed by the core gemc are in utilities/utilities.cc in defineOptions()
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
 	bool gui = gopts->getOption("gui").getBoolValue();
 
