@@ -36,7 +36,12 @@ G4MTRunManager* gRunManager(int nthreads)
 
 	cout << " > gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
 
+	// GEMC Action
+	runManager->SetUserInitialization(new GActionInitialization);
+	
+	//Initialize G4 kernel
+	runManager->Initialize();
 
-
+	
 	return runManager;
 }

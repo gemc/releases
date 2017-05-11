@@ -47,10 +47,12 @@ int main(int argc, char* argv[])
 
 	// init splash screen
 	GSplash gsplash(gopts, gui);
-	gsplash.message(" Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
+	gsplash.message("Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
-	// geant4 run manager is the multithread version
+	// geant4 run manager with number of threads coming from options
+	// this also register the GActionInitialization and initialize the geant4 kernel
 	G4MTRunManager *runManager = gRunManager(gopts->getOption("nthreads").getIntValue());
+	
 
 
 	// initialize gemc gui
