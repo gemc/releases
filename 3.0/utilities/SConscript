@@ -1,14 +1,13 @@
 Import('env')
 
-# utilities
 env.Append(CPPPATH = ['utilities'])
-env.Prepend(LIBS = 'utilities')
+env.Prepend(LIBS = 'gutilities')
 
-utilsSrc = Split("""
+sources = Split("""
 	utilities.cc
 	defineOptions.cc
 	""")
 
-utils = env.Library(source =utilsSrc, target = "#lib/utilities")
+env.Library(source = sources, target = "#lib/gutilities")
 
 

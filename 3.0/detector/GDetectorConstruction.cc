@@ -20,6 +20,9 @@ GDetectorConstruction::~GDetectorConstruction() {}
 
 G4VPhysicalVolume* GDetectorConstruction::Construct()
 {
+
+	cout << " Constructing world volume " << endl;
+
 	G4ThreeVector worldSize = G4ThreeVector(200*cm, 200*cm, 200*cm);
 	G4NistManager* NISTman = G4NistManager::Instance();
 	G4Material* air  = NISTman->FindOrBuildMaterial("G4_AIR");
@@ -47,4 +50,5 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 
 void GDetectorConstruction::ConstructSDandField()
 {
+	cout << " Inside SDandField" << endl;
 }

@@ -1,0 +1,12 @@
+Import('env')
+
+env.Append(CPPPATH = ['detector'])
+env.Prepend(LIBS = 'gdetector')
+
+sources = Split("""
+	GDetectorConstruction.cc
+	""")
+
+env.Library(source = sources, target = "#lib/gdetector")
+
+

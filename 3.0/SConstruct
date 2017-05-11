@@ -12,6 +12,9 @@ SConscript('utilities/SConscript', 'env')
 # gui
 SConscript('gui/SConscript', 'env')
 
+# detector
+SConscript('detector/SConscript', 'env')
+
 # run, run action, action initialization
 SConscript('run/SConscript', 'env')
 

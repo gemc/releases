@@ -1,3 +1,7 @@
+// gemc
+#include "GDetectorConstruction.h"
+
+
 // geant4
 #include "GActionInitialization.h"
 #include "GRunAction.h"
@@ -38,7 +42,10 @@ G4MTRunManager* gRunManager(int nthreads)
 
 	// GEMC Action
 	runManager->SetUserInitialization(new GActionInitialization);
-	
+
+	runManager->SetUserInitialization(new GDetectorConstruction());
+
+
 	//Initialize G4 kernel
 	runManager->Initialize();
 
