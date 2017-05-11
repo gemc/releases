@@ -10,7 +10,7 @@
 #include "G4SystemOfUnits.hh"
 
 
-GDetectorConstruction::GDetectorConstruction(GOptions* gopt) : G4VUserDetectorConstruction()
+GDetectorConstruction::GDetectorConstruction() : G4VUserDetectorConstruction()
 {
 	
 }

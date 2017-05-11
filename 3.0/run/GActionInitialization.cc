@@ -1,10 +1,14 @@
 // gemc
-// #include "GDetectorConstruction.h"
-
+#include "GDetectorConstruction.h"
+#include "GPrimaryGeneratorAction.h"
 
 // geant4
 #include "GActionInitialization.h"
 #include "GRunAction.h"
+
+// to be removed
+#include "QGS_BIC.hh"
+
 
 // c++
 #include <iostream>
@@ -18,7 +22,8 @@ GActionInitialization::~GActionInitialization()
 
 void GActionInitialization::Build() const
 {
-//	SetUserAction(new GRunAction);
+	SetUserAction(new GRunAction);
+	SetUserAction(new GPrimaryGeneratorAction);
 }
 
 void GActionInitialization::BuildForMaster() const
@@ -43,7 +48,8 @@ G4MTRunManager* gRunManager(int nthreads)
 	// GEMC Action
 	runManager->SetUserInitialization(new GActionInitialization);
 
-//runManager->SetUserInitialization(new GDetectorConstruction());
+	runManager->SetUserInitialization(new GDetectorConstruction());
+	runManager->SetUserInitialization(new QGS_BIC());
 
 
 	//Initialize G4 kernel

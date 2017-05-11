@@ -11,7 +11,7 @@ class GDetectorConstruction : public G4VUserDetectorConstruction
 {
 public:
 	// constructor and destructor.
-	GDetectorConstruction(GOptions* gopt);
+	GDetectorConstruction();
 	virtual ~GDetectorConstruction();
 	
 public:

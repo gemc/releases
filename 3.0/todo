@@ -33,3 +33,9 @@ http://doc.qt.io/qt-5/qtcharts-index.html
 
 
 
+Current Issues
+--------------
+
+Xcode _G4cout not found, but it is in G4global.dylib
+
+

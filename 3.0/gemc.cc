@@ -27,11 +27,14 @@ const string GEMC_VERSION = "gemc 3.0";
 // mlibrary
 #include "gsplash.h"
 
-
 // gemc
 #include "utilities.h"
 #include "Gui.h"
 #include "GActionInitialization.h"
+
+// geant4
+#include "G4UImanager.hh"
+
 
 int main(int argc, char* argv[])
 {
@@ -54,6 +57,20 @@ int main(int argc, char* argv[])
 	G4MTRunManager *runManager = gRunManager(gopts->getOption("nthreads").getIntValue());
 	
 
+	// temp, for batch mode
+	// get the pointer to the User Interface manager
+	G4UImanager * pUI = G4UImanager::GetUIpointer();
+
+	pUI->ApplyCommand("/process/verbose 0");
+	pUI->ApplyCommand("/tracking/verbose 0");
+	pUI->ApplyCommand("/run/verbose 0");
+	pUI->ApplyCommand("/run/particle/verbose 0");
+	pUI->ApplyCommand("/process/setVerbose 0 all");
+	pUI->ApplyCommand("/material/verbose 0");
+
+
+	pUI->ApplyCommand("/run/beamOn 10000");
+
 
 	// initialize gemc gui
 	if(gui) {
@@ -69,6 +86,7 @@ int main(int argc, char* argv[])
 		return qApp->exec();
 	}
 
+	delete runManager;
 	return 1;
 }
 
