@@ -1,6 +1,5 @@
 Import('env')
 
-env.Append(CPPPATH = ['utilities'])
 env.Prepend(LIBS = 'gutilities')
 
 sources = Split("""

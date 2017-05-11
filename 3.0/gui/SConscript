@@ -1,6 +1,5 @@
 Import('env')
 
-env.Append(CPPPATH = ['gui'])
 env.Prepend(LIBS = 'ggui')
 
 sources = Split("""

@@ -1,6 +1,5 @@
 Import('env')
 
-env.Append(CPPPATH = ['run'])
 env.Prepend(LIBS = 'grun')
 
 sources = Split("""

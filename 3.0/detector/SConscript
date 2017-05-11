@@ -1,6 +1,5 @@
 Import('env')
 
-env.Append(CPPPATH = ['detector'])
 env.Prepend(LIBS = 'gdetector')
 
 sources = Split("""

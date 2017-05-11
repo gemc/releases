@@ -1,3 +1,7 @@
+5/11/17
+ - added detector construction template
+ - scons path was wrong. fixed in the main SConstruct with Dir directive
+
 5/10/17
  - respecting naming convention for source files containin classes definition
  - starting geant4 run manager
