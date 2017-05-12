@@ -2,6 +2,7 @@
  - added detector construction template
  - scons path was wrong. fixed in the main SConstruct with Dir directive
  - added generator template
+ - added redirecting output to custom session
 
 5/10/17
  - respecting naming convention for source files containin classes definition

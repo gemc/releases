@@ -43,7 +43,7 @@ G4MTRunManager* gRunManager(int nthreads)
 	G4MTRunManager *runManager = new G4MTRunManager;
 	runManager->SetNumberOfThreads(useThreads);
 
-	cout << " > gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
+	G4cout << " > gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << G4endl;
 
 	// GEMC Action
 	runManager->SetUserInitialization(new GActionInitialization);

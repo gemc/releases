@@ -31,6 +31,7 @@ const string GEMC_VERSION = "gemc 3.0";
 #include "utilities.h"
 #include "Gui.h"
 #include "GActionInitialization.h"
+#include "GLog.h"
 
 // geant4
 #include "G4UImanager.hh"
@@ -52,25 +53,31 @@ int main(int argc, char* argv[])
 	GSplash gsplash(gopts, gui);
 	gsplash.message("Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
+	G4UImanager* UI = G4UImanager::GetUIpointer();
+	GSession *gSession = new GSession;
+	UI->SetCoutDestination(gSession);
+
 	// geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	G4MTRunManager *runManager = gRunManager(gopts->getOption("nthreads").getIntValue());
+	
 	
 
 	// temp, for batch mode
 	// get the pointer to the User Interface manager
 	G4UImanager * pUI = G4UImanager::GetUIpointer();
 
-	pUI->ApplyCommand("/process/verbose 0");
-	pUI->ApplyCommand("/tracking/verbose 0");
-	pUI->ApplyCommand("/run/verbose 0");
-	pUI->ApplyCommand("/run/particle/verbose 0");
-	pUI->ApplyCommand("/process/setVerbose 0 all");
-	pUI->ApplyCommand("/material/verbose 0");
+//	pUI->ApplyCommand("/process/verbose 0");
+//	pUI->ApplyCommand("/tracking/verbose 0");
+//	pUI->ApplyCommand("/run/verbose 0");
+//	pUI->ApplyCommand("/run/particle/verbose 0");
+//	pUI->ApplyCommand("/process/setVerbose 0 all");
+//	pUI->ApplyCommand("/material/verbose 0");
 
-
+	pUI->ApplyCommand("/control/cout/prefixString  asd");
 	pUI->ApplyCommand("/run/beamOn 10000");
 
+	
 
 	// initialize gemc gui
 	if(gui) {
@@ -87,6 +94,7 @@ int main(int argc, char* argv[])
 	}
 
 	delete runManager;
+	delete gSession;
 	return 1;
 }
 
