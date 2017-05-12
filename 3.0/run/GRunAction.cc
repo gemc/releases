@@ -11,31 +11,35 @@
 using namespace std;
 
 // Constructor
-GRunAction::GRunAction()
-: G4UserRunAction()
+GRunAction::GRunAction() : G4UserRunAction()
 {
+	G4cout << " Constructor GRunAction" << G4endl;
 }
 
 
-// Destructor.
+// Destructor
 GRunAction::~GRunAction()
 {
+	G4cout << " Destructor GRunAction" << G4endl;
 }
 
 
 G4Run* GRunAction::GenerateRun()
 {
+	G4cout << " GRunAction GenerateRun" << G4endl;
 	return new GRun;
 }
 
 
 void GRunAction::BeginOfRunAction(const G4Run* aRun)
 {
-	G4cout << "### Run " << aRun->GetRunID() << " start inside " << G4Threading::G4GetThreadId()  << G4endl;
+	G4cout << "### GRunAction " << aRun->GetRunID() << " BeginOfRunAction in thread " << G4Threading::G4GetThreadId()  << G4endl;
 }
 
 void GRunAction::EndOfRunAction(const G4Run* aRun)
 {
+	G4cout << "### GRunAction " << aRun->GetRunID() << " EndOfRunAction in thread " << G4Threading::G4GetThreadId()  << G4endl;
+	
 	const GRun* theRun = static_cast<const GRun*> (aRun);
 	if(IsMaster())
 	{

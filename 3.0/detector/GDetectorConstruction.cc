@@ -10,9 +10,11 @@
 #include "G4SystemOfUnits.hh"
 
 
+
 GDetectorConstruction::GDetectorConstruction() : G4VUserDetectorConstruction()
 {
-	
+	G4cout << " V Constructing world volume " << G4endl;
+
 }
 
 GDetectorConstruction::~GDetectorConstruction() {}
@@ -50,5 +52,6 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 
 void GDetectorConstruction::ConstructSDandField()
 {
+
 	G4cout << " Inside SDandField" << G4endl;
 }

@@ -4,10 +4,10 @@
 // c++
 #include <iostream>
 
+
 GSession::GSession()
 {
-	cout << " Opening for G4Cout " << endl;
-	logFile.open(".geant4Log");
+	logFile.open("MasterGeant4.log");
 }
 
 G4int GSession::ReceiveG4cout(const G4String& coutString)
@@ -18,5 +18,6 @@ G4int GSession::ReceiveG4cout(const G4String& coutString)
 
 G4int GSession::ReceiveG4cerr(const G4String& coutString)
 {
+	cout << coutString << flush;
 	return 0;
 }

@@ -1,3 +1,6 @@
+5/12/17
+ - managing G4cout in Master, Worker thread and gemc sequential mode
+
 5/11/17
  - added detector construction template
  - scons path was wrong. fixed in the main SConstruct with Dir directive

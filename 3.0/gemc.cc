@@ -43,10 +43,11 @@ int main(int argc, char* argv[])
 	// the option are loaded in utilities/defineOptions.cc
 	// they include the gemc core options and any frameworks options
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
-	bool gui = gopts->getOption("gui").getBoolValue();
 
 	// init qt app
-	// function defined in utilities, returns a QCore application either in interactive or batch mode
+	// createQtApplication defined in utilities
+	// it returns a QCore application either in interactive or batch mode
+	bool gui = gopts->getOption("gui").getBoolValue();
 	createQtApplication(argc, argv, gui);
 
 	// init splash screen
@@ -54,30 +55,17 @@ int main(int argc, char* argv[])
 	gsplash.message("Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
 	G4UImanager* UI = G4UImanager::GetUIpointer();
-	GSession *gSession = new GSession;
-	UI->SetCoutDestination(gSession);
+	UI->SetCoutDestination(new GSession);
 
 	// geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
-	G4MTRunManager *runManager = gRunManager(gopts->getOption("nthreads").getIntValue());
-	
-	
+	int nthreads = gopts->getOption("nthreads").getIntValue();
+	G4MTRunManager *runManager = gRunManager(nthreads);
 
-	// temp, for batch mode
-	// get the pointer to the User Interface manager
-	G4UImanager * pUI = G4UImanager::GetUIpointer();
+	// run gemc
+	UI->ApplyCommand("/run/beamOn 10000");
 
-//	pUI->ApplyCommand("/process/verbose 0");
-//	pUI->ApplyCommand("/tracking/verbose 0");
-//	pUI->ApplyCommand("/run/verbose 0");
-//	pUI->ApplyCommand("/run/particle/verbose 0");
-//	pUI->ApplyCommand("/process/setVerbose 0 all");
-//	pUI->ApplyCommand("/material/verbose 0");
 
-	pUI->ApplyCommand("/control/cout/prefixString  asd");
-	pUI->ApplyCommand("/run/beamOn 10000");
-
-	
 
 	// initialize gemc gui
 	if(gui) {
@@ -94,7 +82,6 @@ int main(int argc, char* argv[])
 	}
 
 	delete runManager;
-	delete gSession;
 	return 1;
 }
 

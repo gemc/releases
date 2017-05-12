@@ -4,7 +4,6 @@
 // geant4
 #include "G4VUserActionInitialization.hh"
 
-// From https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
 // G4VUserActionInitialization is a newly introduced class for the user to instantiate
 // user action classes (both mandatory and optional).
 // All the user action classes are thread-local and instantiated only for worker treads,

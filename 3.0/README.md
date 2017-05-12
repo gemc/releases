@@ -1,9 +1,5 @@
 # GEMC
 
-
-
-
-
 # Code conventions 
 # - camel case for all variable names, class definitions
 # - type definitions start with Capital letter
@@ -12,7 +8,8 @@
 # Pre-processor
 # Found with scons SHOWBUILD=1
 # Can paste in one line in Build Settings - Pre-Processor macro.
-# G4OPTIMISE=1 G4_STORE_TRAJECTORY=1 G4VIS_USE_OPENGL=1 G4UI_USE_TCSH=1 G4INTY_USE_QT=1 G4UI_USE_QT=1 G4VIS_USE_OPENGLQT=1 G4USE_STD11=1 G4MULTITHREADED=1
+# -DG4OPTIMISE -DG4_STORE_TRAJECTORY -DG4VIS_USE_OPENGL -DG4UI_USE_TCSH -DG4INTY_USE_QT  -DG4UI_USE_QT -DG4VIS_USE_OPENGLQT -DG4USE_STD11 -DG4MULTITHREADED
+#  G4OPTIMISE=1  G4_STORE_TRAJECTORY=1 G4VIS_USE_OPENGL=1 G4UI_USE_TCSH=1 G4INTY_USE_QT=1  G4UI_USE_QT=1 G4VIS_USE_OPENGLQT=1 G4USE_STD11=1 G4MULTITHREADED=1
 
 
 # Add the following libraries to copy link:
@@ -33,3 +30,26 @@
 
 
 # Add the env variable for run time:
+# G4ENSDFSTATEDATA /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4ENSDFSTATE2.1
+# G4LEDATA         /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4EMLOW6.50
+# G4LEVELGAMMADATA /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/PhotonEvaporation4.3
+# G4SAIDXSDATA     /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4SAIDDATA1.1
+# G4NEUTRONXSDATA  /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4NEUTRONXS1.4
+
+
+# Instrument:
+# https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/
+
+
+# MT notes:
+# https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
+# Shared classes:
+# - geometry and physics tables are shared: G4VUserDetectorConstruction, G4VUserPhysicsList and newly introduced G4VUserActionInitialization
+# Local thread classes:
+# - EventManager, TrackingManager, SteppingManager, TransportationManager, GeometryManager, FieldManager, Navigator, SensitiveDetectorManager
+
+
+# Log output
+# G4cout is used for the geant4 master log (physics initialization and detector construction). It is redirected to a file by the glog class
+# G4cout coming from the worker thread is re-directed to output by UIManager command.
+# cout is used for sequential log on screen by gemc.
