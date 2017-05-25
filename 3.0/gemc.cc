@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 
 	// init splash screen
 	GSplash gsplash(gopts, gui);
-	gsplash.message("Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
+	gsplash.message(" % Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
 	G4UImanager* UI = G4UImanager::GetUIpointer();
 	UI->SetCoutDestination(new GSession);
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	G4MTRunManager *runManager = gRunManager(nthreads);
 
 	// run gemc
-	UI->ApplyCommand("/run/beamOn 10000");
+	UI->ApplyCommand("/run/beamOn 1000");
 
 
 
@@ -80,8 +80,10 @@ int main(int argc, char* argv[])
 		
 		return qApp->exec();
 	}
-
+	// alla prossima!
+	gsplash.message(" % Simulation completed, arrivederci! ");
 	delete runManager;
+	delete gopts;
 	return 1;
 }
 

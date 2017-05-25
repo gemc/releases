@@ -52,7 +52,7 @@ G4MTRunManager* gRunManager(int nthreads)
 	runManager->SetNumberOfThreads(useThreads);
 
 	// sequential log screen
-	cout << " > gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
+	cout << " % gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
 
 	// GEMC Action
 	// shared classes
@@ -63,15 +63,14 @@ G4MTRunManager* gRunManager(int nthreads)
 
 	// setting WTs G4cout destination to files
 	G4UImanager* UI = G4UImanager::GetUIpointer();
+	// using 100 as "for sure it's bigger than any number of cores?"
+	// to ignore output from all threads until initialisation
 	UI->ApplyCommand("/control/cout/ignoreThreadsExcept 100");
 	UI->ApplyCommand("/control/cout/ignoreInitializationCout");
 	UI->ApplyCommand("/control/cout/setCoutFile thread.log");
+	//Initialize G4 kernel
 	runManager->Initialize();
 	UI->ApplyCommand("/control/cout/ignoreThreadsExcept -1");
-
-
-	//Initialize G4 kernel
-//	runManager->Initialize();
 
 	return runManager;
 }
