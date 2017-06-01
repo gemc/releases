@@ -1,3 +1,6 @@
+6/1/17
+ - adding goptions to various classes. added gsetup with example.
+
 5/12/17
  - managing G4cout in Master, Worker thread and gemc sequential mode
 
