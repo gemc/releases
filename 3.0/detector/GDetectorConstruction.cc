@@ -9,11 +9,16 @@
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
 
+// mlibrary
+#include "gSystem.h"
 
-
-GDetectorConstruction::GDetectorConstruction() : G4VUserDetectorConstruction()
+GDetectorConstruction::GDetectorConstruction(GOptions* opt) : G4VUserDetectorConstruction(), gopt(opt)
 {
 	G4cout << " V Constructing world volume " << G4endl;
+	
+	GSetup *setup = new GSetup(gopt);
+
+	delete setup;
 
 }
 
@@ -52,6 +57,5 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 
 void GDetectorConstruction::ConstructSDandField()
 {
-
 	G4cout << " Inside SDandField" << G4endl;
 }

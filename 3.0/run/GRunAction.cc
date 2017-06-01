@@ -11,7 +11,7 @@
 using namespace std;
 
 // Constructor
-GRunAction::GRunAction() : G4UserRunAction()
+GRunAction::GRunAction(GOptions* opt) : G4UserRunAction(), gopt(opt)
 {
 	G4cout << " Constructor GRunAction" << G4endl;
 }

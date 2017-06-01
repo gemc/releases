@@ -4,6 +4,9 @@
 // geant4
 #include "G4VUserActionInitialization.hh"
 
+// mlibrary
+#include "goptions.h"
+
 // G4VUserActionInitialization is a newly introduced class for the user to instantiate
 // user action classes (both mandatory and optional).
 // All the user action classes are thread-local and instantiated only for worker treads,
@@ -16,18 +19,20 @@
 class GActionInitialization : public G4VUserActionInitialization
 {
 	public:
-	GActionInitialization();
+	GActionInitialization(GOptions* gopt);
 	virtual ~GActionInitialization();
 
 	virtual void Build() const;
 	virtual void BuildForMaster() const;
 
 	private:
+	GOptions* gopt;
+
 };
 
 // geant4
 #include "G4MTRunManager.hh"
 
-G4MTRunManager* gRunManager(int cores);
+G4MTRunManager* gRunManager(int cores, GOptions* gopt);
 
 #endif

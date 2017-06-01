@@ -60,12 +60,10 @@ int main(int argc, char* argv[])
 	// geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	int nthreads = gopts->getOption("nthreads").getIntValue();
-	G4MTRunManager *runManager = gRunManager(nthreads);
+	G4MTRunManager *runManager = gRunManager(nthreads, gopts);
 
 	// run gemc
-	UI->ApplyCommand("/run/beamOn 1000");
-
-
+	UI->ApplyCommand("/run/beamOn 100");
 
 	// initialize gemc gui
 	if(gui) {

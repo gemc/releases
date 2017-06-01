@@ -3,6 +3,7 @@
 
 // mlibrary options constructors
 #include "gsplash.h"
+#include "gSystem.h"
 
 // define all gemc options
 map<string, GOption> defineOptions()
@@ -23,6 +24,7 @@ map<string, GOption> defineOptions()
 
 	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();
+	optionsMap += GSetup::defineOptions();
 
 	return optionsMap;
 }

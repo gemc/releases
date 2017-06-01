@@ -15,7 +15,7 @@
 #include <iostream>
 using namespace std;
 
-GActionInitialization::GActionInitialization()
+GActionInitialization::GActionInitialization(GOptions* opt) : gopt(opt)
 {
 	G4cout << " GActionInitialization constructor  " << G4endl;
 }
@@ -29,7 +29,7 @@ void GActionInitialization::Build() const
 {
 	G4cout << " GActionInitialization Thread Build  " << G4endl;
 
-	SetUserAction(new GRunAction);
+	SetUserAction(new GRunAction(gopt));
 	SetUserAction(new GPrimaryGeneratorAction);
 	// SetUserAction(new GEventAction);
 }
@@ -37,11 +37,11 @@ void GActionInitialization::Build() const
 void GActionInitialization::BuildForMaster() const
 {
 	G4cout << " GActionInitialization Master  " << G4endl;
-	SetUserAction(new GRunAction);
+	SetUserAction(new GRunAction(gopt));
 }
 
 // instantiate run manager and assign number of cores
-G4MTRunManager* gRunManager(int nthreads)
+G4MTRunManager* gRunManager(int nthreads, GOptions* gopt)
 {
 	int useThreads = nthreads;
 	int allThreads = G4Threading::G4GetNumberOfCores();
@@ -56,9 +56,9 @@ G4MTRunManager* gRunManager(int nthreads)
 
 	// GEMC Action
 	// shared classes
-	runManager->SetUserInitialization(new GDetectorConstruction());
+	runManager->SetUserInitialization(new GDetectorConstruction(gopt));
 	runManager->SetUserInitialization(new QGS_BIC());
-	runManager->SetUserInitialization(new GActionInitialization);
+	runManager->SetUserInitialization(new GActionInitialization(gopt));
 
 
 	// setting WTs G4cout destination to files

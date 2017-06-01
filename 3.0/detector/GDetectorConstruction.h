@@ -11,13 +11,14 @@ class GDetectorConstruction : public G4VUserDetectorConstruction
 {
 public:
 	// constructor and destructor.
-	GDetectorConstruction();
+	GDetectorConstruction(GOptions* opt);
 	virtual ~GDetectorConstruction();
 	
 public:
 	// virtual method from G4VUserDetectorConstruction.
 	virtual G4VPhysicalVolume* Construct();
 	virtual void ConstructSDandField();
+	GOptions* gopt;
 };
 
 
