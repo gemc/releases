@@ -26,6 +26,7 @@ const string GEMC_VERSION = "gemc 3.0";
 
 // mlibrary
 #include "gsplash.h"
+#include "g4display.h"
 
 // gemc
 #include "utilities.h"
@@ -35,6 +36,8 @@ const string GEMC_VERSION = "gemc 3.0";
 
 // geant4
 #include "G4UImanager.hh"
+#include "G4VisExecutive.hh"
+#include "G4UIQt.hh"
 
 
 int main(int argc, char* argv[])
@@ -54,16 +57,17 @@ int main(int argc, char* argv[])
 	GSplash gsplash(gopts, gui);
 	gsplash.message(" % Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
 
-	G4UImanager* UI = G4UImanager::GetUIpointer();
-	UI->SetCoutDestination(new GSession);
+	G4UImanager* UIM = G4UImanager::GetUIpointer();
+	UIM->SetCoutDestination(new GSession);
 
 	// geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	int nthreads = gopts->getOption("nthreads").getIntValue();
 	G4MTRunManager *runManager = gRunManager(nthreads, gopts);
 
+
 	// run gemc
-	UI->ApplyCommand("/run/beamOn 100");
+	// UIM->ApplyCommand("/run/beamOn 100");
 
 	// initialize gemc gui
 	if(gui) {
@@ -75,11 +79,25 @@ int main(int argc, char* argv[])
 		gemcGui.show();
 
 		gsplash.finish(&gemcGui);
-		
-		return qApp->exec();
+
+
+		// initializing vis manager and qt session
+		G4VisManager *visManager = new G4VisExecutive("Quiet");
+		visManager->Initialize();
+
+		// intializing G4UIQt session
+		G4UIsession *session = new G4UIQt(1, argv);
+
+		// now opening the g4 display
+		G4Display *g4Display = new G4Display(gopts);
+
+		qApp->exec();
+		delete visManager;
+		delete session;
+		delete g4Display;
 	}
 	// alla prossima!
-	gsplash.message(" % Simulation completed, arrivederci! ");
+	cout << " % Simulation completed, arrivederci! " << endl;
 	delete runManager;
 	delete gopts;
 	return 1;
