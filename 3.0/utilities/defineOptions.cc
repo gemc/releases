@@ -3,7 +3,7 @@
 
 // mlibrary options constructors
 #include "gsplash.h"
-#include "gSystem.h"
+#include "gsystem.h"
 #include "g4display.h"
 #include "g4volume.h"
 

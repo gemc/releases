@@ -96,6 +96,7 @@ int main(int argc, char* argv[])
 		delete session;
 		delete g4Display;
 	}
+	
 	// alla prossima!
 	cout << " % Simulation completed, arrivederci! " << endl;
 	delete runManager;
