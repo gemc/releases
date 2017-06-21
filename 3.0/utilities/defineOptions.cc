@@ -5,6 +5,7 @@
 #include "gsplash.h"
 #include "gSystem.h"
 #include "g4display.h"
+#include "g4volume.h"
 
 // define all gemc options
 map<string, GOption> defineOptions()
@@ -27,6 +28,7 @@ map<string, GOption> defineOptions()
 	optionsMap += GSplash::defineOptions();
 	optionsMap += GSetup::defineOptions();
 	optionsMap += G4Display::defineOptions();
+	optionsMap += G4Setup::defineOptions();
 
 	return optionsMap;
 }
