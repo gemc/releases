@@ -76,6 +76,9 @@ int main(int argc, char* argv[])
 
 		// passing executable to retrieve full path
 		GemcGUI gemcGui(argv[0]);
+		// PRAGMA TODO
+		// use option g4view to set the position
+		gemcGui.move(10, 10);
 		gemcGui.show();
 
 		gsplash.finish(&gemcGui);

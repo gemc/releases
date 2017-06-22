@@ -2,3 +2,5 @@
 *.o
 moc*.cc
 3.0/gemc
+3.0/lib
+devel
