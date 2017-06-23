@@ -9,9 +9,6 @@ GDetectorConstruction::GDetectorConstruction(GOptions* opt) : G4VUserDetectorCon
 {
 	G4cout << " V Constructing world volume " << G4endl;
 	
-	GSetup *setup = new GSetup(gopt);
-
-	delete setup;
 
 }
 
