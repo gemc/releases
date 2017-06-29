@@ -34,7 +34,7 @@ void GRun::RecordEvent(const G4Event *aEvent)
 
 void GRun::Merge(const G4Run *aRun) {
 
-	const GRun *localRun = static_cast<const GRun *> (aRun);
+//	const GRun *localRun = static_cast<const GRun *> (aRun);
 
 	G4cout << " Merge run  " << G4endl;
 

@@ -17,6 +17,7 @@ class GSession : public G4UIsession
 	
 	private:
 	ofstream logFile;
+	ofstream errFile;
 };
 
 

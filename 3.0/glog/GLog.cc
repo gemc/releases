@@ -8,6 +8,7 @@
 GSession::GSession()
 {
 	logFile.open("MasterGeant4.log");
+	errFile.open("MasterGeant4.err");
 }
 
 G4int GSession::ReceiveG4cout(const G4String& coutString)
@@ -18,6 +19,6 @@ G4int GSession::ReceiveG4cout(const G4String& coutString)
 
 G4int GSession::ReceiveG4cerr(const G4String& coutString)
 {
-	cout << coutString << flush;
+	errFile << coutString << flush;
 	return 0;
 }

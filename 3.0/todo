@@ -1,6 +1,18 @@
 clock class
 random number class
 
+handle cerr, fatal errors, throw exceptions
+
+check MT logs, remember:
+
+# Shared classes (cout):
+# - geometry and physics tables are shared: G4VUserDetectorConstruction, G4VUserPhysicsList and newly introduced G4VUserActionInitialization
+# Local thread classes (g4cout):
+# - EventManager, TrackingManager, SteppingManager, TransportationManager, GeometryManager, FieldManager, Navigator, SensitiveDetectorManager
+
+
+
+
 runs, random seeds: examples/extended/common
 class grandom is inside runAction
 
