@@ -17,8 +17,8 @@ G4int GSession::ReceiveG4cout(const G4String& coutString)
 	return 0;
 }
 
-G4int GSession::ReceiveG4cerr(const G4String& coutString)
+G4int GSession::ReceiveG4cerr(const G4String& cerrString)
 {
-	errFile << coutString << flush;
+	errFile << cerrString << flush;
 	return 0;
 }

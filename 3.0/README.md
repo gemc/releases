@@ -8,6 +8,7 @@
 # Pre-processor
 # Found with scons SHOWBUILD=1
 # Can paste in one line in Build Settings - Pre-Processor macro.
+# For example G4MULTITHREADED will change the meaning of G4cout (will use G4cout_p instead)
 # -DG4OPTIMISE -DG4_STORE_TRAJECTORY -DG4VIS_USE_OPENGL -DG4UI_USE_TCSH -DG4INTY_USE_QT  -DG4UI_USE_QT -DG4VIS_USE_OPENGLQT -DG4USE_STD11 -DG4MULTITHREADED
 #  G4OPTIMISE=1  G4_STORE_TRAJECTORY=1 G4VIS_USE_OPENGL=1 G4UI_USE_TCSH=1 G4INTY_USE_QT=1  G4UI_USE_QT=1 G4VIS_USE_OPENGLQT=1 G4USE_STD11=1 G4MULTITHREADED=1
 
@@ -53,3 +54,5 @@
 # G4cout is used for the geant4 master log (physics initialization and detector construction). It is redirected to a file by the glog class
 # G4cout coming from the worker thread is re-directed to output by UIManager command.
 # cout is used for sequential log on screen by gemc.
+
+
