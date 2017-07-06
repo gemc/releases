@@ -14,8 +14,15 @@ GemcGUI::GemcGUI(string resources, QWidget *parent) : QWidget(parent)
 	QResource::registerResource(rccPath);
 
 
+	leftButtons = createLeftButtons();
+
+
+
 	QHBoxLayout *bottomLayout = new QHBoxLayout;
-	bottomLayout->addWidget(createLeftButtons());
+	bottomLayout->addWidget(leftButtons);
+
+
+
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 	mainLayout->addLayout(bottomLayout);

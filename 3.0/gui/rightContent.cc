@@ -1,7 +1,7 @@
 // gemc
 #include "Gui.h"
 
-QtButtonsWidget* GemcGUI::createLeftButtons()
+QStackedWidget* GemcGUI::rightContent()
 {
 	vector<string> bicons;
 
