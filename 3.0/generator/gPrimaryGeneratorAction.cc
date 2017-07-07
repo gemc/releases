@@ -1,4 +1,4 @@
-#include "GPrimaryGeneratorAction.h"
+#include "gPrimaryGeneratorAction.h"
 
 
 // to be removed?

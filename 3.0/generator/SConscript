@@ -3,7 +3,7 @@ Import('env')
 env.Prepend(LIBS = 'ggenerator')
 
 sources = Split("""
-	GPrimaryGeneratorAction.cc
+	gPrimaryGeneratorAction.cc
 	""")
 
 env.Library(source = sources, target = "#lib/ggenerator")

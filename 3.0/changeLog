@@ -1,3 +1,7 @@
+7/7/17
+ - filename case more consistent
+ - added QStackedWidget for right content
+
 6/29/17
  - added MasterGeant4.err error log
 

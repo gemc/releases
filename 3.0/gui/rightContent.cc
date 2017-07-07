@@ -1,15 +1,13 @@
 // gemc
-#include "Gui.h"
+#include "gui.h"
 
-QStackedWidget* GemcGUI::rightContent()
+// mlibrary
+#include "displayUI.h"
+
+void GemcGUI::createRightContent(GOptions* gopt)
 {
-	vector<string> bicons;
+	rightContent = new QStackedWidget;
 
-	bicons.push_back(":/images/buttons/firstButton");
-	bicons.push_back(":/images/buttons/secondButton");
+	rightContent->addWidget(new DisplayUI(gopt));
 
-	QtButtonsWidget *window = new QtButtonsWidget(128, 128, bicons);
-
-
-	return window;
 }

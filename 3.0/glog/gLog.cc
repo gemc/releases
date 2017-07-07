@@ -1,5 +1,5 @@
 // gemc
-#include "GLog.h"
+#include "gLog.h"
 
 // c++
 #include <iostream>

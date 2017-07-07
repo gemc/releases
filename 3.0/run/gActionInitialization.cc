@@ -1,10 +1,10 @@
 // gemc
-#include "GDetectorConstruction.h"
-#include "GPrimaryGeneratorAction.h"
+#include "gDetectorConstruction.h"
+#include "gPrimaryGeneratorAction.h"
 
 // geant4
-#include "GActionInitialization.h"
-#include "GRunAction.h"
+#include "gActionInitialization.h"
+#include "gRunAction.h"
 
 // to be removed
 #include "QGS_BIC.hh"

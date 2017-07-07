@@ -3,7 +3,7 @@ Import('env')
 env.Prepend(LIBS = 'glog')
 
 sources = Split("""
-	GLog.cc
+	gLog.cc
 	""")
 
 env.Library(source = sources, target = "#lib/glog")

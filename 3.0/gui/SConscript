@@ -3,8 +3,9 @@ Import('env')
 env.Prepend(LIBS = 'ggui')
 
 sources = Split("""
-    Gui.cc
-    LeftButtons.cc
+    gui.cc
+	leftButtons.cc
+	rightContent.cc
 	""")
 
 env.Library(source = sources, target = "#lib/ggui")

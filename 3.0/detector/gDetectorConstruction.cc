@@ -1,5 +1,5 @@
 // gemc
-#include "GDetectorConstruction.h"
+#include "gDetectorConstruction.h"
 
 // mlibrary
 #include "gsystem.h"

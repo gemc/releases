@@ -1,7 +1,7 @@
 // gemc
-#include "Gui.h"
+#include "gui.h"
 
-GemcGUI::GemcGUI(string resources, QWidget *parent) : QWidget(parent)
+GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(parent)
 {
 	// the exampleResources.rcc is obtained with:
 	// rcc -binary exampleResources.qrc -o exampleResources.rcc
@@ -14,14 +14,13 @@ GemcGUI::GemcGUI(string resources, QWidget *parent) : QWidget(parent)
 	QResource::registerResource(rccPath);
 
 
-	leftButtons = createLeftButtons();
-
+	createLeftButtons();
+	createRightContent(gopt);
 
 
 	QHBoxLayout *bottomLayout = new QHBoxLayout;
 	bottomLayout->addWidget(leftButtons);
-
-
+	bottomLayout->addWidget(rightContent);
 
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;

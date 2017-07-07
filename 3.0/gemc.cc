@@ -30,9 +30,9 @@ const string GEMC_VERSION = "gemc 3.0";
 
 // gemc
 #include "utilities.h"
-#include "Gui.h"
-#include "GActionInitialization.h"
-#include "GLog.h"
+#include "gui.h"
+#include "gActionInitialization.h"
+#include "gLog.h"
 
 // geant4
 #include "G4UImanager.hh"
@@ -75,7 +75,8 @@ int main(int argc, char* argv[])
 		qApp->processEvents();
 
 		// passing executable to retrieve full path
-		GemcGUI gemcGui(argv[0]);
+		GemcGUI gemcGui(argv[0], gopts);
+
 		// PRAGMA TODO
 		// use option g4view to set the position
 		gemcGui.move(10, 10);

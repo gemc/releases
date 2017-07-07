@@ -1,6 +1,6 @@
 // gemc
-#include "GRunAction.h"
-#include "GRun.h"
+#include "gRunAction.h"
+#include "gRun.h"
 
 // geant4
 #include "globals.hh"

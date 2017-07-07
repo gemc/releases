@@ -12,7 +12,7 @@ using namespace std;
 
 // mlibrary
 #include "qtButtonsWidget.h"
-
+#include "goptions.h"
 
 class GemcGUI : public QWidget
 {
@@ -21,13 +21,17 @@ class GemcGUI : public QWidget
 
 public:
 
-	GemcGUI(string resources, QWidget *parent = 0);
+	GemcGUI(string resources, GOptions* gopt, QWidget *parent = Q_NULLPTR);
 	~GemcGUI();
 
 private:
 
 	QtButtonsWidget* leftButtons; 
 	QStackedWidget *rightContent;
+
+private:
+	void createLeftButtons();
+	void createRightContent(GOptions* gopt);
 
 };
 
