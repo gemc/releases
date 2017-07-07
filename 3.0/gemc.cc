@@ -66,9 +66,6 @@ int main(int argc, char* argv[])
 	G4MTRunManager *runManager = gRunManager(nthreads, gopts);
 
 
-	// run gemc
-	// UIM->ApplyCommand("/run/beamOn 100");
-
 	// initialize gemc gui
 	if(gui) {
 		gsplash.message("Starting GUI");
@@ -86,7 +83,7 @@ int main(int argc, char* argv[])
 
 
 		// initializing vis manager and qt session
-		G4VisManager *visManager = new G4VisExecutive("Quiet");
+		G4VisManager *visManager = new G4VisExecutive();
 		visManager->Initialize();
 
 		// intializing G4UIQt session

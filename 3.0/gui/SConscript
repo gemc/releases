@@ -6,6 +6,7 @@ sources = Split("""
     gui.cc
 	leftButtons.cc
 	rightContent.cc
+	topLayout.cc
 	""")
 
 env.Library(source = sources, target = "#lib/ggui")

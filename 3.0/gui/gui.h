@@ -20,18 +20,28 @@ class GemcGUI : public QWidget
 	Q_OBJECT
 
 public:
-
 	GemcGUI(string resources, GOptions* gopt, QWidget *parent = Q_NULLPTR);
 	~GemcGUI();
 
 private:
-
-	QtButtonsWidget* leftButtons; 
-	QStackedWidget *rightContent;
+	QtButtonsWidget *leftButtons; 
+	QStackedWidget  *rightContent;
+	QLineEdit       *nEvents;
+	QLabel          *eventNumber;
+	QTimer          *gtimer;       // for cycling events
 
 private:
 	void createLeftButtons();
 	void createRightContent(GOptions* gopt);
+	void createTopButtons(QHBoxLayout *topLayout);
+
+
+private slots:
+	// definded in topLayout.cc
+	void gquit();
+	void beamOn();
+	void cycleBeamOn();
+	void stopCycleBeamOn();
 
 };
 

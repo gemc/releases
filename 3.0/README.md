@@ -56,3 +56,7 @@
 # cout is used for sequential log on screen by gemc.
 
 
+# Memory usage
+# First run valgrind (Linux): valgrind --tool=callgrind gemc /group/clas12/gemc/4a.1.1/clas12.gcard -USE_GUI=0 -N=100
+# qcachegrind can be installed with brew on mac
+# qcachegrind callgrind.out.<pid>

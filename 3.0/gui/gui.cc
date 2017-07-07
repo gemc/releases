@@ -14,8 +14,11 @@ GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(pa
 	QResource::registerResource(rccPath);
 
 
-	createLeftButtons();
-	createRightContent(gopt);
+	createLeftButtons();       // instantiates leftButtons
+	createRightContent(gopt);  // instantiates rightContent
+
+	QHBoxLayout *topLayout = new QHBoxLayout;
+	createTopButtons(topLayout);
 
 
 	QHBoxLayout *bottomLayout = new QHBoxLayout;
@@ -24,6 +27,7 @@ GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(pa
 
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
+	mainLayout->addLayout(topLayout);
 	mainLayout->addLayout(bottomLayout);
 	setLayout(mainLayout);
 	setWindowTitle(tr("GEMC: Geant4 Monte-Carlo"));
@@ -33,5 +37,5 @@ GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(pa
 
 GemcGUI::~GemcGUI()
 {
-	;
+	cout << endl << " Quitting GUI. " << endl << endl;
 }
