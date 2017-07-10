@@ -52,7 +52,7 @@ G4MTRunManager* gRunManager(int nthreads, GOptions* gopt)
 	runManager->SetNumberOfThreads(useThreads);
 
 	// sequential log screen
-	cout << " % gRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
+	cout << " % G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
 
 	// GEMC Action
 	// shared classes

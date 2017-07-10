@@ -1,7 +1,12 @@
+7/10/17
+ - less log message for factory, define verbosity better and screen log
+
+
 7/7/17
  - filename case more consistent
  - added QStackedWidget for right content
  - ladies and gentlemen we have a beam
+
 
 6/29/17
  - added MasterGeant4.err error log

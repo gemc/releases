@@ -37,5 +37,5 @@ GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(pa
 
 GemcGUI::~GemcGUI()
 {
-	cout << endl << " Quitting GUI. " << endl << endl;
+	cout << endl << " % Quitting Gemc GUI. " << endl;
 }

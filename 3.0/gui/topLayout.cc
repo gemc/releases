@@ -58,7 +58,6 @@ void GemcGUI::createTopButtons(QHBoxLayout *topLayout)
 
 void GemcGUI::gquit()
 {
-	cout << endl << " Arrivederci! " << endl << endl;
 	qApp->quit();
 }
 

@@ -1,3 +1,6 @@
+add option g4command to execute g4 commands from gcard / command line
+
+
 clock class
 random number class
 
@@ -9,7 +12,6 @@ check MT logs, remember:
 # - geometry and physics tables are shared: G4VUserDetectorConstruction, G4VUserPhysicsList and newly introduced G4VUserActionInitialization
 # Local thread classes (g4cout):
 # - EventManager, TrackingManager, SteppingManager, TransportationManager, GeometryManager, FieldManager, Navigator, SensitiveDetectorManager
-
 
 
 
