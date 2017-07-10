@@ -22,7 +22,7 @@
 using namespace std;
 
 // this gemc version
-const string GEMC_VERSION = "gemc 3.0";
+const string GEMC_VERSION = "3.0.beta";
 
 // mlibrary
 #include "gsplash.h"
@@ -50,12 +50,14 @@ int main(int argc, char* argv[])
 	// init qt app
 	// createQtApplication defined in utilities
 	// it returns a QCore application either in interactive or batch mode
-	bool gui = gopts->getOption("gui").getBoolValue();
+	bool gui = gopts->getBool("gui");
 	createQtApplication(argc, argv, gui);
 
 	// init splash screen
+	// message is streamed always
+	// if interactive session message is also streamd on splash screen
 	GSplash gsplash(gopts, gui);
-	gsplash.message(" % Initializing GEant4 MonteCarlo version " + string(GEMC_VERSION));
+	gsplash.message(" % Initializing GEMC " + string(GEMC_VERSION));
 
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
@@ -64,7 +66,6 @@ int main(int argc, char* argv[])
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	int nthreads = gopts->getOption("nthreads").getIntValue();
 	G4MTRunManager *runManager = gRunManager(nthreads, gopts);
-
 
 	// initialize gemc gui
 	if(gui) {
@@ -92,10 +93,14 @@ int main(int argc, char* argv[])
 		// now opening the g4 display
 		G4Display *g4Display = new G4Display(gopts);
 
+		applyInitialUIManagerCommands(gopts);
+
 		qApp->exec();
 		delete visManager;
 		delete session;
 		delete g4Display;
+	} else {
+		applyInitialUIManagerCommands(gopts);
 	}
 	
 	// alla prossima!

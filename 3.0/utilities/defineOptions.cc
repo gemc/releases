@@ -23,12 +23,23 @@ map<string, GOption> defineOptions()
 	optionsMap["nthreads"] = GOption("Number of threads to use", 0, "control");
 	optionsMap["nthreads"].addHelp("0: use all available threads (default)\n");
 
+	optionsMap["g4command"] = GOption("Execute G4 command.", "no", "geant4", "true");
+	optionsMap["g4command"].addHelp("Examples:\n");
+	optionsMap["g4command"].addHelp("/vis/scene/add/axes 0 0 0 20 cm\n");
+	optionsMap["g4command"].addHelp("This option can be repeated.\n");
+
+	optionsMap["gemcv"] = GOption("Gemc general Verbosity", 0, "verbosity");
+	optionsMap["gemcv"].addHelp("Possible values:\n");
+	optionsMap["gemcv"].addHelp(" - 0: silent\n");
+	optionsMap["gemcv"].addHelp(" - 1: summary information\n");
+	optionsMap["gemcv"].addHelp(" - 2: details\n");
+	optionsMap["gemcv"].addHelp(" - 3: verbose details\n");
 
 	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();
 	optionsMap += GSetup::defineOptions();
-	optionsMap += G4Display::defineOptions();
 	optionsMap += G4Setup::defineOptions();
+	optionsMap += G4Display::defineOptions();
 
 	return optionsMap;
 }

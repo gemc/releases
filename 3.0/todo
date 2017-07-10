@@ -1,5 +1,5 @@
-add option g4command to execute g4 commands from gcard / command line
 
+add -v option for version then exist --v -V --V --version -version -Version --Version
 
 clock class
 random number class
