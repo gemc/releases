@@ -34,7 +34,6 @@ void GemcGUI::createTopButtons(QHBoxLayout *topLayout)
 	closeButton->setToolTip("Quit GEMC");
 	closeButton->setIcon(style()->standardIcon(QStyle::SP_TitleBarCloseButton));
 
-
 	eventNumber  = new QLabel(tr("Event Number: 0"));
 
 	topLayout->addWidget(nEventsLabel);
@@ -72,16 +71,16 @@ void GemcGUI::beamOn()
 	int nBefore = stoi(sBefore[2]);
 	int nToRun  = nEvents->text().toInt();
 
+	// interestingly enough this the accumulate directive will prevent this:
+	// oreAnimation: warning, deleted thread with uncommitted CATransaction
 	g4uim->ApplyCommand("/vis/scene/endOfEventAction accumulate -1");
-//	g4uim->ApplyCommand("/vis/viewer/set/autoRefresh 1");
-//	g4uim->ApplyCommand("/vis/viewer/set/background .8 .9 .98 1");
+
 	g4uim->ApplyCommand("/gun/particle proton");
 	g4uim->ApplyCommand("/gun/energy 2 GeV");
 	g4uim->ApplyCommand("/gun/direction 0 0 1");
 	g4uim->ApplyCommand("/vis/scene/add/trajectories rich smooth");
 
 	g4uim->ApplyCommand( "/run/beamOn " + to_string(nToRun));
-
 
 
 	QString newNEvents("Event Number: ");

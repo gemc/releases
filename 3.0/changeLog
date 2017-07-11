@@ -1,3 +1,6 @@
+7/11/17
+ - starting gtouchable
+
 7/10/17
  - less log message for factory, define verbosity better and screen log
  - add option g4command to execute g4 commands from gcard / command line
