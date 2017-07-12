@@ -23,6 +23,9 @@ SConscript('generator/SConscript', 'env')
 # run, run action, action initialization
 SConscript('run/SConscript', 'env')
 
+# hit, touchable, sensitive detector
+SConscript('sensitivity/SConscript', 'env')
+
 gsources = Split("""
 	gemc.cc
 	""")
