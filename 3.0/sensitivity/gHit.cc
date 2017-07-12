@@ -4,14 +4,13 @@
 // geant4
 #include "G4VVisManager.hh"
 
+G4ThreadLocal G4Allocator<GHit>* GHitAllocator = 0;
+
 GHit::GHit(GTouchable gt, gHitType ht, string cScheme) : touchableId(gt),  type(ht), colorSchema(cScheme)
 {
 	
 }
 
-
-
-G4ThreadLocal G4Allocator<GHit>* MyHitAllocator = 0;
 
 
 bool GHit::setColorSchema()
@@ -57,3 +56,4 @@ void GHit::Draw()
 //		}
 	}
 }
+

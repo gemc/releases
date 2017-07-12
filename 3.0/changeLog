@@ -1,5 +1,6 @@
 7/12/17
  - added gHit, gSensitiveDetector classes
+ - associating gvolume with GSensitiveDetector
 
 7/11/17
  - starting gtouchable

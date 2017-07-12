@@ -6,6 +6,7 @@
 #include "G4THitsCollection.hh"
 #include "G4Types.hh"
 #include "G4Colour.hh"
+#include "G4Allocator.hh"
 
 // gemc
 #include "gTouchable.h"

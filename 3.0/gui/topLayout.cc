@@ -77,7 +77,7 @@ void GemcGUI::beamOn()
 
 	g4uim->ApplyCommand("/gun/particle proton");
 	g4uim->ApplyCommand("/gun/energy 2 GeV");
-	g4uim->ApplyCommand("/gun/direction 0 0 1");
+	g4uim->ApplyCommand("/gun/direction 0 1 0");
 	g4uim->ApplyCommand("/vis/scene/add/trajectories rich smooth");
 
 	g4uim->ApplyCommand( "/run/beamOn " + to_string(nToRun));
