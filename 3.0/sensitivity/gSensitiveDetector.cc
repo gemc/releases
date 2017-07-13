@@ -6,7 +6,7 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt) : G4VSensiti
 {
 	verbosity = gopt->getInt("gsensitivityv");
 
-	if(verbosity > 1) {
+	if(verbosity > GVERBOSITY_SUMMARY) {
 		G4cout << " Instantiating GSensitive Detector " << name << G4endl;
 	}
 
@@ -22,7 +22,7 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th)
 {
 	double depe = thisStep->GetTotalEnergyDeposit();
-	if(verbosity > 2) {
+	if(verbosity == GVERBOSITY_ALL) {
 		G4cout << " Energy deposited this step: " << depe << G4endl;
 	}
 

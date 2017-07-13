@@ -79,7 +79,7 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 
 
 	for(auto &c : commands) {
-		if(verbosity > 1) {
+		if(verbosity > GVERBOSITY_SUMMARY) {
 			cout << " % Executing UIManager command \"" << c << "\"" << endl;
 		}
 		g4uim->ApplyCommand(c);

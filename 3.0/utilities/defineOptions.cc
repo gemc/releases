@@ -31,10 +31,10 @@ map<string, GOption> defineOptions()
 
 	optionsMap["gemcv"] = GOption("Gemc general Verbosity", 0, "verbosity");
 	optionsMap["gemcv"].addHelp("Possible values:\n");
-	optionsMap["gemcv"].addHelp(" - 0: silent\n");
-	optionsMap["gemcv"].addHelp(" - 1: summary information\n");
-	optionsMap["gemcv"].addHelp(" - 2: details\n");
-	optionsMap["gemcv"].addHelp(" - 3: verbose details\n");
+	optionsMap["gemcv"].addHelp(GVERBOSITY_SILENT_D);
+	optionsMap["gemcv"].addHelp(GVERBOSITY_SUMMARY_D);
+	optionsMap["gemcv"].addHelp(GVERBOSITY_DETAILS_D);
+	optionsMap["gemcv"].addHelp(GVERBOSITY_ALL_D);
 
 	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();
