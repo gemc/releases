@@ -10,12 +10,12 @@ using namespace std;
 
 class GSession : public G4UIsession
 {
-	public:
+public:
 	GSession();
 	G4int ReceiveG4cout(const G4String& coutString);
 	G4int ReceiveG4cerr(const G4String& cerrString);
-	
-	private:
+
+private:
 	ofstream logFile;
 	ofstream errFile;
 };

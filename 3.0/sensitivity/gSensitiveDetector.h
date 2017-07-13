@@ -6,6 +6,7 @@
 
 // mlibrary
 #include "goptions.h"
+#include "gvolume.h"
 
 // gemc
 #include "gTouchable.h"
@@ -17,7 +18,7 @@ using namespace std;
 class GSensitiveDetector : public G4VSensitiveDetector
 {
 public:
-	GSensitiveDetector(string name, GOptions* gopt);
+	GSensitiveDetector(string name, GOptions* gopt, GVolume *thisVolume);
 
 	// geant4 methods
 	virtual void Initialize(G4HCofThisEvent* g4hc);                            ///< Beginning of sensitive Hit
@@ -26,6 +27,9 @@ public:
 
 private:
 	int verbosity;
+
+	// defines the timewindow of the touchable if it's a readout
+	double timeWindow;
 
 	// map of touchable associated with each volume registered with the sensitive detector
 	// it is stored here so it can be retrieved

@@ -3,6 +3,9 @@
  - associating gvolume with GSensitiveDetector
  - added default softwareVersion handling
  - added skipProcessHit to GSensitiveDetector
+ - GVolume* added to GSensitiveDetector constructor
+ - GTouchable constructor
+
 
 7/11/17
  - starting gtouchable

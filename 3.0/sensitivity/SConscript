@@ -7,7 +7,7 @@ sources = Split("""
     gTouchable.cc
     gSensitiveDetector.cc
 	utilities.cc
-	skipHitProcess.cc
+	skipProcessHit.cc
 	""")
 
 env.Library(source = sources, target = "#lib/gsensitivity")

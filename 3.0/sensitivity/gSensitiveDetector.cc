@@ -2,7 +2,7 @@
 #include "gSensitiveDetector.h"
 
 // this is thread-local
-GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt) : G4VSensitiveDetector(name)
+GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV) : G4VSensitiveDetector(name)
 {
 	verbosity = gopt->getInt("gsensitivityv");
 

@@ -58,7 +58,7 @@ void GDetectorConstruction::ConstructSDandField()
 				exit(99);
 			} else if(sensitivity != "no") {
 				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
-					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt);
+					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt, gv.second);
 				}
 				SetSensitiveDetector(gv.first, allSensitiveDetectors[sensitivity]);
 			}
