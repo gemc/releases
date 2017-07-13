@@ -36,6 +36,8 @@ map<string, GOption> defineOptions()
 	optionsMap["gemcv"].addHelp(GVERBOSITY_DETAILS_D);
 	optionsMap["gemcv"].addHelp(GVERBOSITY_ALL_D);
 
+	optionsMap["softwareVersion"] = GOption("softwareVersion", GEMC_VERSION, "version");
+
 	// mlibrary GSplash default option
 	optionsMap += GSplash::defineOptions();
 	optionsMap += GSetup::defineOptions();

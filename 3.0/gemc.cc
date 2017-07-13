@@ -21,8 +21,6 @@
 #include <string>
 using namespace std;
 
-// this gemc version
-const string GEMC_VERSION = "3.0.beta";
 
 // mlibrary
 #include "gsplash.h"

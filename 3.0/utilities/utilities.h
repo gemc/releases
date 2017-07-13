@@ -13,6 +13,9 @@
 #include <map>
 using namespace std;
 
+// this gemc version
+#define GEMC_VERSION "3.0.beta"
+
 // loads the option map
 map<string, GOption> defineOptions();
 
