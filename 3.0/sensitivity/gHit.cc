@@ -4,6 +4,8 @@
 // geant4
 #include "G4VVisManager.hh"
 
+// MT definitions, as from:
+// https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
 G4ThreadLocal G4Allocator<GHit>* GHitAllocator = 0;
 
 GHit::GHit(GTouchable gt, gHitType ht, string cScheme) : touchableId(gt),  type(ht), colorSchema(cScheme)
@@ -24,8 +26,9 @@ void GHit::Draw()
 {
 	G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
 
-	if(pVVisManager)
-	{
+	if(pVVisManager) {
+		setColorSchema();
+		
 //		G4Circle circle(pos[0]);
 //		circle.SetFillStyle(G4Circle::filled);
 //

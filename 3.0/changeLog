@@ -1,7 +1,8 @@
 7/12/17
- - added gHit, gSensitiveDetector classes
+ - added gHit, GSensitiveDetector classes
  - associating gvolume with GSensitiveDetector
  - added default softwareVersion handling
+ - added skipProcessHit to GSensitiveDetector
 
 7/11/17
  - starting gtouchable

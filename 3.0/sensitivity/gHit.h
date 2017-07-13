@@ -42,6 +42,9 @@ private:
 
 typedef G4THitsCollection<GHit> GHitCollection;
 
+
+// MT definitions, as from:
+// https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
 extern G4ThreadLocal G4Allocator<GHit>* GHitAllocator;
 
 inline void* GHit::operator new(size_t)
