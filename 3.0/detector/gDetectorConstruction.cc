@@ -19,20 +19,12 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 {
 	G4cout << " Constructing gemc world " << G4endl;
 
-	// PRAGMA: TODO
-	// is this needed at this level,
-	// or it could be inside g4setup
-	// or it has to be in gemc main then assigned later?
-	// well seee
+	// loading gvolumes, material, system parameters
 	gsetup = new GSetup(gopt);
 
 	G4cout << " Constructing geant4 world " << G4endl;
 
-	// PRAGMA: TODO
-	// is this needed at this level,
-	// or it has to be in gemc main then assigned later?
-	// can this be deleted
-	// well seee
+	// builiding geant4 volumes
 	g4setup = new G4Setup(gsetup, gopt);
 
 

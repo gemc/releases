@@ -73,8 +73,7 @@ int main(int argc, char* argv[])
 		// passing executable to retrieve full path
 		GemcGUI gemcGui(argv[0], gopts);
 
-		// PRAGMA TODO
-		// use option g4view to set the position
+		// PRAGMA TODO: use option g4view to set the position
 		gemcGui.move(10, 10);
 		gemcGui.show();
 
