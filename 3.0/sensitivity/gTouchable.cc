@@ -4,7 +4,11 @@
 // c++
 #include <string>
 
-GTouchable::GTouchable(string sensitivity, string gtouchableString, double tWindow) : timeWindow(tWindow), time(0), trackId(0), eFraction(1)
+// mlibrary
+#include "gstring.h"
+using namespace gstring;
+
+GTouchable::GTouchable(string sensitivity, string gtouchableString, double tWindow) :  time(0), timeWindow(tWindow), trackId(0), eFraction(1)
 {
 	if(sensitivity == "flux") {
 		gType = flux;
@@ -14,6 +18,11 @@ GTouchable::GTouchable(string sensitivity, string gtouchableString, double tWind
 		gType = readout;
 	}
 
+	// loading touchable id
+	vector<double> touchD = getG4NumbersFromString(gtouchableString);
+	for(auto &td : touchD) {
+		gTid.push_back(td);
+	}
 
 	
 

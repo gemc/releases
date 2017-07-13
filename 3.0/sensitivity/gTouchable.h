@@ -22,7 +22,7 @@ private:
 	double timeWindow;   ///< System Time Window, used to determine if steps belong to the same hit
 	int       trackId;   ///< Used to determine if steps belong to the same hit for flux detectors
 	double  eFraction;   ///< Energy sharing Fraction
-	vector<int>   gid;   ///< Uniquely identify a sensitive element
+	vector<int>  gTid;   ///< Uniquely identify a sensitive element
 
 };
 

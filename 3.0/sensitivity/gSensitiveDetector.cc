@@ -10,8 +10,11 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 		G4cout << " Instantiating GSensitive Detector " << name << G4endl;
 	}
 
+	// PRAGMA
 	// loading processTouchable plugin if it can be found
 
+	// PRAGMA
+	// need to load the sensitive infos like timwindow and thresholds
 }
 
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)

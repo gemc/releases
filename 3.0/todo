@@ -1,4 +1,9 @@
 
+read sensitivity infos:
+
+- timewindow
+- energy threshold
+
 clock class
 random number class
 
