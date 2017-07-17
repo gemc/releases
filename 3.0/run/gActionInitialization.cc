@@ -41,6 +41,7 @@ void GActionInitialization::BuildForMaster() const
 }
 
 // instantiate run manager and assign number of cores
+// this is done in main() gemc.cc
 G4MTRunManager* gRunManager(int nthreads, GOptions* gopt)
 {
 	int useThreads = nthreads;

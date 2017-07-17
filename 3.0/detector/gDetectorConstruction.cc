@@ -28,7 +28,6 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 	g4setup = new G4Setup(gsetup, gopt);
 
 
-
 	return g4setup->getPhysical("world");
 }
 

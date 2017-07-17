@@ -33,6 +33,7 @@ class GActionInitialization : public G4VUserActionInitialization
 // geant4
 #include "G4MTRunManager.hh"
 
+// instantiates the geant4 MT run manager singleton
 G4MTRunManager* gRunManager(int cores, GOptions* gopt);
 
 #endif

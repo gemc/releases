@@ -4,7 +4,9 @@
 // geant4
 #include "G4Run.hh"
 
-
+// In Geant4 a run consists of a sequence of events.
+// A run is represented by a G4Run class object. A run starts with BeamOn() method of G4RunManager.
+// G4RunManager creates this class
 class GRun : public G4Run
 {
 	public:

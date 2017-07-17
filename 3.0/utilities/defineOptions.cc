@@ -7,6 +7,7 @@
 #include "g4display.h"
 #include "g4volume.h"
 #include "gSensitiveDetector.h"
+#include "gruns.h"
 
 // define all gemc options
 map<string, GOption> defineOptions()
@@ -44,6 +45,7 @@ map<string, GOption> defineOptions()
 	optionsMap += G4Setup::defineOptions();
 	optionsMap += G4Display::defineOptions();
 	optionsMap += GSensitiveDetector::defineOptions();
+	optionsMap += GRuns::defineOptions();
 
 	return optionsMap;
 }
