@@ -8,8 +8,8 @@
 #include "G4Colour.hh"
 #include "G4Allocator.hh"
 
-// gemc
-#include "gTouchable.h"
+// mlibrary
+#include "gtouchable.h"
 
 
 enum gHitType {normal, noise, merged};

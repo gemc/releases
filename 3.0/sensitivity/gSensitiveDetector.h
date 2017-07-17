@@ -7,9 +7,8 @@
 // mlibrary
 #include "goptions.h"
 #include "gvolume.h"
+#include "gtouchable.h"
 
-// gemc
-#include "gTouchable.h"
 
 // c++
 #include <vector>
@@ -39,10 +38,6 @@ private:
 	set<GTouchable*> touchableSet;
 
 private:
-	// by default the touchable is not changed
-	// this function is loaded by plugin methods
-	virtual vector<GTouchable*> processTouchable(GTouchable *gTouchID, G4Step* thisStep) {return { gTouchID } ;}
-
 	// skip ProcessHit
 	bool skipProcessHit(double energy);
 

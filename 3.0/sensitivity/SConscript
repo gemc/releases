@@ -4,7 +4,6 @@ env.Prepend(LIBS = 'gsensitivity')
 
 sources = Split("""
 	gHit.cc
-    gTouchable.cc
     gSensitiveDetector.cc
 	utilities.cc
 	skipProcessHit.cc
