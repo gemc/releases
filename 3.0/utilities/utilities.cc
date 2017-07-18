@@ -6,6 +6,7 @@
 
 // geant4 headers
 #include "G4UImanager.hh"
+#include "G4MTRunManager.hh"
 
 // distinguishing between graphical and batch mode
 QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
@@ -42,9 +43,6 @@ vector<string> batchCommands(GOptions* gopt)
 vector<string> startingCommands(GOptions* gopt)
 {
 	vector<string> commands = batchCommands(gopt);
-
-
-	
 
 
 	commands.push_back("/vis/scene/add/trajectories rich smooth");
@@ -86,3 +84,31 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 	}
 
 }
+
+
+
+
+// run beamOn requested n. events for each run
+void gBeamOn(GOptions *gopts)
+{
+	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
+	G4RunManager *g4rm = G4RunManager::GetRunManager();
+
+	int verbosity        = gopts->getInt("grunv");
+	int neventsToProcess = gopts->getInt("n");
+
+	GRuns *gruns = new GRuns(gopts);
+
+	g4rm->SetRunIDCounter(10);
+	g4uim->ApplyCommand("/run/beamOn 10");
+	g4rm->SetRunIDCounter(20);
+	g4uim->ApplyCommand("/run/beamOn 20");
+
+
+
+
+
+}
+
+
+

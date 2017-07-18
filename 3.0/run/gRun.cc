@@ -6,7 +6,7 @@
 
 
 // Constructor
-GRun::GRun()
+GRun::GRun() :  G4Run()
 {
 	G4cout << " Constructor GRun  " << G4endl;
 }

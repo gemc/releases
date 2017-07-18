@@ -4,7 +4,6 @@ this class should be a shared_ptr? see https://stackoverflow.com/questions/14482
 sensitiveDetector should have a shared_ptr of this.
 event action should have share_ptr of this
 
- - move virtual vector<GTouchable*> processTouchable(GTouchable *gTouchID, G4Step* thisStep) {return { gTouchID } ;}   here from sensitivedetector
  - have all the output functions
  - dyn. loaded plugin
  - each system have their constants initialized by initializeConstants(int runno, string variation)

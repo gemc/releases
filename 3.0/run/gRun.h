@@ -9,7 +9,7 @@
 // G4RunManager creates this class
 class GRun : public G4Run
 {
-	public:
+public:
 	GRun();
 	virtual ~GRun();
 	virtual void RecordEvent(const G4Event*);

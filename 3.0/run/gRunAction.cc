@@ -5,6 +5,7 @@
 // geant4
 #include "globals.hh"
 #include "G4Threading.hh"
+#include "G4MTRunManager.hh"
 
 
 // c++
@@ -27,13 +28,19 @@ GRunAction::~GRunAction()
 G4Run* GRunAction::GenerateRun()
 {
 	G4cout << " GRunAction GenerateRun" << G4endl;
-	return new GRun;
+
+	return new GRun();
 }
 
 
 void GRunAction::BeginOfRunAction(const G4Run* aRun)
 {
+
+	GRun* grun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
+	grun->SetRunID( 100*G4Threading::G4GetThreadId() );
+
 	G4cout << "### GRunAction " << aRun->GetRunID() << " BeginOfRunAction in thread " << G4Threading::G4GetThreadId()  << G4endl;
+	
 }
 
 void GRunAction::EndOfRunAction(const G4Run* aRun)

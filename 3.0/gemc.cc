@@ -21,7 +21,6 @@
 #include <string>
 using namespace std;
 
-
 // mlibrary
 #include "gsplash.h"
 #include "g4display.h"
@@ -91,6 +90,7 @@ int main(int argc, char* argv[])
 		G4Display *g4Display = new G4Display(gopts);
 
 		applyInitialUIManagerCommands(gopts);
+		gBeamOn(gopts);
 
 		qApp->exec();
 		delete visManager;
@@ -98,6 +98,7 @@ int main(int argc, char* argv[])
 		delete g4Display;
 	} else {
 		applyInitialUIManagerCommands(gopts);
+		gBeamOn(gopts);
 	}
 	
 	// alla prossima!

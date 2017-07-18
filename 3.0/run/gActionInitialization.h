@@ -18,14 +18,14 @@
 
 class GActionInitialization : public G4VUserActionInitialization
 {
-	public:
+public:
 	GActionInitialization(GOptions* gopt);
 	virtual ~GActionInitialization();
 
 	virtual void Build() const;
 	virtual void BuildForMaster() const;
 
-	private:
+private:
 	GOptions* gopt;
 
 };

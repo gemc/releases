@@ -1,3 +1,6 @@
+7/17/17
+ - moved gtouchable out of gemc
+
 7/12/17
  - added gHit, GSensitiveDetector classes
  - associating gvolume with GSensitiveDetector

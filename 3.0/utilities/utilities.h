@@ -3,8 +3,9 @@
 
 // general utility functions needed by gemc
 
-// options framework
+// mlibrary
 #include "goptions.h"
+#include "gruns.h"
 
 // qt
 #include <QApplication>
@@ -39,6 +40,7 @@ vector<string> interactiveCommands(GOptions* gopt);
 // - gui (if needed)
 void applyInitialUIManagerCommands(GOptions* gopt);
 
-
+// instantiate gruns and beamOn requested n. events for each run
+void gBeamOn(GOptions *gopts);
 
 #endif

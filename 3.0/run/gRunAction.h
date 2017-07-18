@@ -8,12 +8,12 @@
 
 class GRunAction : public G4UserRunAction
 {
-	public:
+public:
 	// constructor and destructor
 	GRunAction(GOptions* gopt);
 	virtual ~GRunAction();
 
-	private:
+private:
 	// virtual method from G4UserRunAction.
 	virtual G4Run* GenerateRun();
 	virtual void BeginOfRunAction(const G4Run*);
