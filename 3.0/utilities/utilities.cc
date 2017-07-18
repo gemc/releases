@@ -94,20 +94,15 @@ void gBeamOn(GOptions *gopts)
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
 	G4RunManager *g4rm = G4RunManager::GetRunManager();
 
-	int verbosity        = gopts->getInt("grunv");
-	int neventsToProcess = gopts->getInt("n");
-
 	GRuns *gruns = new GRuns(gopts);
 
-	g4rm->SetRunIDCounter(10);
-	g4uim->ApplyCommand("/run/beamOn 10");
-	g4rm->SetRunIDCounter(20);
-	g4uim->ApplyCommand("/run/beamOn 20");
-
-
-
-
-
+	for(auto &run : gruns->getRunEvents()) {
+		int runno = run.first;
+		int nevents = run.second;
+		
+		g4rm->SetRunIDCounter(runno);
+		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
+	}
 }
 
 
