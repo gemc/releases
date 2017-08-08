@@ -10,6 +10,9 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 		G4cout << " Instantiating GSensitive Detector " << name << G4endl;
 	}
 
+	// PRAGMA TODO: load digitization plugin. It will have the loadConstants method
+
+
 	// PRAGMA TODO: loading processTouchable plugin if it can be found
 
 	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds

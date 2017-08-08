@@ -89,6 +89,7 @@ int main(int argc, char* argv[])
 		// now opening the g4 display
 		G4Display *g4Display = new G4Display(gopts);
 
+		// PRAGMA TODO: these two calls (and maybe others?) should be in a separate function?
 		applyInitialUIManagerCommands(gopts);
 		gBeamOn(gopts);
 

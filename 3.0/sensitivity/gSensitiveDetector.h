@@ -8,6 +8,7 @@
 #include "goptions.h"
 #include "gvolume.h"
 #include "gtouchable.h"
+#include "gdynamic.h"
 
 
 // c++
@@ -36,6 +37,12 @@ private:
 	// a touchable has been hit if it's present in the set
 	// the set is reset each event
 	set<GTouchable*> touchableSet;
+
+
+	// the digitization routines and constants
+	// are loaded from a dynamic library
+	// the shared_ptr is used
+	shared_ptr<GDynamic> digitization;
 
 private:
 	// skip ProcessHit
