@@ -44,6 +44,7 @@
 
 # MT notes:
 # https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
+# shared pointer: http://en.cppreference.com/w/cpp/memory/shared_ptr
 # Shared classes:
 # - geometry and physics tables are shared: G4VUserDetectorConstruction, G4VUserPhysicsList and newly introduced G4VUserActionInitialization
 # Local thread classes:
