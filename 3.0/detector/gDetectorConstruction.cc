@@ -49,7 +49,12 @@ void GDetectorConstruction::ConstructSDandField()
 				exit(99);
 			} else if(sensitivity != "no") {
 				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
-					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt, gv.second);
+					// registering sensitive detector with its name, but passing the
+					// path to the constructor so it can load the plugin
+					// PRAGMA TODO: for windows it's "\" ?
+					string nameWithPath = s.second->getSystemPath()  + "/" + sensitivity;
+					
+					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(nameWithPath, gopt, gv.second);
 				}
 				SetSensitiveDetector(gv.first, allSensitiveDetectors[sensitivity]);
 			}
