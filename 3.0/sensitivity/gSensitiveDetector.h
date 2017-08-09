@@ -15,6 +15,12 @@
 #include <vector>
 using namespace std;
 
+// PRAGMA TODO:
+// should we have a shared_pointer of all the GSensitiveDetector inside eventAction
+// so we can call loadConstants for each run if necessary?
+// Or inside RunAction?
+// How do I pass run# from grun to runAction or eventAction
+
 class GSensitiveDetector : public G4VSensitiveDetector
 {
 public:
@@ -42,12 +48,15 @@ private:
 	// the digitization routines and constants
 	// are loaded from a dynamic library
 	// the shared_ptr is used
-	shared_ptr<GDynamic> digitization;
+//	shared_ptr<GDynamic> digitization;
+	GDynamic* digitization;
 
 private:
 	// skip ProcessHit
+	// decides if the hit should be processed or not
 	bool skipProcessHit(double energy);
-
+	bool loadDigitizationPlugin();
+	
 public:
 	// GSensitiveDetector options - defined in utilities.cc
 	static map<string, GOption> defineOptions();

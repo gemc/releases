@@ -1,20 +1,31 @@
 // gemc
 #include "gSensitiveDetector.h"
 
+// mlibrary
+#include "gstring.h"
+using namespace gstring;
+
 // this is thread-local
 GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV) : G4VSensitiveDetector(name)
 {
 	verbosity = gopt->getInt("gsensitivityv");
-
+	string filename = getFilenameFromFilename(name);
+	string fpath    = getPathFromFilename(name);
+	
 	if(verbosity > GVERBOSITY_SUMMARY) {
-		G4cout << " Instantiating GSensitive Detector " << name << G4endl;
+		G4cout << " Instantiating GSensitive Detector " << filename << G4endl;
 	}
+	
+	
+	
+	// need to use w/o verbosity because of multithreading
+	GManager manager(0);
+	manager.registerDL("ctof");
+//	digitization = shared_ptr<GDynamic>(manager.LoadObjectFromLibrary<GDynamic>("ctof"));
+	digitization = manager.LoadObjectFromLibrary<GDynamic>("ctof");
+	
 
-	// PRAGMA TODO: load digitization plugin. It will have the loadConstants method
-
-
-	// PRAGMA TODO: loading processTouchable plugin if it can be found
-
+	
 	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds
 }
 
@@ -29,7 +40,9 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 	if(verbosity == GVERBOSITY_ALL) {
 		G4cout << " Energy deposited this step: " << depe << G4endl;
 	}
-
+	
+	// digitization->loadConstants(1, "original");
+	
 	return true;
 }
 
