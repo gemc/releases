@@ -37,7 +37,7 @@ void GRunAction::BeginOfRunAction(const G4Run* aRun)
 {
 
 	GRun* grun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
-	grun->SetRunID( 100*G4Threading::G4GetThreadId() );
+//	grun->SetRunID( 100*G4Threading::G4GetThreadId() );
 
 	G4cout << "### GRunAction " << aRun->GetRunID() << " BeginOfRunAction in thread " << G4Threading::G4GetThreadId()  << G4endl;
 	
