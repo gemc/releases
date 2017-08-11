@@ -26,6 +26,10 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 	manager.registerDL(plugin);
 	digitization = manager.LoadObjectFromLibrary<GDynamic>(plugin);
 
+	if(digitization)
+		digitization->loadConstants(1, "original");
+
+
 	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds
 }
 
@@ -34,7 +38,7 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 	// PRAGMA TODO: if a plugin function is not defined, then this should revert to the base class?
 	// instead of crashing
 	if(digitization)
-	digitization->loadConstants(1, "original");
+		digitization->loadConstants(1, "original");
 
 }
 
