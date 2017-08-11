@@ -10,23 +10,22 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 {
 	verbosity = gopt->getInt("gsensitivityv");
 	string filename = getFilenameFromFilename(name);
-	string fpath    = getPathFromFilename(name);
-	
+	string fpath    = getPathFromFilename(name) + "/plugin/";
+	string plugin   = fpath + filename;
+
 	if(verbosity > GVERBOSITY_SUMMARY) {
-		G4cout << " Instantiating GSensitive Detector " << filename << " " << name << " " << fpath << G4endl;
+		G4cout << " Instantiating GSensitive Detector " << filename << " from plugin: " << plugin << G4endl;
 	}
 	
 	
 	
 	// need to use w/o verbosity because of multithreading
+	// PRAGMA TODO: fix this when it is fixed in the loader
 	GManager manager(0);
-//	manager.registerDL(name);
-	manager.registerDL("ctof");
-//	digitization = shared_ptr<GDynamic>(manager.LoadObjectFromLibrary<GDynamic>("ctof"));
-	digitization = manager.LoadObjectFromLibrary<GDynamic>("ctof");
-	
+	//GManager manager(verbosity);
+	manager.registerDL(plugin);
+	digitization = manager.LoadObjectFromLibrary<GDynamic>(plugin);
 
-	
 	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds
 }
 
