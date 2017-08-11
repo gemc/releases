@@ -13,13 +13,14 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 	string fpath    = getPathFromFilename(name);
 	
 	if(verbosity > GVERBOSITY_SUMMARY) {
-		G4cout << " Instantiating GSensitive Detector " << filename << G4endl;
+		G4cout << " Instantiating GSensitive Detector " << filename << " " << name << " " << fpath << G4endl;
 	}
 	
 	
 	
 	// need to use w/o verbosity because of multithreading
 	GManager manager(0);
+//	manager.registerDL(name);
 	manager.registerDL("ctof");
 //	digitization = shared_ptr<GDynamic>(manager.LoadObjectFromLibrary<GDynamic>("ctof"));
 	digitization = manager.LoadObjectFromLibrary<GDynamic>("ctof");
@@ -31,6 +32,10 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 {
+	// PRAGMA TODO: if a plugin function is not defined, then this should revert to the base class?
+	// instead of crashing
+	if(digitization)
+	digitization->loadConstants(1, "original");
 
 }
 
@@ -41,7 +46,6 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 		G4cout << " Energy deposited this step: " << depe << G4endl;
 	}
 	
-	// digitization->loadConstants(1, "original");
 	
 	return true;
 }
