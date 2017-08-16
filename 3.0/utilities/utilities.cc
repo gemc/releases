@@ -7,6 +7,7 @@
 // geant4 headers
 #include "G4UImanager.hh"
 #include "G4MTRunManager.hh"
+#include "gRun.h"
 
 // distinguishing between graphical and batch mode
 QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
@@ -92,7 +93,7 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 void gBeamOn(GOptions *gopts)
 {
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
-	G4RunManager *g4rm = G4RunManager::GetRunManager();
+	//G4RunManager *g4rm = G4RunManager::GetRunManager();
 
 	GRuns *gruns = new GRuns(gopts);
 
@@ -100,7 +101,10 @@ void gBeamOn(GOptions *gopts)
 		int runno = run.first;
 		int nevents = run.second;
 		
-		g4rm->SetRunIDCounter(runno);
+		GRun* grun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
+		grun->SetRunID(runno);
+
+	//	g4rm->SetRunIDCounter(runno);
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
 	}
 }
