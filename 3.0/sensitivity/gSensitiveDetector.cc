@@ -17,8 +17,6 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 		G4cout << " Instantiating GSensitive Detector " << filename << " from plugin: " << plugin << G4endl;
 	}
 	
-	
-	
 	// need to use w/o verbosity because of multithreading
 	// PRAGMA TODO: fix this when it is fixed in the loader
 	GManager manager(0);
@@ -38,7 +36,7 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 	// PRAGMA TODO: if a plugin function is not defined, then this should revert to the base class?
 	// instead of crashing
 	if(digitization)
-		digitization->loadConstants(1, "original");
+		digitization->loadConstants(2, "original");
 
 }
 
