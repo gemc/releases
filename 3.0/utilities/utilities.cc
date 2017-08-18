@@ -68,14 +68,12 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 	int verbosity = gopt->getInt("gemcv");
 	vector<string> commands = startingCommands(gopt);
 
-
 	vector<string> optionCommands = gopt->getStrings("g4command");
 	if(optionCommands[0] != "no") {
 		for(auto &c: optionCommands) {
 			commands.push_back(c);
 		}
 	}
-
 
 	for(auto &c : commands) {
 		if(verbosity > GVERBOSITY_SUMMARY) {
@@ -101,8 +99,10 @@ void gBeamOn(GOptions *gopts)
 		int runno = run.first;
 		int nevents = run.second;
 		
-		GRun* grun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
-		grun->SetRunID(runno);
+		GRun* thisGrun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
+
+		cout << " ASD " << thisGrun << endl;
+//		thisGrun->SetRunID(runno);
 
 	//	g4rm->SetRunIDCounter(runno);
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
