@@ -59,11 +59,23 @@ int main(int argc, char* argv[])
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
 
+	// digitization routines and constants
+	// this is a shared_ptr and will be copied to the various threads
+	map<string, shared_ptr<GDynamic>> *gDigitization;
+	
+	// building detector
+	GDetectorConstruction *gDetector = new GDetectorConstruction(gopts);
+	
+	// load the plugins digitization
+	
+	
 	// geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	int nthreads = gopts->getOption("nthreads").getIntValue();
-	G4MTRunManager *runManager = gRunManager(nthreads, gopts);
+	G4MTRunManager *runManager = gRunManager(nthreads, gopts, gDetector);
 
+	
+	
 	// initialize gemc gui
 	if(gui) {
 		gsplash.message("Starting GUI");
@@ -104,7 +116,7 @@ int main(int argc, char* argv[])
 	
 	// alla prossima!
 	cout << " % Simulation completed, arrivederci! " << endl;
-	delete runManager;
+//	delete runManager;
 	delete gopts;
 	return 1;
 }

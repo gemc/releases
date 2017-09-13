@@ -1,6 +1,5 @@
 // gemc
 #include "gDetectorConstruction.h"
-#include "gSensitiveDetector.h"
 
 // mlibrary
 #include "g4volume.h"
@@ -37,7 +36,6 @@ void GDetectorConstruction::ConstructSDandField()
 {
 	G4cout << " Inside SDandField" << G4endl;
 
-	map<string, GSensitiveDetector*> allSensitiveDetectors;
 	
 	// building the sensitive detectors
 	for(auto &s : gsetup->getSetup()) {

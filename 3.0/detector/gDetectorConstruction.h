@@ -1,6 +1,9 @@
 #ifndef GDETECTORCONSTRUCTION_H
 #define GDETECTORCONSTRUCTION_H 1
 
+// gemc
+#include "gSensitiveDetector.h"
+
 // mlibrary
 #include "gsystem.h"
 #include "goptions.h"
@@ -21,10 +24,13 @@ public:
 	virtual G4VPhysicalVolume* Construct();
 	virtual void ConstructSDandField();
 
+	map<string, GSensitiveDetector*> getSensitiveDetectorMap() {return allSensitiveDetectors;}
+	
 private:
 	GOptions* gopt;
 	GSetup *gsetup;
 	G4Setup *g4setup;
+	map<string, GSensitiveDetector*> allSensitiveDetectors;
 
 };
 

@@ -6,10 +6,15 @@
 
 
 // Constructor
-GRun::GRun() :  G4Run()
+// PRAGMA: why  SetRunID here is not reflected in runAction?
+GRun::GRun(int runno) :  G4Run()
 {
-	G4cout << " Constructor GRun  " << G4endl;
+	G4cout << " Constructor GRun with run number " << runno << G4endl;
+	
+	
+	SetRunID(runno);
 }
+
 
 // Destructor
 GRun::~GRun()

@@ -31,6 +31,8 @@ public:
 	virtual G4bool ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th);    ///< Process Step
 	virtual void EndOfEvent(G4HCofThisEvent* g4hc);                            ///< End of sensitive Hit
 
+	
+	
 private:
 	int verbosity;
 
@@ -48,8 +50,7 @@ private:
 	// the digitization routines and constants
 	// are loaded from a dynamic library
 	// the shared_ptr is used
-//	shared_ptr<GDynamic> digitization;
-	GDynamic* digitization;
+	shared_ptr<GDynamic> digitization;
 
 private:
 	// skip ProcessHit

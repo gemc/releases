@@ -11,10 +11,19 @@
 // c++
 using namespace std;
 
-// Constructor
+// Constructor for workers
 GRunAction::GRunAction(GOptions* opt) : G4UserRunAction(), gopt(opt)
 {
 	G4cout << " Constructor GRunAction" << G4endl;
+	myID = 400;
+}
+
+// Constructor for master
+GRunAction::GRunAction(GOptions* opt, GRuns *gr) : G4UserRunAction(), gopt(opt), gruns(gr)
+{
+	G4cout << " Constructor GRunAction" << G4endl;
+	
+	myID = 400;
 }
 
 
@@ -24,22 +33,41 @@ GRunAction::~GRunAction()
 	G4cout << " Destructor GRunAction" << G4endl;
 }
 
-
+// this is not local?
 G4Run* GRunAction::GenerateRun()
 {
-	G4cout << " GRunAction GenerateRun" << G4endl;
+	G4cout << " GRunAction GenerateRun with id " << myID << G4endl;
 
-	return new GRun();
+	// PRAGMA: why this doesn't work?
+	myID++;
+	
+	return new GRun(myID);
 }
 
-
+// executed after BeamOn
 void GRunAction::BeginOfRunAction(const G4Run* aRun)
 {
 
-	GRun* grun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
-//	grun->SetRunID( 100*G4Threading::G4GetThreadId() );
+	G4cout << "### RunNUMBER " << aRun->GetRunID() << " start." << G4endl;
 
-	G4cout << "### GRunAction " << aRun->GetRunID() << " BeginOfRunAction in thread " << G4Threading::G4GetThreadId()  << G4endl;
+	// PRAGMA TODO: why this cannot be set in GRun constructor?
+	// why so complicated?
+//	GRun* grun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
+	
+//	cout << " ASD AAA " << G4MTRunManager::GetMasterRunManager()->GetUserRunAction()->gruns->getCurrentRun() << endl;
+	
+	
+	
+	if(IsMaster()) {
+		
+		
+//		grun->SetRunID( gruns->getCurrentRun() );
+//		gruns->setNextRun();
+//		cout << grun << " ASD " << gruns->getCurrentRun() << " " << IsMaster() << endl;
+	}
+	
+	
+	G4cout << "### GRunAction run id:  " << aRun->GetRunID() << " BeginOfRunAction in thread " << G4Threading::G4GetThreadId()  << G4endl;
 	
 }
 

@@ -2,10 +2,12 @@
 #define GUTILITIES_H 1
 
 // general utility functions needed by gemc
+// gemc
+#include "gDetectorConstruction.h"
 
 // mlibrary
 #include "goptions.h"
-#include "gruns.h"
+#include "gdynamic.h"
 
 // qt
 #include <QApplication>
@@ -42,5 +44,14 @@ void applyInitialUIManagerCommands(GOptions* gopt);
 
 // instantiate gruns and beamOn requested n. events for each run
 void gBeamOn(GOptions *gopts);
+
+// geant4
+#include "G4MTRunManager.hh"
+
+// instantiates the geant4 MT run manager singleton
+G4MTRunManager* gRunManager(int cores, GOptions* gopt, GDetectorConstruction *gDetC);
+
+// load plugins into digitization
+int loadPlugins(map<string, shared_ptr<GDynamic>> *gDigi, GDetectorConstruction *gDetC);
 
 #endif

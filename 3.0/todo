@@ -1,3 +1,10 @@
+current command to verify run:
+
+./gemc -gui=0 -n=10 -runWeightsFile=runWeights.txt  test.gcard -grunv=3 -gsensitivityv=3
+
+
+need a map<gsensitiveDetectors> in the the GDetector scope so we can load the gDynamic pointer with the plugin.
+GDetector should be in the main scope
 
 gDynamicSystem
 this class instance should be a shared_ptr?

@@ -22,10 +22,10 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 	GManager manager(0);
 	//GManager manager(verbosity);
 	manager.registerDL(plugin);
-	digitization = manager.LoadObjectFromLibrary<GDynamic>(plugin);
+	digitization = shared_ptr<GDynamic>(manager.LoadObjectFromLibrary<GDynamic>("ctof"));
 
 	if(digitization)
-		digitization->loadConstants(1, "original");
+		digitization->loadConstants(22, "original");
 
 
 	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds

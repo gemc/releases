@@ -10,10 +10,11 @@
 class GRun : public G4Run
 {
 public:
-	GRun();
+	GRun(int runno);
 	virtual ~GRun();
 	virtual void RecordEvent(const G4Event*);
 	virtual void Merge(const G4Run*);
+	
 };
 
 
