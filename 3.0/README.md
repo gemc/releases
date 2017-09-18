@@ -4,7 +4,11 @@
 # - camel case for all variable names, class definitions
 # - type definitions start with Capital letter
 # - instances start with lowercase letter
-
+#
+# MT:
+# shared variables should contain "shared" / "globabl" in the name? 
+# thread-local variable should contain "local" / "t-local" / "thread" ?
+#
 # Pre-processor
 # Found with scons SHOWBUILD=1
 # Can paste in one line in Build Settings - Pre-Processor macro.
@@ -50,6 +54,10 @@
 # Local thread classes:
 # - EventManager, TrackingManager, SteppingManager, TransportationManager, GeometryManager, FieldManager, Navigator, SensitiveDetectorManager
 
+G4RunManager::GetRunManager() returns the following pointer:
+- It returns the pointer to the G4WorkerRunManager of the local thread when it is invoked from thread-local object.
+- It returns the pointer to the G4MTRunManager when it is invoked from shared object.
+- It returns the pointer to the base G4RunManager if it is used in the sequential mode.
 
 # Log output
 # G4cout is used for the geant4 master log (physics initialization and detector construction). It is redirected to a file by the glog class
