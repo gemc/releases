@@ -59,12 +59,11 @@ int main(int argc, char* argv[])
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
 
-	// digitization routines and constants
-	// this is a shared_ptr and will be copied to the various threads
-	map<string, shared_ptr<GDynamic>> *gDigitization;
+	// digitization routines and constants (shared)
+	map<string, shared_ptr<GDynamic>> *gDigitizationGlobal;
 	
-	// building detector
-	GDetectorConstruction *gDetector = new GDetectorConstruction(gopts);
+	// building detector (shared)
+	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
 	
 	// load the plugins digitization
 	

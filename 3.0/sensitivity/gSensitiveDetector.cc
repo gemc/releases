@@ -24,6 +24,7 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 	manager.registerDL(plugin);
 	digitization = shared_ptr<GDynamic>(manager.LoadObjectFromLibrary<GDynamic>("ctof"));
 
+	// this should not be done here but just before BeamOn by main()
 	if(digitization)
 		digitization->loadConstants(22, "original");
 

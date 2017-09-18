@@ -9,7 +9,7 @@ GDetector should be in the main scope
 gDynamicSystem
 this class instance should be a shared_ptr?
 
-- see https://stackoverflow.com/questions/14482830/stdshared-ptr-thread-safety.
+- see https://stackoverflow.com/questions/14482830/stdshared-ptr-thread-safety
 - see https://msdn.microsoft.com/en-us/library/hh279669.aspx
 - see http://www.informit.com/articles/article.aspx?p=2085179
 - see http://en.cppreference.com/w/cpp/memory/shared_ptr
