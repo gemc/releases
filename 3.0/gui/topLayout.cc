@@ -92,7 +92,6 @@ void GemcGUI::beamOn()
 
 void GemcGUI::cycleBeamOn()
 {
-	G4UImanager *g4uim = G4UImanager::GetUIpointer();
 }
 
 

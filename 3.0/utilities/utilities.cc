@@ -7,11 +7,8 @@
 
 // geant4 headers
 #include "G4UImanager.hh"
-#include "G4MTRunManager.hh"
 #include "gRun.h"
 
-// PRAGMA TODO: needs gphysics so remove this one
-#include "QGS_BIC.hh"
 
 // distinguishing between graphical and batch mode
 QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
@@ -35,10 +32,10 @@ int loadQResource(char* argv[], string resourceName)
 
 
 // retrieve and define batch commands
+// these include possible options/gcard commands
 vector<string> batchCommands(GOptions* gopt)
 {
 	vector<string> commands;
-
 
 
 	return commands;
@@ -86,6 +83,7 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 		g4uim->ApplyCommand(c);
 	}
 
+
 }
 
 
@@ -118,51 +116,27 @@ void gBeamOn(GOptions *gopts)
 	g4uim->ApplyCommand("/run/beamOn 10");
 }
 
-
-// instantiate run manager and assign number of cores
-// this is done in main() gemc.cc
-// this routine should be part of utilities
-G4MTRunManager* gRunManager(int nthreads, GOptions* gopt, GDetectorConstruction *gDetC)
+int getNumberOfThreads(GOptions* gopt)
 {
-	int useThreads = nthreads;
+	int useThreads = gopt->getOption("nthreads").getIntValue();
 	int allThreads = G4Threading::G4GetNumberOfCores();
-	
 	if(useThreads == 0) useThreads = allThreads;
 	
-	G4MTRunManager *runManager = new G4MTRunManager;
-	runManager->SetNumberOfThreads(useThreads);
-	
-	// sequential log screen
+	// global log screen
 	cout << " % G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
-	
-	// GEMC Action
-	// shared classes
-	runManager->SetUserInitialization(gDetC);
-	runManager->SetUserInitialization(new QGS_BIC());
-	runManager->SetUserInitialization(new GActionInitialization(gopt));
-	
-	
-	// setting WTs G4cout destination to files
-	G4UImanager* UI = G4UImanager::GetUIpointer();
-	// using 100 as "for sure it's bigger than any number of cores?"
-	// to ignore output from all threads until initialisation
-	UI->ApplyCommand("/control/cout/ignoreThreadsExcept 100");
-	UI->ApplyCommand("/control/cout/ignoreInitializationCout");
-	UI->ApplyCommand("/control/cout/setCoutFile thread.log");
-	//Initialize G4 kernel
-	runManager->Initialize();
-	UI->ApplyCommand("/control/cout/ignoreThreadsExcept -1");
-	
-	return runManager;
+
+	return useThreads;
 }
 
-// load plugins into digitization
-int loadPlugins(map<string, shared_ptr<GDynamic>> *gDigi, GDetectorConstruction *gDetC)
+	
+
+void initGemcG4RunManager(G4MTRunManager *grm)
 {
-	
-	
-	return 0;
+	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
+	g4uim->ApplyCommand("/control/cout/setCoutFile thread.log");
+	grm->Initialize();
 }
+
 
 
 

@@ -16,6 +16,9 @@
 #include <map>
 using namespace std;
 
+// geant4
+#include "G4MTRunManager.hh"
+
 // this gemc version
 #define GEMC_VERSION "3.0.beta"
 
@@ -45,13 +48,8 @@ void applyInitialUIManagerCommands(GOptions* gopt);
 // instantiate gruns and beamOn requested n. events for each run
 void gBeamOn(GOptions *gopts);
 
-// geant4
-#include "G4MTRunManager.hh"
+int getNumberOfThreads(GOptions* gopt);
 
-// instantiates the geant4 MT run manager singleton
-G4MTRunManager* gRunManager(int cores, GOptions* gopt, GDetectorConstruction *gDetC);
-
-// load plugins into digitization
-int loadPlugins(map<string, shared_ptr<GDynamic>> *gDigi, GDetectorConstruction *gDetC);
+void initGemcG4RunManager(G4MTRunManager *grm);
 
 #endif

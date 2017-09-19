@@ -35,7 +35,6 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 void GDetectorConstruction::ConstructSDandField()
 {
 	G4cout << " Inside SDandField" << G4endl;
-
 	
 	// building the sensitive detectors
 	for(auto &s : gsetup->getSetup()) {
@@ -50,6 +49,7 @@ void GDetectorConstruction::ConstructSDandField()
 					// registering sensitive detector with its name, but passing the
 					// path to the constructor so it can load the plugin
 					// PRAGMA TODO: for windows it's "\" ?
+					// PRAGMA TODO: no need to pass path since the plugin is loaded elsewhere
 					string nameWithPath = s.second->getSystemPath()  + "/" + sensitivity;
 					
 					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(nameWithPath, gopt, gv.second);

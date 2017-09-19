@@ -35,7 +35,12 @@ using namespace std;
 #include "G4UImanager.hh"
 #include "G4VisExecutive.hh"
 #include "G4UIQt.hh"
+#include "G4MTRunManager.hh"
+// PRAGMA TODO: needs gphysics so remove this one
+#include "QGS_BIC.hh"
 
+
+// PRAGMA TODO: gopts must be shared ptr so it can be used in the local threads
 
 int main(int argc, char* argv[])
 {
@@ -65,15 +70,18 @@ int main(int argc, char* argv[])
 	// building detector (shared)
 	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
 	
-	// load the plugins digitization
-	
-	
-	// geant4 run manager with number of threads coming from options
+	// init geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
-	int nthreads = gopts->getOption("nthreads").getIntValue();
-	G4MTRunManager *runManager = gRunManager(nthreads, gopts, gDetector);
+	// SetUserInitialization:
+	G4MTRunManager *g4MTRunManager = new G4MTRunManager;
+	g4MTRunManager->SetNumberOfThreads(getNumberOfThreads(gopts));
 
+	g4MTRunManager->SetUserInitialization(gDetectorGlobal);
+	g4MTRunManager->SetUserInitialization(new QGS_BIC());
+	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts));
 	
+	initGemcG4RunManager(g4MTRunManager);
+
 	
 	// initialize gemc gui
 	if(gui) {
@@ -97,7 +105,7 @@ int main(int argc, char* argv[])
 		// intializing G4UIQt session
 		G4UIsession *session = new G4UIQt(1, argv);
 
-		// now opening the g4 display
+		// opening the g4Display GUI
 		G4Display *g4Display = new G4Display(gopts);
 
 		// PRAGMA TODO: these two calls (and maybe others?) should be in a separate function?
