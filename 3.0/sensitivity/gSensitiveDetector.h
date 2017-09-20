@@ -1,6 +1,9 @@
 #ifndef  GSENSITIVEDETECTOR_H
 #define  GSENSITIVEDETECTOR_H 1
 
+// gemc
+#include "gLog.h"
+
 // geant4
 #include "G4VSensitiveDetector.hh"
 
@@ -9,7 +12,6 @@
 #include "gvolume.h"
 #include "gtouchable.h"
 #include "gdynamic.h"
-
 
 // c++
 #include <vector>
@@ -21,7 +23,7 @@ using namespace std;
 // Or inside RunAction?
 // How do I pass run# from grun to runAction or eventAction
 
-class GSensitiveDetector : public G4VSensitiveDetector
+class GSensitiveDetector : public G4VSensitiveDetector, public GFlowMessage
 {
 public:
 	GSensitiveDetector(string name, GOptions* gopt, GVolume *thisVolume);
@@ -31,8 +33,6 @@ public:
 	virtual G4bool ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th);    ///< Process Step
 	virtual void EndOfEvent(G4HCofThisEvent* g4hc);                            ///< End of sensitive Hit
 
-	
-	
 private:
 	int verbosity;
 

@@ -4,10 +4,10 @@
  - camel case for all variable names, class definitions
  - type definitions start with Capital letter
  - instances start with lowercase letter
+ - shared variables should contain "shared" / "globabl" in the name
+ - thread-local variable should contain "local" / "tlocal" / "thread"
 
- MT:
- shared variables should contain "shared" / "globabl" in the name?
- thread-local variable should contain "local" / "t-local" / "thread" ?
+
 
  Pre-processor
  Found with scons SHOWBUILD=1

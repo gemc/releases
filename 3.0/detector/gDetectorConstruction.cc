@@ -52,7 +52,6 @@ void GDetectorConstruction::ConstructSDandField()
 				SetSensitiveDetector(gv.first, allSensitiveDetectors[sensitivity]);
 			}
 		}
-		
 	}
 	
 }

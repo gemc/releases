@@ -6,7 +6,7 @@
 using namespace gstring;
 
 // this is thread-local
-GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV) : G4VSensitiveDetector(name)
+GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV) : G4VSensitiveDetector(name), GFlowMessage(gopt, "GSensitiveDetector " + name)
 {
 	verbosity = gopt->getInt("gsensitivityv");
 	
@@ -37,25 +37,20 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 {
+	flowMessage("Initialize GSensitiveDetector " + GetName());
+
+	
 	// PRAGMA TODO: if a plugin function is not defined, then this should revert to the base class?
 	// instead of crashing
 //	if(digitization)
 //		digitization->loadConstants(2, "original");
 
-	if(verbosity > GVERBOSITY_SUMMARY) {
-		G4cout << " Initializing GSensitive Detector " << GetName () << G4endl;
-		//		G4cout << " Instantiating GSensitive Detector " << filename << " from plugin: " << plugin << G4endl;
-	}
 
 }
 
 G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th)
 {
-	if(verbosity > GVERBOSITY_SUMMARY) {
-		G4cout << " Processing Hits in GSensitive Detector " << GetName () << G4endl;
-		//		G4cout << " Instantiating GSensitive Detector " << filename << " from plugin: " << plugin << G4endl;
-	}
-
+	flowMessage("Processing Hits in GSensitiveDetector " + GetName());
 	
 	double depe = thisStep->GetTotalEnergyDeposit();
 	if(verbosity == GVERBOSITY_ALL) {
@@ -68,7 +63,7 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 
 void GSensitiveDetector::EndOfEvent(G4HCofThisEvent* g4hc)
 {
-
+	flowMessage("EndOfEvent of GSensitiveDetector " + GetName());
 }
 
 

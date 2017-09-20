@@ -1,6 +1,9 @@
 #ifndef GLOG_H
 #define GLOG_H 1
 
+// mlibrary
+#include "goptions.h"
+
 // geant4
 #include "G4UIsession.hh"
 
@@ -26,33 +29,35 @@ class GFlowMessage
 {
 public:
 	
-	GFlowMessage(GOptions* gopt, string what) : name(what) {
-		verbosity = gopt->getInt("gflowv");
-		counter = 0;
-		if(verbosity > GVERBOSITY_SILENT) {
-			G4cout << flowHeader() << name << " constructor" << G4endl;
+	GFlowMessage(GOptions* gopt, string what) : flowName(what) {
+		flowVerbosity = gopt->getInt("gflowv");
+		flowCounter = 0;
+		if(flowVerbosity > GVERBOSITY_SILENT) {
+			G4cout << flowHeader() << flowName << " constructor" << G4endl;
 		}
 	}
 	~GFlowMessage() {
-		if(verbosity > GVERBOSITY_SILENT) {
-			G4cout << flowHeader() << name << " destructor" << G4endl;
+		if(flowVerbosity > GVERBOSITY_SILENT) {
+			G4cout << flowHeader() << flowName << " destructor" << G4endl;
 		}
 	}
-	
+	int getFlowCounter() const {return flowCounter;}
+	void setFlowCounter (int c) const { flowCounter = c; }
 private:
-	string name;
-	int verbosity;
-	int counter;
- 	string flowHeader() {
-		counter++;
-		return string(GFLOWMESSAGEHEADER) + " [" + to_string(counter) + "] " + string(GFLOWMESSAGEHEADER) + " ";
+	string flowName;
+	int flowVerbosity;
+	mutable int flowCounter;
+ 	string flowHeader() const {
+		//flowCounter++;
+		setFlowCounter(getFlowCounter() + 1);
+		return string(GFLOWMESSAGEHEADER) + " [" + to_string(flowCounter) + "] " + string(GFLOWMESSAGEHEADER) + " ";
 	}
 	
 public:
 	static map<string, GOption> defineOptions();
-	void flowMessage(string msg) {
-		if(verbosity > GVERBOSITY_SILENT) {
-			G4cout << " " << flowHeader() << name << " " << msg << G4endl;
+	void flowMessage(string msg) const {
+		if(flowVerbosity > GVERBOSITY_SILENT) {
+			G4cout << " " << flowHeader() << flowName << " " << msg << G4endl;
 		}
 	}
 };

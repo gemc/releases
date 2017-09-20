@@ -7,6 +7,9 @@
 // mlibrary
 #include "goptions.h"
 
+// gemc
+#include "gLog.h"
+
 // G4VUserActionInitialization is a newly introduced class for the user to instantiate
 // user action classes (both mandatory and optional).
 // All the user action classes are thread-local and instantiated only for worker treads,
@@ -16,7 +19,7 @@
 // BuildForMaster() should be used for defining only the UserRunAction for the master thread.
 // All user actions must be registered through SetUserAction() protected method defined in the G4VUserActionInitialization base class.
 
-class GActionInitialization : public G4VUserActionInitialization
+class GActionInitialization : public G4VUserActionInitialization, public GFlowMessage 
 {
 public:
 	GActionInitialization(GOptions* gopt);

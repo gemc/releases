@@ -11,19 +11,17 @@
 #include <iostream>
 using namespace std;
 
-GActionInitialization::GActionInitialization(GOptions* opt) : gopt(opt)
+GActionInitialization::GActionInitialization(GOptions* opt) : GFlowMessage(opt, "GActionInitialization"), gopt(opt)
 {
-	G4cout << " GActionInitialization constructor  " << G4endl;
 }
 
 GActionInitialization::~GActionInitialization()
 {
-	G4cout << " GActionInitialization destructor  " << G4endl;
 }
 
 void GActionInitialization::Build() const
 {
-	G4cout << " GActionInitialization Thread Build  " << G4endl;
+	flowMessage("Thread Build");
 
 	SetUserAction(new GRunAction(gopt));
 	SetUserAction(new GPrimaryGeneratorAction);
@@ -32,7 +30,7 @@ void GActionInitialization::Build() const
 
 void GActionInitialization::BuildForMaster() const
 {
-	G4cout << " GActionInitialization Master  " << G4endl;
+	flowMessage("Master Build");
 	SetUserAction(new GRunAction(gopt, new GRuns(gopt) ) );
 }
 

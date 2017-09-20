@@ -1,4 +1,8 @@
-
+9/20/17
+ - GDetectorConstruction inherits from gFlowMessage
+ - GSensitiveDetector inherits from gFlowMessage
+ - GActionInitialization inherits from gFlowMessage
+ - marking flowMessage as const, making flowCounter mutable
 
 9/19/17
  - added gFlowMessage class to log gemc flow
