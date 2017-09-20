@@ -3,6 +3,7 @@
 
 // gemc
 #include "gSensitiveDetector.h"
+#include "gLog.h"
 
 // mlibrary
 #include "gsystem.h"
@@ -12,7 +13,7 @@
 // geant4
 #include "G4VUserDetectorConstruction.hh"
 
-class GDetectorConstruction : public G4VUserDetectorConstruction
+class GDetectorConstruction : public G4VUserDetectorConstruction, public GFlowMessage
 {
 public:
 	// constructor and destructor.

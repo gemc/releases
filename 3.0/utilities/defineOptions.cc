@@ -46,6 +46,7 @@ map<string, GOption> defineOptions()
 	optionsMap += G4Display::defineOptions();
 	optionsMap += GSensitiveDetector::defineOptions();
 	optionsMap += GRuns::defineOptions();
+	optionsMap += GFlowMessage::defineOptions();
 
 	return optionsMap;
 }

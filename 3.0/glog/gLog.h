@@ -20,5 +20,41 @@ private:
 	ofstream errFile;
 };
 
+#define GFLOWMESSAGEHEADER  ">.>"
+
+class GFlowMessage
+{
+public:
+	
+	GFlowMessage(GOptions* gopt, string what) : name(what) {
+		verbosity = gopt->getInt("gflowv");
+		counter = 0;
+		if(verbosity > GVERBOSITY_SILENT) {
+			G4cout << flowHeader() << name << " constructor" << G4endl;
+		}
+	}
+	~GFlowMessage() {
+		if(verbosity > GVERBOSITY_SILENT) {
+			G4cout << flowHeader() << name << " destructor" << G4endl;
+		}
+	}
+	
+private:
+	string name;
+	int verbosity;
+	int counter;
+ 	string flowHeader() {
+		counter++;
+		return string(GFLOWMESSAGEHEADER) + " [" + to_string(counter) + "] " + string(GFLOWMESSAGEHEADER) + " ";
+	}
+	
+public:
+	static map<string, GOption> defineOptions();
+	void flowMessage(string msg) {
+		if(verbosity > GVERBOSITY_SILENT) {
+			G4cout << " " << flowHeader() << name << " " << msg << G4endl;
+		}
+	}
+};
 
 #endif

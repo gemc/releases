@@ -4,10 +4,8 @@
 // mlibrary
 #include "g4volume.h"
 
-GDetectorConstruction::GDetectorConstruction(GOptions* opt) : G4VUserDetectorConstruction(), gopt(opt)
+GDetectorConstruction::GDetectorConstruction(GOptions* opt) : G4VUserDetectorConstruction(), GFlowMessage(opt, "GDetectorConstruction"), gopt(opt)
 {
-	G4cout << " V Constructing world volume " << G4endl;
-	
 
 }
 
@@ -16,16 +14,13 @@ GDetectorConstruction::~GDetectorConstruction() {}
 
 G4VPhysicalVolume* GDetectorConstruction::Construct()
 {
-	G4cout << " Constructing gemc world " << G4endl;
+	flowMessage("Constructing gemc world");
 
 	// loading gvolumes, material, system parameters
 	gsetup = new GSetup(gopt);
 
-	G4cout << " Constructing geant4 world " << G4endl;
-
 	// builiding geant4 volumes
 	g4setup = new G4Setup(gsetup, gopt);
-
 
 	return g4setup->getPhysical("world");
 }
@@ -34,8 +29,8 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 
 void GDetectorConstruction::ConstructSDandField()
 {
-	G4cout << " Inside SDandField" << G4endl;
-	
+	flowMessage("Inside SDandField");
+
 	// building the sensitive detectors
 	for(auto &s : gsetup->getSetup()) {
 		for(auto &gv : s.second->getSytems()) {
