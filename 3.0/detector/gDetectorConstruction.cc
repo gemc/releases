@@ -29,6 +29,8 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 
 void GDetectorConstruction::ConstructSDandField()
 {
+	if (G4Threading::IsMasterThread() ) return;
+
 	flowMessage("Inside SDandField");
 
 	// building the sensitive detectors

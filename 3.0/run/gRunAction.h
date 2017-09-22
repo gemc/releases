@@ -1,18 +1,21 @@
 #ifndef GRUNACTION_H
 #define GRUNACTION_H 1
 
+// geant4
 #include "G4UserRunAction.hh"
+
+// gemc
+#include "gLog.h"
 
 // mlibrary
 #include "goptions.h"
 #include "gruns.h"
 
-class GRunAction : public G4UserRunAction
+class GRunAction : public G4UserRunAction, public GFlowMessage
 {
 public:
 	// constructor and destructor
 	GRunAction(GOptions* gopt);
-	GRunAction(GOptions* gopt, GRuns *gr);
 	virtual ~GRunAction();
 
 
@@ -22,12 +25,8 @@ private:
 	virtual void BeginOfRunAction(const G4Run*);
 	virtual void EndOfRunAction(const G4Run*);
 	
-	int myID;
-
 	GOptions* gopt;
 	
-public:
-	GRuns *gruns;
 };
 
 

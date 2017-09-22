@@ -1,4 +1,4 @@
-// gemc utilities
+// gemc
 #include "utilities.h"
 #include "gActionInitialization.h"
 
@@ -9,6 +9,8 @@
 #include "G4UImanager.hh"
 #include "gRun.h"
 
+// mlibrary
+#include "gruns.h"
 
 // distinguishing between graphical and batch mode
 QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
@@ -93,27 +95,15 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 void gBeamOn(GOptions *gopts)
 {
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
-	//G4RunManager *g4rm = G4RunManager::GetRunManager();
 
-//	GRuns *gruns = new GRuns(gopts);
+	GRuns *gruns = new GRuns(gopts);
 
-//	for(auto &run : gruns->getRunEvents()) {
+	for(auto &run : gruns->getRunEvents()) {
 //		int runno = run.first;
-//		int nevents = run.second;
-//		
-		GRun* thisGrun = static_cast<GRun*>( G4RunManager::GetRunManager()->GetNonConstCurrentRun() );
-//
-		cout << " ASD " << thisGrun << endl;
-//		if(thisGrun)
-//		thisGrun->SetRunID(runno);
-//
-////		g4rm->SetRunIDCounter(runno);
-//		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
-//	}
-	
-	
-	g4uim->ApplyCommand("/run/beamOn 10");
-	g4uim->ApplyCommand("/run/beamOn 10");
+		int nevents = run.second;
+		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
+		
+	}
 }
 
 int getNumberOfThreads(GOptions* gopt)
@@ -129,7 +119,6 @@ int getNumberOfThreads(GOptions* gopt)
 }
 
 	
-
 void initGemcG4RunManager(G4MTRunManager *grm)
 {
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();

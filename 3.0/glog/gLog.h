@@ -33,31 +33,28 @@ public:
 		flowVerbosity = gopt->getInt("gflowv");
 		flowCounter = 0;
 		if(flowVerbosity > GVERBOSITY_SILENT) {
-			G4cout << flowHeader() << flowName << " constructor" << G4endl;
+			G4cout << flowHeader()  << " constructor" << G4endl;
 		}
 	}
 	~GFlowMessage() {
 		if(flowVerbosity > GVERBOSITY_SILENT) {
-			G4cout << flowHeader() << flowName << " destructor" << G4endl;
+			G4cout << flowHeader() << " destructor" << G4endl;
 		}
 	}
-	int getFlowCounter() const {return flowCounter;}
-	void setFlowCounter (int c) const { flowCounter = c; }
 private:
 	string flowName;
 	int flowVerbosity;
-	mutable int flowCounter;
+	mutable atomic<int> flowCounter;
  	string flowHeader() const {
-		//flowCounter++;
-		setFlowCounter(getFlowCounter() + 1);
-		return string(GFLOWMESSAGEHEADER) + " [" + to_string(flowCounter) + "] " + string(GFLOWMESSAGEHEADER) + " ";
+		flowCounter++;
+		return string(GFLOWMESSAGEHEADER) + " " + flowName + " [" + to_string(flowCounter) + "] " + string(GFLOWMESSAGEHEADER) + " ";
 	}
 	
 public:
 	static map<string, GOption> defineOptions();
 	void flowMessage(string msg) const {
 		if(flowVerbosity > GVERBOSITY_SILENT) {
-			G4cout << " " << flowHeader() << flowName << " " << msg << G4endl;
+			G4cout << " " << flowHeader()  << " " << msg << G4endl;
 		}
 	}
 };

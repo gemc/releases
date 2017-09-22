@@ -31,7 +31,7 @@ void GActionInitialization::Build() const
 void GActionInitialization::BuildForMaster() const
 {
 	flowMessage("Master Build");
-	SetUserAction(new GRunAction(gopt, new GRuns(gopt) ) );
+	SetUserAction(new GRunAction(gopt));
 }
 
 

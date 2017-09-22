@@ -6,20 +6,13 @@
 
 
 // Constructor
-// PRAGMA: why  SetRunID here is not reflected in runAction?
-GRun::GRun(int runno) :  G4Run()
+GRun::GRun(GOptions* gopt) : G4Run(), GFlowMessage(gopt, "GRun")
 {
-	G4cout << " Constructor GRun with run number " << runno << G4endl;
-	
-	
-	SetRunID(runno);
 }
-
 
 // Destructor
 GRun::~GRun()
 {
-	G4cout << " Destructor GRun  " << G4endl;
 }
 
 
@@ -28,22 +21,25 @@ GRun::~GRun()
 //  is accumulated during a Run.
 void GRun::RecordEvent(const G4Event *aEvent)
 {
+	flowMessage("GRun:RecordEvent");
+
+	
 	numberOfEvent++;  // This is an original line.
 
 	// HitsCollection of This Event
 	G4HCofThisEvent* pHCE = aEvent->GetHCofThisEvent();
 	if (!pHCE) return;
 
-	G4cout << " RecordEvent run  " << G4endl;
 
 }
 
 
-void GRun::Merge(const G4Run *aRun) {
+void GRun::Merge(const G4Run *aRun)
+{
+	flowMessage("GRun:Merge");
 
 //	const GRun *localRun = static_cast<const GRun *> (aRun);
 
-	G4cout << " Merge run  " << G4endl;
 
 	G4Run::Merge(aRun);
 }
