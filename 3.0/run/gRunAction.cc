@@ -33,10 +33,11 @@ G4Run* GRunAction::GenerateRun()
 // executed after BeamOn
 void GRunAction::BeginOfRunAction(const G4Run* aRun)
 {
-	flowMessage("BeginOfRunAction for run id " + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
 
 	if(IsMaster()) {
-		
+		flowMessage("BeginOfRunAction Master for run id " + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
+	} else {
+		flowMessage("BeginOfRunAction Local for run id " + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
 	}
 	
 	
@@ -44,5 +45,14 @@ void GRunAction::BeginOfRunAction(const G4Run* aRun)
 
 void GRunAction::EndOfRunAction(const G4Run* aRun)
 {
-	flowMessage("EndOfRunAction for run id" + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
+	const GRun* theRun = static_cast<const GRun*>(aRun);
+	if(IsMaster()) {
+		flowMessage("EndOfRunAction Master for run id" + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
+		flowMessage("Total number of events this run: " + to_string(theRun->GetNumberOfEvent()));
+
+	} else {
+		flowMessage("EndOfRunAction for run id" + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
+		flowMessage("Total number of events this thread: " + to_string(theRun->GetNumberOfEvent()));
+
+	}
 }

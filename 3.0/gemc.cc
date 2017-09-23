@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
 	
 	// alla prossima!
 	cout << " % Simulation completed, arrivederci! " << endl;
-//	delete runManager;
+	delete g4MTRunManager;
 	delete gopts;
 	return 1;
 }
