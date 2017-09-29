@@ -1,4 +1,9 @@
- GEMC
+GEMC 3 reminders:
+
+1. set MT option in go_geant4
+2. set DG4MULTITHREADED in loadgeant4.py
+
+GEMC
 
  Code conventions
  - camel case for all variable names, class definitions
@@ -9,38 +14,26 @@
 
 
 
+
  Pre-processor
  Found with scons SHOWBUILD=1
- Can paste in one line in Build Settings - Pre-Processor macro.
+ Can paste in one line in Build Settings - preprocessor macro.
  For example G4MULTITHREADED will change the meaning of G4cout (will use G4cout_p instead)
  -DG4OPTIMISE -DG4_STORE_TRAJECTORY -DG4VIS_USE_OPENGL -DG4UI_USE_TCSH -DG4INTY_USE_QT  -DG4UI_USE_QT -DG4VIS_USE_OPENGLQT -DG4USE_STD11 -DG4MULTITHREADED
    G4OPTIMISE=1 G4_STORE_TRAJECTORY=1 G4VIS_USE_OPENGL=1 G4UI_USE_TCSH=1 G4INTY_USE_QT=1  G4UI_USE_QT=1 G4VIS_USE_OPENGLQT=1 G4USE_STD11=1 G4MULTITHREADED=1
 
+Remember add the preprocessor in g4display, g4volume also
 
- Add the following libraries to copy link:
- libG4digits_hits.dylib
- libG4event.dylib
- libG4geometry.dylib
- libG4global.dylib
- libG4graphics_reps.dylib
- libG4intercoms.dylib
- libG4materials.dylib
- libG4particles.dylib
- libG4physicslists.dylib
- libG4processes.dylib
- libG4run.dylib
- libG4track.dylib
- libG4tracking.dylib
- libG4zlib.dylib
+ Add ALL external libraries to COPY in build phases, but not the products like g4display.
+ We also need to add 2 additional qt frameworks: printing and qtopengl, due to.
 
 
  Add the env variable for run time:
- G4ENSDFSTATEDATA /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4ENSDFSTATE2.1
- G4LEDATA         /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4EMLOW6.50
- G4LEVELGAMMADATA /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/PhotonEvaporation4.3
- G4SAIDXSDATA     /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4SAIDDATA1.1
- G4NEUTRONXSDATA  /opt/jlab_software/devel/Darwin_macosx10.12-x86_64-clang8.1.0/geant4/4.10.03.p01/data/Geant4-10.3.1/data/G4NEUTRONXS1.4
-
+ G4ENSDFSTATEDATA     /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4ENSDFSTATE2.1
+ G4NEUTRONXSDATA     /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4NEUTRONXS1.4
+ G4LEDATA                       /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4EMLOW6.50
+ G4SAIDXSDATA              /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4SAIDDATA1.1
+ G4LEVELGAMMADATA  /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/PhotonEvaporation4.3.2
 
  Instrument:
  https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/
