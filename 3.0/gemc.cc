@@ -24,6 +24,8 @@ using namespace std;
 // mlibrary
 #include "gsplash.h"
 #include "g4display.h"
+#include "gdynamic.h"
+#include "gruns.h"
 
 // gemc
 #include "utilities.h"
@@ -68,7 +70,8 @@ int main(int argc, char* argv[])
 	// digitization routines and constants
 	// this is global, changed at main scope
 	// used thread-locally by digitization
-	map<string, GDynamic> *gDigitizationGlobal;
+	map<string, GDynamic> *gDigitizationGlobal = nullptr;
+	GRuns *gruns = new GRuns(gopts, gDigitizationGlobal);
 	
 	// building detector (shared)
 	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
@@ -92,7 +95,7 @@ int main(int argc, char* argv[])
 		qApp->processEvents();
 
 		// passing executable to retrieve full path
-		GemcGUI gemcGui(argv[0], gopts);
+		GemcGUI gemcGui(argv[0], gopts, gruns);
 
 		// PRAGMA TODO: use option g4view to set the position
 		gemcGui.move(10, 10);
@@ -120,7 +123,7 @@ int main(int argc, char* argv[])
 		delete g4Display;
 	} else {
 		applyInitialUIManagerCommands(gopts);
-		gBeamOn(gopts);
+		gruns->processEvents();
 	}
 	
 	// alla prossima!

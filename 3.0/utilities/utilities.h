@@ -7,7 +7,6 @@
 
 // mlibrary
 #include "goptions.h"
-#include "gdynamic.h"
 
 // qt
 #include <QApplication>
@@ -44,9 +43,6 @@ vector<string> interactiveCommands(GOptions* gopt);
 // - batch
 // - gui (if needed)
 void applyInitialUIManagerCommands(GOptions* gopt);
-
-// instantiate gruns and beamOn requested n. events for each run
-void gBeamOn(GOptions *gopts);
 
 int getNumberOfThreads(GOptions* gopt);
 

@@ -5,7 +5,7 @@
 #include "gstring.h"
 using namespace gstring;
 
-GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(parent)
+GemcGUI::GemcGUI(string resources, GOptions* gopt, GRuns *gr, QWidget *parent) : QWidget(parent), gruns(gr)
 {
 	// the exampleResources.rcc is obtained with:
 	// rcc -binary exampleResources.qrc -o exampleResources.rcc
@@ -16,9 +16,6 @@ GemcGUI::GemcGUI(string resources, GOptions* gopt, QWidget *parent) : QWidget(pa
 	QFileInfo qrcFileInfoExecutable(resources.c_str());
 	QString rccPath = qrcFileInfoExecutable.absolutePath() + "/" + "gemcResources.rcc";
 	QResource::registerResource(rccPath);
-
-	// initializing gruns
-	gruns = new GRuns(gopt);
 
 	createLeftButtons();       // instantiates leftButtons
 	createRightContent(gopt);  // instantiates rightContent
@@ -44,12 +41,13 @@ void GemcGUI::updateGui()
 {
 	vector<string> sBefore = getStringVectorFromString(eventNumber->text().toStdString());
 	
-	int nBefore = stoi(sBefore[2]);
+	int nBefore      = stoi(sBefore[2]);
 	int nThatWasRun  = nEvents->text().toInt();
 
 	QString newNEvents("Event Number: ");
-	eventNumber->setText(to_string(nBefore+nThatWasRun).c_str());
-
+	newNEvents.append(to_string(nBefore+nThatWasRun).c_str());
+	
+	eventNumber->setText(newNEvents);
 }
 
 

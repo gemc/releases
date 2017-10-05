@@ -19,7 +19,7 @@ class GemcGUI : public QWidget
 	Q_OBJECT
 
 public:
-	GemcGUI(string resources, GOptions* gopt, QWidget *parent = Q_NULLPTR);
+	GemcGUI(string resources, GOptions* gopt, GRuns *gr, QWidget *parent = Q_NULLPTR);
 	~GemcGUI();
 
 

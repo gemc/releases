@@ -66,7 +66,7 @@ void GemcGUI::gquit()
 
 void GemcGUI::beamOn()
 {
-	// nEvents at the beginning comes from gruns, but users can change it
+	// PRAGMA TODO: GRUNS must be able to redistribute events
 	int nToRun  = nEvents->text().toInt();
 
 	G4UImanager *g4uim = G4UImanager::GetUIpointer();
@@ -75,23 +75,27 @@ void GemcGUI::beamOn()
 	// coreAnimation: warning, deleted thread with uncommitted CATransaction
 	// PRAGMA TODO: make this a button
 	g4uim->ApplyCommand("/vis/scene/endOfEventAction accumulate -1");
-//	g4uim->ApplyCommand("/event/keepCurrentEvent");
+	g4uim->ApplyCommand("/vis/scene/endOfRunAction accumulate -1");
+	//g4uim->ApplyCommand("/event/keepCurrentEvent");
 //	g4uim->ApplyCommand("/vis/ogl/flushAt never");
+//	g4uim->ApplyCommand("/vis/ogl/flushAt endOfRun");
 
 	
 	g4uim->ApplyCommand("/gun/particle proton");
 	g4uim->ApplyCommand("/gun/energy 2 GeV");
 	g4uim->ApplyCommand("/gun/direction 0 1 0");
-	g4uim->ApplyCommand("/vis/scene/add/trajectories rich smooth");
+//	g4uim->ApplyCommand("/vis/scene/add/trajectories rich smooth");
 
 //	g4uim->ApplyCommand("/event/keepCurrentEvent");
 //	g4uim->ApplyCommand("/vis/disable");
 
 //	g4uim->ApplyCommand( "/run/beamOn 1");
-	g4uim->ApplyCommand( "/run/beamOn " + to_string(nToRun));
+//	g4uim->ApplyCommand( "/run/beamOn " + to_string(nToRun));
 
 //	g4uim->ApplyCommand("/vis/enable");
 //	g4uim->ApplyCommand("/vis/reviewKeptEvents");
+	
+	gruns->processEvents();
 	
 	updateGui();
 

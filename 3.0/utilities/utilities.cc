@@ -87,23 +87,6 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 }
 
 
-
-
-// run beamOn requested n. events for each run
-// this function is run in batch mode
-// interactive mode has its own beamOn() function
-void gBeamOn(GOptions *gopts)
-{
-	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
-
-	GRuns *gruns = new GRuns(gopts);
-
-	for(auto &run : gruns->getRunEvents()) {
-		int nevents = run.second;
-		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
-	}
-}
-
 int getNumberOfThreads(GOptions* gopt)
 {
 	int useThreads = gopt->getOption("nthreads").getIntValue();
