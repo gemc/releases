@@ -29,17 +29,19 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 
 void GDetectorConstruction::ConstructSDandField()
 {
-	if (G4Threading::IsMasterThread() ) return;
+	// no need to do anything if we're in the main thread
+	// if (G4Threading::IsMasterThread() ) return;
 
 	flowMessage("Inside SDandField");
 
 	// building the sensitive detectors
+	// this is thread local
 	for(auto &s : gsetup->getSetup()) {
 		for(auto &gv : s.second->getSytems()) {
 			string sensitivity = gv.second->getSensitivity();
 			G4LogicalVolume *thisLV = g4setup->getLogical(gv.first);
 			if(thisLV == nullptr) {
-				cerr << " !!! Error: " << gv.first << " logical volume not build? This should never happen." << endl;
+				G4cerr << " !!! Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
 				exit(99);
 			} else if(sensitivity != "no") {
 				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
@@ -55,5 +57,4 @@ void GDetectorConstruction::ConstructSDandField()
 			}
 		}
 	}
-	
 }

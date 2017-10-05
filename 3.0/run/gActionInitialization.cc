@@ -2,9 +2,7 @@
 #include "gPrimaryGeneratorAction.h"
 #include "gActionInitialization.h"
 #include "gRunAction.h"
-
-// PRAGMA TODO: to be removed
-#include "G4UImanager.hh"
+#include "gEventAction.h"
 
 
 // c++
@@ -25,7 +23,7 @@ void GActionInitialization::Build() const
 
 	SetUserAction(new GRunAction(gopt));
 	SetUserAction(new GPrimaryGeneratorAction);
-	// SetUserAction(new GEventAction);
+	SetUserAction(new GEventAction);
 }
 
 void GActionInitialization::BuildForMaster() const

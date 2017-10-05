@@ -25,7 +25,7 @@ public:
 	virtual G4VPhysicalVolume* Construct();
 	virtual void ConstructSDandField();
 
-	map<string, GSensitiveDetector*> getSensitiveDetectorMap() {return allSensitiveDetectors;}
+		map<string, GSensitiveDetector*> getSensitiveDetectorMap() {return allSensitiveDetectors;}
 	
 private:
 	GOptions* gopt;

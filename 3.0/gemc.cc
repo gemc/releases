@@ -70,11 +70,13 @@ int main(int argc, char* argv[])
 	// digitization routines and constants
 	// this is global, changed at main scope
 	// used thread-locally by digitization
-	map<string, GDynamic> *gDigitizationGlobal = nullptr;
+	map<string, GDynamic*> *gDigitizationGlobal = nullptr;
 	GRuns *gruns = new GRuns(gopts, gDigitizationGlobal);
 	
-	// building detector (shared)
+	// building detector
+	// this is global, changed at main scope
 	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
+	cout << "ASD size of sens " << gDetectorGlobal->getSensitiveDetectorMap().size() << endl;
 	
 	// init geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel

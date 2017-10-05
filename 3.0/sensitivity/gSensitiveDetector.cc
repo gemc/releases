@@ -10,15 +10,12 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 {
 	verbosity = gopt->getInt("gsensitivityv");
 	
-	
+	flowMessage("Instantiating GSensitiveDetector " + name);
+
 //	string filename = getFilenameFromFilename(name);
 //	string fpath    = getPathFromFilename(name) + "/plugin/";
 //	string plugin   = fpath + filename;
 
-	if(verbosity > GVERBOSITY_SUMMARY) {
-		G4cout << " Instantiating GSensitive Detector " << name << G4endl;
-//		G4cout << " Instantiating GSensitive Detector " << filename << " from plugin: " << plugin << G4endl;
-	}
 	
 	// need to use w/o verbosity because of multithreading
 	// PRAGMA TODO: fix this when it is fixed in the loader

@@ -3,6 +3,10 @@
  - GDynamic does not need to be a shared_ptr
  - added event action
  - both interactive and batch mode use GRuns:: processEvents() to activate beamOn()
+ - using map of gDynamic pointers
+ - using flowMessage properly in GSensitive constructor
+ - ConstructSD is thread local so using G4cerr
+ - setting GEventAction in userAction
 
 9/20/17
  - GDetectorConstruction inherits from gFlowMessage
