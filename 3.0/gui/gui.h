@@ -1,8 +1,6 @@
 #ifndef GGUI_H
 #define GGUI_H 1
 
-// gemc master gui
-
 // c++
 #include <string>
 using namespace std;
@@ -13,6 +11,7 @@ using namespace std;
 // mlibrary
 #include "qtButtonsWidget.h"
 #include "goptions.h"
+#include "gruns.h"
 
 class GemcGUI : public QWidget
 {
@@ -23,6 +22,7 @@ public:
 	GemcGUI(string resources, GOptions* gopt, QWidget *parent = Q_NULLPTR);
 	~GemcGUI();
 
+
 private:
 	QtButtonsWidget *leftButtons; 
 	QStackedWidget  *rightContent;
@@ -30,19 +30,23 @@ private:
 	QLabel          *eventNumber;
 	QTimer          *gtimer;       // for cycling events
 
+	// gruns to read number of events
+	GRuns *gruns;
+	
 private:
 	void createLeftButtons();
 	void createRightContent(GOptions* gopt);
 	void createTopButtons(QHBoxLayout *topLayout);
-
+	void updateGui();
 
 private slots:
 	// definded in topLayout.cc
-	void gquit();
+	// beamOn() causes workers to update the screen
+	// from a sub-thread
 	void beamOn();
 	void cycleBeamOn();
 	void stopCycleBeamOn();
-
+	void gquit();
 };
 
 #endif

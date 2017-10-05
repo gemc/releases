@@ -1,3 +1,8 @@
+10/5/17
+ - moved beamOn in interactive mode in the GUI, which instantiate a new grun
+ - GDynamic does not need to be a shared_ptr
+ - added event action
+
 9/20/17
  - GDetectorConstruction inherits from gFlowMessage
  - GSensitiveDetector inherits from gFlowMessage

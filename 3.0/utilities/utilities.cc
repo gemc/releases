@@ -84,14 +84,14 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 		}
 		g4uim->ApplyCommand(c);
 	}
-
-
 }
 
 
 
 
 // run beamOn requested n. events for each run
+// this function is run in batch mode
+// interactive mode has its own beamOn() function
 void gBeamOn(GOptions *gopts)
 {
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
@@ -99,10 +99,8 @@ void gBeamOn(GOptions *gopts)
 	GRuns *gruns = new GRuns(gopts);
 
 	for(auto &run : gruns->getRunEvents()) {
-//		int runno = run.first;
 		int nevents = run.second;
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
-		
 	}
 }
 
@@ -123,6 +121,7 @@ void initGemcG4RunManager(G4MTRunManager *grm)
 {
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
 	g4uim->ApplyCommand("/control/cout/setCoutFile thread.log");
+
 	grm->Initialize();
 }
 

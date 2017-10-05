@@ -65,8 +65,10 @@ int main(int argc, char* argv[])
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
 
-	// digitization routines and constants (shared)
-	map<string, shared_ptr<GDynamic>> *gDigitizationGlobal;
+	// digitization routines and constants
+	// this is global, changed at main scope
+	// used thread-locally by digitization
+	map<string, GDynamic> *gDigitizationGlobal;
 	
 	// building detector (shared)
 	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
@@ -111,8 +113,7 @@ int main(int argc, char* argv[])
 
 		// PRAGMA TODO: these two calls (and maybe others?) should be in a separate function?
 		applyInitialUIManagerCommands(gopts);
-		gBeamOn(gopts);
-
+		
 		qApp->exec();
 		delete visManager;
 		delete session;
