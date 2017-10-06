@@ -11,6 +11,8 @@
 
 // mlibrary
 #include "gruns.h"
+#include "gstring.h"
+using namespace gstring;
 
 // distinguishing between graphical and batch mode
 QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
@@ -80,13 +82,15 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 
 	for(auto &c : commands) {
 		if(verbosity > GVERBOSITY_SUMMARY) {
-			cout << " % Executing UIManager command \"" << c << "\"" << endl;
+			cout << " ⌘ Executing UIManager command \"" << c << "\"" << endl;
 		}
 		g4uim->ApplyCommand(c);
 	}
 }
 
 
+// return number of cores from options. If 0 or none given,
+// returns max number of available cores
 int getNumberOfThreads(GOptions* gopt)
 {
 	int useThreads = gopt->getOption("nthreads").getIntValue();
@@ -94,19 +98,40 @@ int getNumberOfThreads(GOptions* gopt)
 	if(useThreads == 0) useThreads = allThreads;
 	
 	// global log screen
-	cout << " % G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl;
+	cout << " ⌘ G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl << endl;
 
 	return useThreads;
 }
 
-	
+// initialize run manager
 void initGemcG4RunManager(G4MTRunManager *grm)
 {
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
-	g4uim->ApplyCommand("/control/cout/setCoutFile thread.log");
+	g4uim->ApplyCommand("/control/cout/setCoutFile gthread.log");
 
 	grm->Initialize();
 }
+
+// loads plugins from sensitive map <names, paths>
+map<string, GDynamic*> *loadGPlugins(GOptions* gopt, map<string, string> sensD)
+{
+	map<string, GDynamic*> *globalDigitization = nullptr;
+	
+	int verbosity      = gopt->getInt("gemcv");
+	
+	for(auto &p: sensD) {
+		string pluginPath = getPathFromFilename(p.second) + "/plugin";
+		if(verbosity > GVERBOSITY_SILENT) {
+			cout << " ⌘ Loading <" << p.first << "> plugin from "  << pluginPath << "...";
+		}
+		
+		string pluginName   = pluginPath + "/" + p.first;
+
+	}
+	
+	return globalDigitization;
+}
+
 
 
 

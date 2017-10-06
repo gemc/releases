@@ -1,9 +1,6 @@
 // gemc
 #include "gSensitiveDetector.h"
 
-// mlibrary
-#include "gstring.h"
-using namespace gstring;
 
 // this is thread-local
 GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV) : G4VSensitiveDetector(name), GFlowMessage(gopt, "GSensitiveDetector " + name)
@@ -11,10 +8,6 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 	verbosity = gopt->getInt("gsensitivityv");
 	
 	flowMessage("Instantiating GSensitiveDetector " + name);
-
-//	string filename = getFilenameFromFilename(name);
-//	string fpath    = getPathFromFilename(name) + "/plugin/";
-//	string plugin   = fpath + filename;
 
 	
 	// need to use w/o verbosity because of multithreading

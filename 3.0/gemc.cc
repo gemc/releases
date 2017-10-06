@@ -38,6 +38,7 @@ using namespace std;
 #include "G4VisExecutive.hh"
 #include "G4UIQt.hh"
 #include "G4MTRunManager.hh"
+#include "G4Version.hh"
 
 // PRAGMA TODO: needs gphysics so remove this one
 #include "QGS_BIC.hh"
@@ -62,22 +63,16 @@ int main(int argc, char* argv[])
 	// message is streamed always
 	// if interactive session message is also streamd on splash screen
 	GSplash gsplash(gopts, gui);
-	gsplash.message(" % Initializing GEMC " + string(GEMC_VERSION));
+	gsplash.message(" ⌘ Initializing GEMC " + string(GEMC_VERSION) + ", Geant4 " + G4Version );
 
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
 
-	// digitization routines and constants
-	// this is global, changed at main scope
-	// used thread-locally by digitization
-	map<string, GDynamic*> *gDigitizationGlobal = nullptr;
-	GRuns *gruns = new GRuns(gopts, gDigitizationGlobal);
 	
 	// building detector
 	// this is global, changed at main scope
 	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
-	cout << "ASD size of sens " << gDetectorGlobal->getSensitiveDetectorMap().size() << endl;
-	
+
 	// init geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	// SetUserInitialization:
@@ -87,8 +82,19 @@ int main(int argc, char* argv[])
 	g4MTRunManager->SetUserInitialization(gDetectorGlobal);
 	g4MTRunManager->SetUserInitialization(new QGS_BIC());
 	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts));
-	
+
+	// this calls Construct in GDetectorConstruction
+	// which in turns builds gsetup, g4setup and, in each thread, the sensitive detectors
 	initGemcG4RunManager(g4MTRunManager);
+
+	// loading plugins:
+	// - this includes digitization routines, constants
+	// - global
+	// - used thread-locally by digitization
+	map<string, GDynamic*> *gDigitizationGlobal = loadGPlugins(gopts, gDetectorGlobal->getSensitiveVolumes());
+	
+	// init gruns. Default run number if no configuration file specified
+	GRuns *gruns = new GRuns(gopts, gDigitizationGlobal);
 
 	
 	// initialize gemc gui
@@ -129,7 +135,7 @@ int main(int argc, char* argv[])
 	}
 	
 	// alla prossima!
-	cout << " % Simulation completed, arrivederci! " << endl;
+	cout << " ⌘ Simulation completed, arrivederci! " << endl;
 	delete g4MTRunManager;
 	delete gopts;
 	return 1;

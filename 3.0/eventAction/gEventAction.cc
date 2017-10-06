@@ -18,7 +18,6 @@ void GEventAction::BeginOfEventAction(const G4Event*)
 
 void GEventAction::EndOfEventAction(const G4Event* event)
 {
-//	std::cout << "AASD " << std::endl;
 //	G4EventManager::GetEventManager()->KeepTheCurrentEvent();
 }
 

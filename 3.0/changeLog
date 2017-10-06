@@ -1,3 +1,11 @@
+10/6/16
+ - removing sensitive map from GDetectorConstruction constructSD: this is thread local, let us not modify global pointer
+ - added method getSensitiveVolumes() to retrieve the the sensitive names and their paths from gsetup, so the plugins can be loaded
+ - gDigiLocal needs not be shared_ptr
+ - changed log sign with ⌘, it looks cooler
+ - added geant4 version
+ - added utility function to load plugins
+
 10/5/17
  - beamOn() is now part of grun, which also have a gDynamic map and will take care of plugin initialization for each run
  - GDynamic does not need to be a shared_ptr

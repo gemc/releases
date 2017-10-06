@@ -2,7 +2,7 @@ from init_env import init_environment
 
 env = init_environment("qt5 mlibrary clhep geant4")
 env.Append(LIBPATH = ['lib'])
-env.Append(CPPPATH = [Dir('utilities'), Dir('gui'), Dir('run'), Dir('detector'), Dir('generator'), Dir('glog'), Dir('sensitivity')])
+env.Append(CPPPATH = [Dir('utilities'), Dir('gui'), Dir('run'), Dir('detector'), Dir('eventAction'), Dir('generator'), Dir('glog'), Dir('sensitivity')])
 
 
 # utilities
@@ -16,6 +16,9 @@ SConscript('glog/SConscript', 'env')
 
 # detector
 SConscript('detector/SConscript', 'env')
+
+# event action
+SConscript('eventAction/SConscript', 'env')
 
 # generator
 SConscript('generator/SConscript', 'env')
