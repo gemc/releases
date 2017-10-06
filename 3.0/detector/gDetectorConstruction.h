@@ -24,14 +24,18 @@ public:
 	// virtual method from G4VUserDetectorConstruction.
 	virtual G4VPhysicalVolume* Construct();
 	virtual void ConstructSDandField();
-
-		map<string, GSensitiveDetector*> getSensitiveDetectorMap() {return allSensitiveDetectors;}
+	
+	map<string, string> getSensitiveVolumes() {
+		if(gsetup != nullptr)
+			return gsetup->getSensitiveVolumes();
+		else
+			return {};
+	}
 	
 private:
 	GOptions* gopt;
 	GSetup *gsetup;
 	G4Setup *g4setup;
-	map<string, GSensitiveDetector*> allSensitiveDetectors;
 
 };
 
