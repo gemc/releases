@@ -5,6 +5,7 @@
  - changed log sign with ⌘, it looks cooler
  - added geant4 version
  - added utility function to load plugins
+ - added LOG and ERR symbols
 
 10/5/17
  - beamOn() is now part of grun, which also have a gDynamic map and will take care of plugin initialization for each run

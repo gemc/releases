@@ -1,7 +1,9 @@
 #ifndef GUTILITIES_H
 #define GUTILITIES_H 1
 
-// general utility functions needed by gemc
+#define GEMCLOGMSGITEM  " ⌘"
+#define GEMCERRMSGITEM  " !!"
+
 // gemc
 #include "gDetectorConstruction.h"
 

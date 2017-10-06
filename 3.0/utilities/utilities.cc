@@ -82,7 +82,7 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 
 	for(auto &c : commands) {
 		if(verbosity > GVERBOSITY_SUMMARY) {
-			cout << " ⌘ Executing UIManager command \"" << c << "\"" << endl;
+			cout << GEMCLOGMSGITEM << " Executing UIManager command \"" << c << "\"" << endl;
 		}
 		g4uim->ApplyCommand(c);
 	}
@@ -98,7 +98,7 @@ int getNumberOfThreads(GOptions* gopt)
 	if(useThreads == 0) useThreads = allThreads;
 	
 	// global log screen
-	cout << " ⌘ G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl << endl;
+	cout << GEMCLOGMSGITEM << " G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl << endl;
 
 	return useThreads;
 }
@@ -115,20 +115,30 @@ void initGemcG4RunManager(G4MTRunManager *grm)
 // loads plugins from sensitive map <names, paths>
 map<string, GDynamic*> *loadGPlugins(GOptions* gopt, map<string, string> sensD)
 {
-	map<string, GDynamic*> *globalDigitization = nullptr;
+	map<string, GDynamic*> *globalDigitization = new map<string, GDynamic*>;
 	
-	int verbosity      = gopt->getInt("gemcv");
+	int verbosity = gopt->getInt("gemcv");
+	GManager manager(verbosity);
 	
 	for(auto &p: sensD) {
 		string pluginPath = getPathFromFilename(p.second) + "/plugin";
-		if(verbosity > GVERBOSITY_SILENT) {
-			cout << " ⌘ Loading <" << p.first << "> plugin from "  << pluginPath << "...";
-		}
 		
-		string pluginName   = pluginPath + "/" + p.first;
+		string pluginName = pluginPath + "/" + p.first;
+		
+		manager.registerDL(pluginName);
 
+		(*globalDigitization)[p.first] = manager.LoadObjectFromLibrary<GDynamic>(pluginName);
+		
+		// checkPlugin shoud return true
+		if((*globalDigitization)[p.first]->checkPlugin() == false) {
+			cout <<  GEMCERRMSGITEM << " Plugin " << pluginName << " checkPlugin() returned false. Load failure, or did you forget to implement it?" << endl;
+		} 
+		
 	}
-	
+	if(verbosity > GVERBOSITY_SILENT) {
+		cout << GEMCLOGMSGITEM << " Number of plugin loaded: " << globalDigitization->size() << endl;
+	}
+
 	return globalDigitization;
 }
 

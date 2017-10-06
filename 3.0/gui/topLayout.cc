@@ -67,7 +67,7 @@ void GemcGUI::gquit()
 void GemcGUI::beamOn()
 {
 	// PRAGMA TODO: GRUNS must be able to redistribute events
-	int nToRun  = nEvents->text().toInt();
+	// int nToRun  = nEvents->text().toInt();
 
 	G4UImanager *g4uim = G4UImanager::GetUIpointer();
 	

@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	// message is streamed always
 	// if interactive session message is also streamd on splash screen
 	GSplash gsplash(gopts, gui);
-	gsplash.message(" ⌘ Initializing GEMC " + string(GEMC_VERSION) + ", Geant4 " + G4Version );
+	gsplash.message(string(GEMCLOGMSGITEM) + " Initializing GEMC " + string(GEMC_VERSION) + ", Geant4 " + G4Version );
 
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
@@ -135,7 +135,7 @@ int main(int argc, char* argv[])
 	}
 	
 	// alla prossima!
-	cout << " ⌘ Simulation completed, arrivederci! " << endl;
+	cout << GEMCLOGMSGITEM << " Simulation completed, arrivederci! " << endl;
 	delete g4MTRunManager;
 	delete gopts;
 	return 1;
