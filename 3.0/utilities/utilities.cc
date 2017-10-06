@@ -98,7 +98,7 @@ int getNumberOfThreads(GOptions* gopt)
 	if(useThreads == 0) useThreads = allThreads;
 	
 	// global log screen
-	cout << GEMCLOGMSGITEM << " G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available." << endl << endl;
+	cout << GEMCLOGMSGITEM << " G4MTRunManager: using " << useThreads << " threads out of "  << allThreads << " available."  << endl;
 
 	return useThreads;
 }

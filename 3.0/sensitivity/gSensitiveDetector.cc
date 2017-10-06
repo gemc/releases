@@ -10,17 +10,7 @@ GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thi
 	flowMessage("Instantiating GSensitiveDetector " + name);
 
 	
-	// need to use w/o verbosity because of multithreading
-	// PRAGMA TODO: fix this when it is fixed in the loader
-//	GManager manager(0);
-	//GManager manager(verbosity);
-//	manager.registerDL(plugin);
-//	digitization = shared_ptr<GDynamic>(manager.LoadObjectFromLibrary<GDynamic>("ctof"));
-//
-//	// this should not be done here but just before BeamOn by main()
-//	if(digitization)
-//		digitization->loadConstants(22, "original");
-
+	
 
 	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds
 }
