@@ -49,7 +49,7 @@ private:
 
 	// the digitization routines and constants
 	// are thread local
-	shared_ptr<GDynamic> gDigiLocal;
+	GDynamic *gDigiLocal;
 
 private:
 	// skip ProcessHit
