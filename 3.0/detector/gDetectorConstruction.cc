@@ -4,6 +4,10 @@
 // mlibrary
 #include "g4volume.h"
 
+// geant4
+#include "G4SDManager.hh"
+
+
 GDetectorConstruction::GDetectorConstruction(GOptions* opt, map<string, GDynamic*> *gDigiGlobal) :
 G4VUserDetectorConstruction(), GFlowMessage(opt, "GDetectorConstruction"), gopt(opt), gDigitizationGlobal(gDigiGlobal)
 {
@@ -14,7 +18,6 @@ G4VUserDetectorConstruction(), GFlowMessage(opt, "GDetectorConstruction"), gopt(
 }
 
 GDetectorConstruction::~GDetectorConstruction() {}
-
 
 G4VPhysicalVolume* GDetectorConstruction::Construct()
 {
@@ -29,14 +32,17 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 	return g4setup->getPhysical("world");
 }
 
-
-
 void GDetectorConstruction::ConstructSDandField()
 {
 	// no need to do anything if we're in the main thread
 	if (G4Threading::IsMasterThread() ) return;
 
+	int verbosity = gopt->getInt("gsensitivityv");
+
 	flowMessage("Inside SDandField");
+
+	// used to check if a SD if it already exists
+	map<string, GSensitiveDetector*> allSensitiveDetectors;
 
 	// building the sensitive detectors
 	// this is thread local
@@ -44,13 +50,36 @@ void GDetectorConstruction::ConstructSDandField()
 		for(auto &gv : s.second->getSytems()) {
 			string sensitivity = gv.second->getSensitivity();
 			// making sure the logical volume exists
-			G4LogicalVolume *thisLV = g4setup->getLogical(gv.first);
-			if(thisLV == nullptr) {
+			if(g4setup->getLogical(gv.first) == nullptr) {
 				G4cerr << " !!! Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
 				exit(99);
 			} else if(sensitivity != "no") {
-				SetSensitiveDetector(gv.first, new GSensitiveDetector(sensitivity, gopt, gv.second, gDigitizationGlobal));
+				// checking that we do not already have a GSensitiveDetector
+				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
+					
+					if(verbosity == GVERBOSITY_ALL) {
+						G4cout  << " Sensitive detector " << sensitivity << " doesn't exist for " << gv.first << endl;
+					}
+					
+					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt, gDigitizationGlobal);
+					auto sdManager = G4SDManager::GetSDMpointer();
+					sdManager->AddNewDetector(allSensitiveDetectors[sensitivity]);
+
+
+				} else {
+					if(verbosity == GVERBOSITY_ALL) {
+						G4cout <<  " Sensitive detector " << sensitivity << " exists for " << gv.first << endl;
+					}
+				}
+				SetSensitiveDetector(gv.first, allSensitiveDetectors[sensitivity]);
 			}
 		}
 	}
 }
+
+
+
+
+
+
+

@@ -33,14 +33,14 @@ public:
 	}
 	
 private:
-	GOptions* gopt;
-	GSetup *gsetup;
-	G4Setup *g4setup;
+	GOptions *gopt;
+	GSetup   *gsetup;
+	G4Setup  *g4setup;
 	
 	// the GSensitiveDetector is built before the digitization, so we need
 	// a pointer to global digitization map, filled later, to pass to the local GSensitiveDetector
 	map<string, GDynamic*> *gDigitizationGlobal;
-
+	
 };
 
 
