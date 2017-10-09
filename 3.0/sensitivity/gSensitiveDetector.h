@@ -17,16 +17,11 @@
 #include <vector>
 using namespace std;
 
-// PRAGMA TODO:
-// should we have a shared_pointer of all the GSensitiveDetector inside eventAction
-// so we can call loadConstants for each run if necessary?
-// Or inside RunAction?
-// How do I pass run# from grun to runAction or eventAction
 
 class GSensitiveDetector : public G4VSensitiveDetector, public GFlowMessage
 {
 public:
-	GSensitiveDetector(string name, GOptions* gopt, GVolume *thisVolume, map<string, GDynamic*> *gDigiGlobal);
+	GSensitiveDetector(string name, GOptions* gopt, map<string, GDynamic*> *gDigiGlobal);
 
 	// geant4 methods
 	virtual void Initialize(G4HCofThisEvent* g4hc);                            ///< Beginning of sensitive Hit
@@ -47,12 +42,12 @@ private:
 	set<GTouchable*> touchableSet;
 
 
-	// the digitization routines and constants
-	// are thread local
-	GDynamic *gDigiLocal;
 	// the GSensitiveDetector is built before the digitization, so we need
 	// a pointer to global digitization map, filled later, so we can pick gDigiLocal at initialization
 	map<string, GDynamic*> *gDigitizationGlobal;
+	// gDigiLocal is thread local, picked form gDigitizationGlobal
+	GDynamic *gDigiLocal;
+
 	
 private:
 	// skip ProcessHit

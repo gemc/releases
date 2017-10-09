@@ -8,7 +8,7 @@
 // https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
 G4ThreadLocal G4Allocator<GHit>* GHitAllocator = 0;
 
-GHit::GHit(GTouchable gt, gHitType ht, string cScheme) : touchableId(gt),  type(ht), colorSchema(cScheme)
+GHit::GHit(GTouchable gt, gHitType ht, string cScheme) : touchableId(gt), type(ht), colorSchema(cScheme)
 {
 	
 }
