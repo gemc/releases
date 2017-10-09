@@ -23,7 +23,7 @@ private:
 	ofstream errFile;
 };
 
-#define GFLOWMESSAGEHEADER  ">.>"
+#define GFLOWMESSAGEHEADER  "♒︎"
 
 class GFlowMessage
 {
@@ -33,12 +33,12 @@ public:
 		flowVerbosity = gopt->getInt("gflowv");
 		flowCounter = 0;
 		if(flowVerbosity > GVERBOSITY_SILENT) {
-			G4cout << flowHeader()  << " constructor" << G4endl;
+			G4cout << flowHeader()  << "Constructor" << G4endl;
 		}
 	}
 	~GFlowMessage() {
 		if(flowVerbosity > GVERBOSITY_SILENT) {
-			G4cout << flowHeader() << " destructor" << G4endl;
+			G4cout << flowHeader() << "Destructor" << G4endl;
 		}
 	}
 private:
@@ -54,7 +54,14 @@ public:
 	static map<string, GOption> defineOptions();
 	void flowMessage(string msg) const {
 		if(flowVerbosity > GVERBOSITY_SILENT) {
-			G4cout << " " << flowHeader()  << " " << msg << G4endl;
+			G4cout << flowHeader()  << msg << G4endl;
+		}
+	}
+	void flowMessage(vector<string> msgs) const {
+		if(flowVerbosity > GVERBOSITY_SILENT) {
+			for(auto msg: msgs) {
+				G4cout << flowHeader()  << msg << G4endl;
+			}
 		}
 	}
 };
