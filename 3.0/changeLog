@@ -1,4 +1,7 @@
-10/6/16
+10/9/17
+ - passing the global map to GDetectorConstruction then to the local sensitive detectors
+
+10/6/17
  - removing sensitive map from GDetectorConstruction constructSD: this is thread local, let us not modify global pointer
  - added method getSensitiveVolumes() to retrieve the the sensitive names and their paths from gsetup, so the plugins can be loaded
  - gDigiLocal needs not be shared_ptr

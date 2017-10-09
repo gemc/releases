@@ -3,7 +3,8 @@
 
 
 // this is thread-local
-GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV) : G4VSensitiveDetector(name), GFlowMessage(gopt, "GSensitiveDetector " + name)
+GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, GVolume *thisGV, map<string, GDynamic*> *gDigiGlobal) :
+G4VSensitiveDetector(name), GFlowMessage(gopt, "GSensitiveDetector " + name), gDigitizationGlobal(gDigiGlobal)
 {
 	verbosity = gopt->getInt("gsensitivityv");
 	

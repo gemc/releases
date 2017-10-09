@@ -4,7 +4,8 @@
 // mlibrary
 #include "g4volume.h"
 
-GDetectorConstruction::GDetectorConstruction(GOptions* opt) : G4VUserDetectorConstruction(), GFlowMessage(opt, "GDetectorConstruction"), gopt(opt)
+GDetectorConstruction::GDetectorConstruction(GOptions* opt, map<string, GDynamic*> *gDigiGlobal) :
+G4VUserDetectorConstruction(), GFlowMessage(opt, "GDetectorConstruction"), gopt(opt), gDigitizationGlobal(gDigiGlobal)
 {
 	// making this explicit in case of access before Construct()
 	// (should never happen anyway)
@@ -48,7 +49,7 @@ void GDetectorConstruction::ConstructSDandField()
 				G4cerr << " !!! Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
 				exit(99);
 			} else if(sensitivity != "no") {
-				SetSensitiveDetector(gv.first, new GSensitiveDetector(sensitivity, gopt, gv.second));
+				SetSensitiveDetector(gv.first, new GSensitiveDetector(sensitivity, gopt, gv.second, gDigitizationGlobal));
 			}
 		}
 	}

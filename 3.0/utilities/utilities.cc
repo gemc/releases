@@ -113,9 +113,10 @@ void initGemcG4RunManager(G4MTRunManager *grm)
 }
 
 // loads plugins from sensitive map <names, paths>
-map<string, GDynamic*> *loadGPlugins(GOptions* gopt, map<string, string> sensD)
+// returns number of loaded plugins
+int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic*> *gDigiGlobal)
 {
-	map<string, GDynamic*> *globalDigitization = new map<string, GDynamic*>;
+	int goodPlugins = 0;
 	
 	int verbosity = gopt->getInt("gemcv");
 	GManager manager(verbosity);
@@ -127,19 +128,21 @@ map<string, GDynamic*> *loadGPlugins(GOptions* gopt, map<string, string> sensD)
 		
 		manager.registerDL(pluginName);
 
-		(*globalDigitization)[p.first] = manager.LoadObjectFromLibrary<GDynamic>(pluginName);
+		(*gDigiGlobal)[p.first] = manager.LoadObjectFromLibrary<GDynamic>(pluginName);
 		
 		// checkPlugin shoud return true
-		if((*globalDigitization)[p.first]->checkPlugin() == false) {
+		if((*gDigiGlobal)[p.first]->checkPlugin() == false) {
 			cout <<  GEMCERRMSGITEM << " Plugin " << pluginName << " checkPlugin() returned false. Load failure, or did you forget to implement it?" << endl;
-		} 
-		
+		} else {
+			goodPlugins++;
+		}
 	}
+	
 	if(verbosity > GVERBOSITY_SILENT) {
-		cout << GEMCLOGMSGITEM << " Number of plugin loaded: " << globalDigitization->size() << endl;
+		cout << GEMCLOGMSGITEM << " Number of plugin loaded: " << gDigiGlobal->size() << ", numbero of good plugins: " << goodPlugins << endl;
 	}
-
-	return globalDigitization;
+	
+	return goodPlugins;
 }
 
 

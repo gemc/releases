@@ -26,7 +26,7 @@ using namespace std;
 class GSensitiveDetector : public G4VSensitiveDetector, public GFlowMessage
 {
 public:
-	GSensitiveDetector(string name, GOptions* gopt, GVolume *thisVolume);
+	GSensitiveDetector(string name, GOptions* gopt, GVolume *thisVolume, map<string, GDynamic*> *gDigiGlobal);
 
 	// geant4 methods
 	virtual void Initialize(G4HCofThisEvent* g4hc);                            ///< Beginning of sensitive Hit
@@ -50,7 +50,10 @@ private:
 	// the digitization routines and constants
 	// are thread local
 	GDynamic *gDigiLocal;
-
+	// the GSensitiveDetector is built before the digitization, so we need
+	// a pointer to global digitization map, filled later, so we can pick gDigiLocal at initialization
+	map<string, GDynamic*> *gDigitizationGlobal;
+	
 private:
 	// skip ProcessHit
 	// decides if the hit should be processed or not

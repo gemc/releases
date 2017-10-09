@@ -17,7 +17,7 @@ class GDetectorConstruction : public G4VUserDetectorConstruction, public GFlowMe
 {
 public:
 	// constructor and destructor.
-	GDetectorConstruction(GOptions* opt);
+	GDetectorConstruction(GOptions* opt, map<string, GDynamic*> *gDigiGlobal);
 	virtual ~GDetectorConstruction();
 	
 public:
@@ -36,6 +36,10 @@ private:
 	GOptions* gopt;
 	GSetup *gsetup;
 	G4Setup *g4setup;
+	
+	// the GSensitiveDetector is built before the digitization, so we need
+	// a pointer to global digitization map, filled later, to pass to the local GSensitiveDetector
+	map<string, GDynamic*> *gDigitizationGlobal;
 
 };
 

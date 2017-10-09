@@ -69,9 +69,12 @@ int main(int argc, char* argv[])
 	UIM->SetCoutDestination(new GSession);
 
 	
+	// instantiating pointer to global digitization map
+	map<string, GDynamic*> *globalDigitization = new map<string, GDynamic*>;
+
 	// building detector
 	// this is global, changed at main scope
-	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts);
+	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts, globalDigitization);
 
 	// init geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
@@ -87,14 +90,14 @@ int main(int argc, char* argv[])
 	// which in turns builds gsetup, g4setup and, in each thread, the sensitive detectors
 	initGemcG4RunManager(g4MTRunManager);
 
-	// loading plugins:
+	// loading plugins must be done after GDetectorConstruction::Construct
 	// - this includes digitization routines, constants
 	// - global
 	// - used thread-locally by digitization
-	map<string, GDynamic*> *gDigitizationGlobal = loadGPlugins(gopts, gDetectorGlobal->getSensitiveVolumes());
+	loadGPlugins(gopts, gDetectorGlobal->getSensitiveVolumes(), globalDigitization);
 	
 	// init gruns. Default run number if no configuration file specified
-	GRuns *gruns = new GRuns(gopts, gDigitizationGlobal);
+	GRuns *gruns = new GRuns(gopts, globalDigitization);
 
 	
 	// initialize gemc gui

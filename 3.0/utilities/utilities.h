@@ -53,6 +53,6 @@ int getNumberOfThreads(GOptions* gopt);
 void initGemcG4RunManager(G4MTRunManager *grm);
 
 // loads plugins from sensitive map <names, paths>
-map<string, GDynamic*> *loadGPlugins(GOptions* gopt, map<string, string> sensD);
+int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic*> *gDigiGlobal);
 
 #endif
