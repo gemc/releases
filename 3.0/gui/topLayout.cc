@@ -76,6 +76,7 @@ void GemcGUI::beamOn()
 	// PRAGMA TODO: make this a button
 	g4uim->ApplyCommand("/vis/scene/add/trajectories rich smooth");
 	g4uim->ApplyCommand("/vis/scene/endOfEventAction accumulate -1");
+	g4uim->ApplyCommand("/vis/scene/add/hits");
 //	g4uim->ApplyCommand("/vis/scene/endOfRunAction accumulate -1");
 //	g4uim->ApplyCommand("/event/keepCurrentEvent");
 //	g4uim->ApplyCommand("/vis/ogl/flushAt endOfEvent");

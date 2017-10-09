@@ -39,6 +39,7 @@ using namespace std;
 #include "G4UIQt.hh"
 #include "G4MTRunManager.hh"
 #include "G4Version.hh"
+#include "G4StepLimiterPhysics.hh"
 
 // PRAGMA TODO: needs gphysics so remove this one
 #include "QGS_BIC.hh"
@@ -83,12 +84,17 @@ int main(int argc, char* argv[])
 	g4MTRunManager->SetNumberOfThreads(getNumberOfThreads(gopts));
 
 	g4MTRunManager->SetUserInitialization(gDetectorGlobal);
-	g4MTRunManager->SetUserInitialization(new QGS_BIC());
+	
+	// g4MTRunManager->SetUserInitialization(new QGS_BIC());
+	auto physicsList = new QGS_BIC;
+	physicsList->RegisterPhysics(new G4StepLimiterPhysics());
+	g4MTRunManager->SetUserInitialization(physicsList);
 	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts));
 
+	
 	// this calls Construct in GDetectorConstruction
 	// which in turns builds gsetup, g4setup and, in each thread, the sensitive detectors
-	initGemcG4RunManager(g4MTRunManager);
+	initGemcG4RunManager(g4MTRunManager, gopts);
 
 	// loading plugins must be done after GDetectorConstruction::Construct
 	// - this includes digitization routines, constants
@@ -138,9 +144,9 @@ int main(int argc, char* argv[])
 	}
 	
 	// alla prossima!
-	cout << GEMCLOGMSGITEM << " Simulation completed, arrivederci! " << endl;
 	delete g4MTRunManager;
 	delete gopts;
+	cout << GEMCLOGMSGITEM << " Simulation completed, arrivederci! " << endl;
 	return 1;
 }
 

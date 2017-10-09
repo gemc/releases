@@ -37,6 +37,11 @@ map<string, GOption> defineOptions()
 	optionsMap["gemcv"].addHelp(GVERBOSITY_DETAILS_D);
 	optionsMap["gemcv"].addHelp(GVERBOSITY_ALL_D);
 
+	optionsMap["threadLog"] = GOption("Display messages from this thread only", 0, "verbosity");
+	optionsMap["threadLog"].addHelp("Default is thread id 0. Possible values:\n");
+	optionsMap["threadLog"].addHelp("#n thread id");
+	optionsMap["threadLog"].addHelp("-1 dsplay all");
+
 	optionsMap["softwareVersion"] = GOption("softwareVersion", GEMC_VERSION, "version");
 
 	// mlibrary GSplash default option

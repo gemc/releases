@@ -1,5 +1,12 @@
 10/9/17
  - passing the global map to GDetectorConstruction then to the local sensitive detectors
+ - checking that we do not already have a GSensitiveDetector
+ - better glog symbol and formatting
+ - added threadLog option to select thread to listen to
+ - registering SD dector to G4 SD Manager
+ - picking the digitization from the global map
+ - passing options to initGemcG4RunManager to use threadLog
+
 
 10/6/17
  - removing sensitive map from GDetectorConstruction constructSD: this is thread local, let us not modify global pointer

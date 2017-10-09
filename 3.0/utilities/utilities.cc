@@ -104,10 +104,13 @@ int getNumberOfThreads(GOptions* gopt)
 }
 
 // initialize run manager
-void initGemcG4RunManager(G4MTRunManager *grm)
+void initGemcG4RunManager(G4MTRunManager *grm, GOptions* gopt)
 {
+	int threadLog = gopt->getOption("threadLog").getIntValue();
+
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
 	g4uim->ApplyCommand("/control/cout/setCoutFile gthread.log");
+	g4uim->ApplyCommand("/control/cout/ignoreThreadsExcept " + to_string(threadLog));
 
 	grm->Initialize();
 }

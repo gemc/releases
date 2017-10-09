@@ -50,7 +50,7 @@ void applyInitialUIManagerCommands(GOptions* gopt);
 int getNumberOfThreads(GOptions* gopt);
 
 // initialize run manager
-void initGemcG4RunManager(G4MTRunManager *grm);
+void initGemcG4RunManager(G4MTRunManager *grm, GOptions* gopt);
 
 // loads plugins from sensitive map <names, paths>
 int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic*> *gDigiGlobal);
