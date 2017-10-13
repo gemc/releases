@@ -49,6 +49,7 @@ void GDetectorConstruction::ConstructSDandField()
 	for(auto &s : gsetup->getSetup()) {
 		for(auto &gv : s.second->getSytems()) {
 			string sensitivity = gv.second->getSensitivity();
+			
 			// making sure the logical volume exists
 			if(g4setup->getLogical(gv.first) == nullptr) {
 				G4cerr << " !!! Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
@@ -58,17 +59,16 @@ void GDetectorConstruction::ConstructSDandField()
 				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
 					
 					if(verbosity == GVERBOSITY_ALL) {
-						G4cout  << " Sensitive detector " << sensitivity << " doesn't exist for " << gv.first << endl;
+						G4cout  << " Sensitive detector " << sensitivity << " doesn't exist for " << gv.first << ". Creating it." << G4endl;
 					}
 					
 					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt, gDigitizationGlobal);
 					auto sdManager = G4SDManager::GetSDMpointer();
 					sdManager->AddNewDetector(allSensitiveDetectors[sensitivity]);
 
-
 				} else {
 					if(verbosity == GVERBOSITY_ALL) {
-						G4cout <<  " Sensitive detector " << sensitivity << " exists for " << gv.first << endl;
+						G4cout <<  " Sensitive detector " << sensitivity << " exists for " << gv.first << G4endl;
 					}
 				}
 				SetSensitiveDetector(gv.first, allSensitiveDetectors[sensitivity]);

@@ -4,47 +4,26 @@ current command to verify run:
 
 - standardize symbol for cout, cerr, g4cout, g4cerr, flowmessage, all libraries have their own symbol
 
-need a map<gsensitiveDetectors> in the the GDetector scope so we can load the gDynamic pointer with the plugin.
-GDetector should be in the main scope
 
-gDynamicSystem
-this class instance should be a shared_ptr?
-
+MT:
 - see https://stackoverflow.com/questions/14482830/stdshared-ptr-thread-safety
 - see https://msdn.microsoft.com/en-us/library/hh279669.aspx
 - see http://www.informit.com/articles/article.aspx?p=2085179
 - see http://en.cppreference.com/w/cpp/memory/shared_ptr
 - see http://www.acodersjourney.com/2016/05/top-10-dumb-mistakes-avoid-c-11-smart-pointers/
 
-sensitiveDetector should have a shared_ptr of this.
-event action should have share_ptr of this
-
- - have all the output functions
- - dyn. loaded plugin
- - each system have their constants initialized by initializeConstants(int runno, string variation)
-
-gruns implementation
-
-constants mechanism: class that can be loaded as plugin dynamically. to be used by processID and by digitization.
-this is thread local - each thread will load the constants?. Part of g4run? BeginOfRunAction seems the right place for this. 
-
-
-
-
-
 
 
 read sensitivity infos:
-
+- where?
 - timewindow
 - energy threshold
 
 
+- clock class
+- random number class
+- handle cerr, fatal errors, throw exceptions
 
-clock class
-random number class
-
-handle cerr, fatal errors, throw exceptions
 
 check MT logs, remember:
 
