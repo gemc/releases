@@ -2,7 +2,6 @@
 #define GUTILITIES_H 1
 
 #define GEMCLOGMSGITEM  " ⌘"
-#define GEMCERRMSGITEM  " !!"
 
 // gemc
 #include "gDetectorConstruction.h"

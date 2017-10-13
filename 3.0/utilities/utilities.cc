@@ -135,7 +135,7 @@ int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic
 		
 		// checkPlugin shoud return true
 		if((*gDigiGlobal)[p.first]->checkPlugin() == false) {
-			cout <<  GEMCERRMSGITEM << " Plugin " << pluginName << " checkPlugin() returned false. Load failure, or did you forget to implement it?" << endl;
+			cout <<  GWARNING  << " Plugin " << pluginName << " checkPlugin() returned false. Load failure, or did you forget to implement it?" << endl;
 		} else {
 			goodPlugins++;
 		}

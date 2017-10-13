@@ -52,7 +52,7 @@ void GDetectorConstruction::ConstructSDandField()
 			
 			// making sure the logical volume exists
 			if(g4setup->getLogical(gv.first) == nullptr) {
-				G4cerr << " !!! Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
+				G4cerr << FATALERRORL << "  Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
 				exit(99);
 			} else if(sensitivity != "no") {
 				// checking that we do not already have a GSensitiveDetector
