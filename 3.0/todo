@@ -1,6 +1,9 @@
 current command to verify run:
 
-./gemc -gui=0 -n=100 -runWeightsFile=runWeights.txt  test.gcard -grunv=3 -gsensitivityv=3 -gflowv=3
+./gemc -gui=0 -n=100 -runWeightsFile=runWeights.txt  test.gcard
+-grunv=3
+-gsensitivityv=3
+-gflowv=3
 
 - standardize symbol for cout, cerr, g4cout, g4cerr, flowmessage, all libraries have their own symbol
 

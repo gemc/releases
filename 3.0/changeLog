@@ -1,3 +1,8 @@
+10/16/17
+ - using WORLDNAME defined in gsystem.h
+ - using NOTAPPLICABLE defined in gvolume.h
+
+
 10/9/17
  - passing the global map to GDetectorConstruction then to the local sensitive detectors
  - checking that we do not already have a GSensitiveDetector

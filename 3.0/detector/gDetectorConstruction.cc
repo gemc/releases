@@ -29,7 +29,7 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 	// builiding geant4 volumes
 	g4setup = new G4Setup(gsetup, gopt);
 
-	return g4setup->getPhysical("world");
+	return g4setup->getPhysical(WORLDNAME);
 }
 
 void GDetectorConstruction::ConstructSDandField()
@@ -54,7 +54,7 @@ void GDetectorConstruction::ConstructSDandField()
 			if(g4setup->getLogical(gv.first) == nullptr) {
 				G4cerr << FATALERRORL << "  Error: " << gv.first << " logical volume not build? This should never happen." << G4endl;
 				exit(99);
-			} else if(sensitivity != "no") {
+			} else if(sensitivity != NOTAPPLICABLE) {
 				// checking that we do not already have a GSensitiveDetector
 				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
 					
