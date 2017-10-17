@@ -69,26 +69,26 @@ int main(int argc, char* argv[])
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 	UIM->SetCoutDestination(new GSession);
 
-	
-	// instantiating pointer to global digitization map
-	map<string, GDynamic*> *globalDigitization = new map<string, GDynamic*>;
-
-	// building detector
-	// this is global, changed at main scope
-	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts, globalDigitization);
-
 	// init geant4 run manager with number of threads coming from options
 	// this also register the GActionInitialization and initialize the geant4 kernel
 	// SetUserInitialization:
 	G4MTRunManager *g4MTRunManager = new G4MTRunManager;
 	g4MTRunManager->SetNumberOfThreads(getNumberOfThreads(gopts));
 
+	// instantiating pointer to global digitization map
+	map<string, GDynamic*> *globalDigitization = new map<string, GDynamic*>;
+
+	// building detector
+	// this is global, changed at main scope
+	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts, globalDigitization);
 	g4MTRunManager->SetUserInitialization(gDetectorGlobal);
 	
 	// g4MTRunManager->SetUserInitialization(new QGS_BIC());
 	auto physicsList = new QGS_BIC;
 	physicsList->RegisterPhysics(new G4StepLimiterPhysics());
 	g4MTRunManager->SetUserInitialization(physicsList);
+	
+	// action
 	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts));
 
 	

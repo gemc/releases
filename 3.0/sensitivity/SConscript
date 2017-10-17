@@ -3,7 +3,6 @@ Import('env')
 env.Prepend(LIBS = 'gsensitivity')
 
 sources = Split("""
-	gHit.cc
     gSensitiveDetector.cc
 	utilities.cc
 	skipProcessHit.cc
