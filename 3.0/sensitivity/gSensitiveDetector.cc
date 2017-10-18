@@ -3,15 +3,13 @@
 
 
 // this is thread-local
-GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, map<string, GDynamic*> *gDigiGlobal) :
-G4VSensitiveDetector(name), GFlowMessage(gopt, "GSensitiveDetector " + name), gDigitizationGlobal(gDigiGlobal)
+GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, map<string, GDynamic*> *gDigiGlobal) : G4VSensitiveDetector(name),
+GFlowMessage(gopt, "GSensitiveDetector " + name),
+gDigitizationGlobal(gDigiGlobal)
 {
 	verbosity = gopt->getInt("gsensitivityv");
 	
 	flowMessage("Instantiating GSensitiveDetector " + name);
-
-	
-	// PRAGMA TODO: need to load the sensitive infos like timwindow and thresholds?
 }
 
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
@@ -23,8 +21,10 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 		gDigiLocal = (*gDigitizationGlobal)[GetName()];
 	}
 	
-	flowMessage(gDigiLocal->showConstants());
-	
+	// protecting against pluging loading failures
+	if(!gDigiLocal) {
+		flowMessage("Plugin " + GetName() + " not loaded.");
+	}
 }
 
 
@@ -47,6 +47,14 @@ void GSensitiveDetector::EndOfEvent(G4HCofThisEvent* g4hc)
 	flowMessage("EndOfEvent of GSensitiveDetector " + GetName());
 }
 
+
+// retrieve touchable in ProcessHit
+GTouchable* GSensitiveDetector::getGTouchable(G4VTouchable *geant4Touchable)
+{
+	// PRAGMA TODO: throw exception here if not found?
+	// this assumes the name exists in the map
+	return (*gTouchableMap)[geant4Touchable->GetVolume()->GetName()];
+}
 
 
 

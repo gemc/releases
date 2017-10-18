@@ -1,3 +1,8 @@
+10/18/17
+ - removed timeWindow, now in parameters inside digitization plugin
+ - added utility to retrieve gTouchable in sensitive detector
+ - removed showing of constants every time sens. detector is initialized. Better doing it in grun for every run only.
+
 10/16/17
  - using WORLDNAME defined in gsystem.h
  - using NOTAPPLICABLE defined in gvolume.h

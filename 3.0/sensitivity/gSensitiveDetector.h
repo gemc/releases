@@ -31,9 +31,6 @@ public:
 private:
 	int verbosity;
 
-	// defines the timewindow of the touchable if it's a readout
-	double timeWindow;
-
 	// map of touchable associated with each volume registered with the sensitive detector
 	// it is stored here so it can be retrieved
 
@@ -41,19 +38,24 @@ private:
 	// the set is reset each event
 	set<GTouchable*> touchableSet;
 
-
 	// the GSensitiveDetector is built before the digitization, so we need
-	// a pointer to global digitization map, filled later, so we can pick gDigiLocal at initialization
+	// a pointer to global digitization map so we can pick gDigiLocal at initialization
+	// it will be loaded later with the plugins
 	map<string, GDynamic*> *gDigitizationGlobal;
 	// gDigiLocal is thread local, picked form gDigitizationGlobal
 	GDynamic *gDigiLocal;
 
+	// this map is used to retrieve the touchable set for each volume during processHit.
+	map<string, GTouchable*> *gTouchableMap;
 	
 private:
 	// skip ProcessHit
 	// decides if the hit should be processed or not
 	bool skipProcessHit(double energy);
 	bool loadDigitizationPlugin();
+	
+	// retrieve touchable in ProcessHit
+	GTouchable* getGTouchable(G4VTouchable *geant4Touchable);
 	
 public:
 	// GSensitiveDetector options - defined in utilities.cc
