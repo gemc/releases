@@ -104,15 +104,13 @@ void GemcGUI::beamOn()
 }
 
 
-
-
-
-
 void GemcGUI::cycleBeamOn()
 {
+	
 }
 
 
 void GemcGUI::stopCycleBeamOn()
 {
+	
 }

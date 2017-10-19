@@ -28,15 +28,18 @@ public:
 	virtual G4bool ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th);    ///< Process Step
 	virtual void EndOfEvent(G4HCofThisEvent* g4hc);                            ///< End of sensitive Hit
 
+	// register volume touchable id
+	void registerGVolumeTouchable(string name, GTouchable* gt);
+	
 private:
 	int verbosity;
 
 	// map of touchable associated with each volume registered with the sensitive detector
 	// it is stored here so it can be retrieved
 
-	// a touchable has been hit if it's present in the set
-	// the set is reset each event
-	set<GTouchable*> touchableSet;
+//	// a touchable has been hit if it's present in the set
+//	// the set is reset each event
+//	set<GTouchable*> touchableSet;
 
 	// the GSensitiveDetector is built before the digitization, so we need
 	// a pointer to global digitization map so we can pick gDigiLocal at initialization
@@ -46,7 +49,7 @@ private:
 	GDynamic *gDigiLocal;
 
 	// this map is used to retrieve the touchable set for each volume during processHit.
-	map<string, GTouchable*> *gTouchableMap;
+	map<string, GTouchable*> gTouchableMap;
 	
 private:
 	// skip ProcessHit
@@ -55,7 +58,7 @@ private:
 	bool loadDigitizationPlugin();
 	
 	// retrieve touchable in ProcessHit
-	GTouchable* getGTouchable(G4VTouchable *geant4Touchable);
+	GTouchable* getGTouchable(const G4VTouchable *geant4Touchable);
 	
 public:
 	// GSensitiveDetector options - defined in utilities.cc

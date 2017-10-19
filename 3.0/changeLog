@@ -1,3 +1,7 @@
+10/19/17
+ - added registerGVolumeTouchable to fill touchable map in gsensitivedetector
+ - adding gTouchable constructor and registering in the sensitive detector map
+
 10/18/17
  - removed timeWindow, now in parameters inside digitization plugin
  - added utility to retrieve gTouchable in sensitive detector

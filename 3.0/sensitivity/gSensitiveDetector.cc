@@ -8,9 +8,18 @@ GFlowMessage(gopt, "GSensitiveDetector " + name),
 gDigitizationGlobal(gDigiGlobal)
 {
 	verbosity = gopt->getInt("gsensitivityv");
-	
+
 	flowMessage("Instantiating GSensitiveDetector " + name);
 }
+
+void GSensitiveDetector::registerGVolumeTouchable(string name, GTouchable* gt)
+{
+	if(verbosity >= GVERBOSITY_DETAILS) {
+		G4cout << "Registering " << name << " touchable in " << GetName() << " with value: " << gt->getGTouchableId() << G4endl;
+	}
+	gTouchableMap[name] = gt;
+}
+
 
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 {
@@ -30,9 +39,18 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 
 G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th)
 {
-	flowMessage("Processing Hits in GSensitiveDetector " + GetName());
-	
 	double depe = thisStep->GetTotalEnergyDeposit();
+	
+	// decide if to proceed or skip.
+	if(skipProcessHit(depe)) {
+		return false;
+	}
+
+	flowMessage("Processing Hits in GSensitiveDetector " + GetName());
+	G4StepPoint   *preStepPoint = thisStep->GetPreStepPoint();
+
+	
+	G4cout << " identifier " << getGTouchable(preStepPoint->GetTouchable());
 	
 	if(verbosity == GVERBOSITY_ALL) {
 		G4cout << " Energy deposited this step: " << depe << G4endl;
@@ -49,11 +67,11 @@ void GSensitiveDetector::EndOfEvent(G4HCofThisEvent* g4hc)
 
 
 // retrieve touchable in ProcessHit
-GTouchable* GSensitiveDetector::getGTouchable(G4VTouchable *geant4Touchable)
+GTouchable* GSensitiveDetector::getGTouchable(const G4VTouchable *geant4Touchable)
 {
 	// PRAGMA TODO: throw exception here if not found?
 	// this assumes the name exists in the map
-	return (*gTouchableMap)[geant4Touchable->GetVolume()->GetName()];
+	return gTouchableMap[geant4Touchable->GetVolume()->GetName()];
 }
 
 

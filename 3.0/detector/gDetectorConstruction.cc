@@ -59,7 +59,7 @@ void GDetectorConstruction::ConstructSDandField()
 				if(allSensitiveDetectors.find(sensitivity) == allSensitiveDetectors.end()) {
 					
 					if(verbosity == GVERBOSITY_ALL) {
-						G4cout  << " Sensitive detector " << sensitivity << " doesn't exist for " << gv.first << ". Creating it." << G4endl;
+						G4cout  << "Sensitive detector " << sensitivity << " doesn't exist for " << gv.first << ". Creating it." << G4endl;
 					}
 					
 					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt, gDigitizationGlobal);
@@ -68,9 +68,10 @@ void GDetectorConstruction::ConstructSDandField()
 
 				} else {
 					if(verbosity == GVERBOSITY_ALL) {
-						G4cout <<  " Sensitive detector " << sensitivity << " exists for " << gv.first << G4endl;
+						G4cout <<  "Sensitive detector " << sensitivity << " exists for " << gv.first << G4endl;
 					}
 				}
+				allSensitiveDetectors[sensitivity]->registerGVolumeTouchable(gv.first, new GTouchable(sensitivity, gv.second->getTouchableID()));
 				SetSensitiveDetector(gv.first, allSensitiveDetectors[sensitivity]);
 			}
 		}
