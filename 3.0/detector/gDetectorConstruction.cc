@@ -35,7 +35,10 @@ G4VPhysicalVolume* GDetectorConstruction::Construct()
 void GDetectorConstruction::ConstructSDandField()
 {
 	// no need to do anything if we're in the main thread
-	if (G4Threading::IsMasterThread() ) return;
+	// PRAGMA TODO:
+	// If we return here if it's master, then the hit will not be
+	// processed in GSensitiveDetector::ProcessHits
+	//if (G4Threading::IsMasterThread() ) return;
 
 	int verbosity = gopt->getInt("gsensitivityv");
 
@@ -44,6 +47,7 @@ void GDetectorConstruction::ConstructSDandField()
 	// used to check if a SD if it already exists
 	map<string, GSensitiveDetector*> allSensitiveDetectors;
 
+	
 	// building the sensitive detectors
 	// this is thread local
 	for(auto &s : gsetup->getSetup()) {
@@ -63,6 +67,8 @@ void GDetectorConstruction::ConstructSDandField()
 					}
 					
 					allSensitiveDetectors[sensitivity] = new GSensitiveDetector(sensitivity, gopt, gDigitizationGlobal);
+					// PRAGMA TODO: according to the documentation the AddNewDetector is done by SetSensitiveDetector
+					// however GSensitiveDetector::Initialize will not work if this is not done here
 					auto sdManager = G4SDManager::GetSDMpointer();
 					sdManager->AddNewDetector(allSensitiveDetectors[sensitivity]);
 
