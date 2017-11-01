@@ -30,8 +30,8 @@ bool GSensitiveDetector::isThisANewTouchable(GTouchable* thisTouchable)
 	// not found. Insert it and return false
 	if(touchableSet.find(thisTouchable) == touchableSet.end()) {
 		touchableSet.insert(thisTouchable);
-		return false;
+		return true;
 	}
 	
-	return true;
+	return false;
 }

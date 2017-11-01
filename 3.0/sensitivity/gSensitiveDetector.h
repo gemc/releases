@@ -12,6 +12,7 @@
 #include "gvolume.h"
 #include "gtouchable.h"
 #include "gdynamic.h"
+#include "ghit.h"
 
 // c++
 #include <vector>
@@ -49,17 +50,23 @@ private:
 	// the set is reset each event
 	set<GTouchable*> touchableSet;
 	
+	// GHit collection
+	GHitsCollection *ghitCollection;
+	
 private:
 	// skip ProcessHit decides if the hit should be processed or not
 	bool skipProcessHit(double energy);
 	
 	// retrieve volume touchable from map in ProcessHit
 	// needs geant4Touchable to get the volume name
-	GTouchable* getGTouchable(const G4VTouchable *geant4Touchable);
+	GTouchable* getGTouchable(const G4Step* thisStep);
 	
 	// check if touchable exist in the set
 	// defined in utilities.cc
 	bool isThisANewTouchable(GTouchable* thisTouchable);
+	
+	// private var here set at Initialize
+	bitset<NHITBITS> gHitBitSet;
 	
 public:
 	// GSensitiveDetector options - defined in utilities.cc

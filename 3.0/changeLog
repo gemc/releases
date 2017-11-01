@@ -1,6 +1,10 @@
+1/1/17
+ - checking if hit is new
+ - passing hitbitset to hit constructor
+ - added isThisANewTouchable function to check if a touchable already exists in the event
+
 10/31/17
  - registering sensitive detector in GDetectorConstruction::ConstructSDandField() despite g4 documentation
- - added isThisANewTouchable function to check if a touchable already exists in the event
 
 10/19/17
  - added registerGVolumeTouchable to fill touchable map in gsensitivedetector

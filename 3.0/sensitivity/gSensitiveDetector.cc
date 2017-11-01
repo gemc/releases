@@ -1,7 +1,6 @@
 // gemc
 #include "gSensitiveDetector.h"
 
-
 // this is thread-local
 GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, map<string, GDynamic*> *gDigiGlobal) : G4VSensitiveDetector(name),
 GFlowMessage(gopt, "GSensitiveDetector " + name),
@@ -33,6 +32,10 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 	// clearing touchableSet at the start of the event
 	touchableSet.clear();
 	
+	// setting
+	gHitBitSet = gDigiLocal->gSensitiveParameters->getHitBitSet();
+	
+	
 	// protecting against pluging loading failures
 	if(!gDigiLocal) {
 		G4cout << GWARNING << " Plugin " << GetName() << " not loaded." << G4endl;
@@ -58,23 +61,23 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 	// PRAGMA TODO: do this only in debug mode
 	flowMessage("Processing Hits in GSensitiveDetector " + GetName());
 	
-	G4StepPoint   *preStepPoint = thisStep->GetPreStepPoint();
-	G4StepPoint   *pstStepPoint = thisStep->GetPostStepPoint();
 
 	// process touchable. if not defined by plugin, base class will return vector
-	vector<GTouchable*> thisStepProcessedTouchables = gDigiLocal->processTouchable(getGTouchable(preStepPoint->GetTouchable()), thisStep);
-	
-	for(auto thisGTouchable: thisStepProcessedTouchables) {
-		
-	}
-	
-//	G4cout << " ASD " << gDigiLocal << G4endl;
+	vector<GTouchable*> thisStepProcessedTouchables = gDigiLocal->processTouchable(getGTouchable(thisStep), thisStep);
 
-	G4cout << " identifier before " << getGTouchable(preStepPoint->GetTouchable())->getGTouchableDescriptionString() << G4endl;
+
 	
-	for(auto gt: thisStepProcessedTouchables) {
-		G4cout << " identifier after " << gt->getGTouchableDescriptionString() << G4endl ;
+	// PRAGMA TODO:
+	// add verbosity for debug mode?
+	for(auto thisGTouchable: thisStepProcessedTouchables) {
+		//G4cout << " ASD " << gHitBitSet << G4endl;
+		// new hit
+		if(isThisANewTouchable(thisGTouchable)) {
+			GHit *newGhit = new GHit(thisGTouchable, thisStep, gHitBitSet);
+		}
 	}
+	
+
 
 	// PRAGMA TODO: do this only in debug mode
 	if(verbosity == GVERBOSITY_ALL) {
@@ -92,11 +95,13 @@ void GSensitiveDetector::EndOfEvent(G4HCofThisEvent* g4hc)
 
 
 // retrieve touchable in ProcessHit
-GTouchable* GSensitiveDetector::getGTouchable(const G4VTouchable *geant4Touchable)
+GTouchable* GSensitiveDetector::getGTouchable(const G4Step* thisStep)
 {
+	// the touchable comes from the pre-step point
+	
 	// PRAGMA TODO: throw exception here if not found?
 	// this assumes the name exists in the map
-	return gTouchableMap[geant4Touchable->GetVolume()->GetName()];
+	return gTouchableMap[thisStep->GetPreStepPoint()->GetTouchable()->GetVolume()->GetName()];
 }
 
 
