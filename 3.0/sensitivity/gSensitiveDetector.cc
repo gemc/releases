@@ -30,6 +30,9 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 		gDigiLocal = (*gDigitizationGlobal)[GetName()];
 	}
 	
+	// clearing touchableSet at the start of the event
+	touchableSet.clear();
+	
 	// protecting against pluging loading failures
 	if(!gDigiLocal) {
 		G4cout << GWARNING << " Plugin " << GetName() << " not loaded." << G4endl;
@@ -60,6 +63,10 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 
 	// process touchable. if not defined by plugin, base class will return vector
 	vector<GTouchable*> thisStepProcessedTouchables = gDigiLocal->processTouchable(getGTouchable(preStepPoint->GetTouchable()), thisStep);
+	
+	for(auto thisGTouchable: thisStepProcessedTouchables) {
+		
+	}
 	
 //	G4cout << " ASD " << gDigiLocal << G4endl;
 

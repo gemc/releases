@@ -28,18 +28,11 @@ public:
 	virtual G4bool ProcessHits(G4Step* thisStep, G4TouchableHistory* g4th);    ///< Process Step
 	virtual void EndOfEvent(G4HCofThisEvent* g4hc);                            ///< End of sensitive Hit
 
-	// register volume touchable id
+	// register GTouchable in GDetectorConstruction::ConstructSDandField()
 	void registerGVolumeTouchable(string name, GTouchable* gt);
 	
 private:
 	int verbosity;
-
-	// map of touchable associated with each volume registered with the sensitive detector
-	// it is stored here so it can be retrieved
-
-//	// a touchable has been hit if it's present in the set
-//	// the set is reset each event
-//	set<GTouchable*> touchableSet;
 
 	// the GSensitiveDetector is built before the digitization, so we need
 	// a pointer to global digitization map so we can pick gDigiLocal at initialization
@@ -48,22 +41,29 @@ private:
 	// gDigiLocal is thread local, picked form gDigitizationGlobal
 	GDynamic *gDigiLocal;
 
-	// this map is used to retrieve the touchable set for each volume during processHit.
+	// map of touchable associated with each volume registered with the sensitive detector
+	// this map is used to retrieve the touchable from the volume during processHit.
 	map<string, GTouchable*> gTouchableMap;
+
+	// a touchable has been hit if it's present in the set
+	// the set is reset each event
+	set<GTouchable*> touchableSet;
 	
 private:
-	// skip ProcessHit
-	// decides if the hit should be processed or not
+	// skip ProcessHit decides if the hit should be processed or not
 	bool skipProcessHit(double energy);
-	bool loadDigitizationPlugin();
 	
-	// retrieve touchable in ProcessHit
+	// retrieve volume touchable from map in ProcessHit
+	// needs geant4Touchable to get the volume name
 	GTouchable* getGTouchable(const G4VTouchable *geant4Touchable);
+	
+	// check if touchable exist in the set
+	// defined in utilities.cc
+	bool isThisANewTouchable(GTouchable* thisTouchable);
 	
 public:
 	// GSensitiveDetector options - defined in utilities.cc
 	static map<string, GOption> defineOptions();
-
 };
 
 #endif
