@@ -51,7 +51,7 @@ private:
 	set<GTouchable*> touchableSet;
 	
 	// GHit collection
-	GHitsCollection *ghitCollection;
+	GHitsCollection *gHitsCollection;
 	
 private:
 	// skip ProcessHit decides if the hit should be processed or not
@@ -67,6 +67,8 @@ private:
 	
 	// private var here set at Initialize
 	bitset<NHITBITS> gHitBitSet;
+    
+    // retrieve hit that matches an identifier
 	
 public:
 	// GSensitiveDetector options - defined in utilities.cc

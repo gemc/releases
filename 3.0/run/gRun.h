@@ -20,7 +20,10 @@ public:
 	virtual ~GRun();
 	virtual void RecordEvent(const G4Event*);
 	virtual void Merge(const G4Run*);
-	
+
+private:
+    G4double fEDep;
+
 };
 
 

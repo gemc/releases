@@ -1,4 +1,11 @@
-1/1/17
+11/3/17
+ - starting event recording and merging
+
+11/2/17
+ - added options to event action
+ - added utilities to print event infos at beginning and end
+
+11/1/17
  - checking if hit is new
  - passing hitbitset to hit constructor
  - added isThisANewTouchable function to check if a touchable already exists in the event

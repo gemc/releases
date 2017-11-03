@@ -23,7 +23,7 @@ void GActionInitialization::Build() const
 
 	SetUserAction(new GRunAction(gopt));
 	SetUserAction(new GPrimaryGeneratorAction);
-	SetUserAction(new GEventAction);
+	SetUserAction(new GEventAction(gopt));
 }
 
 void GActionInitialization::BuildForMaster() const

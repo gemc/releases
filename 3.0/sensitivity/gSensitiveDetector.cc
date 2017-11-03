@@ -1,23 +1,23 @@
 // gemc
 #include "gSensitiveDetector.h"
 
+// geant4
+#include "G4SDManager.hh"
+
 // this is thread-local
 GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, map<string, GDynamic*> *gDigiGlobal) : G4VSensitiveDetector(name),
 GFlowMessage(gopt, "GSensitiveDetector " + name),
-gDigitizationGlobal(gDigiGlobal)
+gDigitizationGlobal(gDigiGlobal),
+gHitsCollection(nullptr)
 {
 	verbosity = gopt->getInt("gsensitivityv");
-
+    // protected from G4VSensitiveDetector: it's a G4CollectionNameVector
+    // not really used in gemc but it's no overhead here
+    collectionName.insert(name);
+    
 	flowMessage("Instantiating GSensitiveDetector " + name);
 }
 
-void GSensitiveDetector::registerGVolumeTouchable(string name, GTouchable* gt)
-{
-	if(verbosity >= GVERBOSITY_DETAILS) {
-		G4cout << "Registering " << name << " touchable in " << GetName() << " with value: " << gt->getGTouchableDescriptionString() << G4endl;
-	}
-	gTouchableMap[name] = gt;
-}
 
 // thread local
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
@@ -32,14 +32,25 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 	// clearing touchableSet at the start of the event
 	touchableSet.clear();
 	
-	// setting
+	// setting bitset
 	gHitBitSet = gDigiLocal->gSensitiveParameters->getHitBitSet();
-	
 	
 	// protecting against pluging loading failures
 	if(!gDigiLocal) {
 		G4cout << GWARNING << " Plugin " << GetName() << " not loaded." << G4endl;
 	}
+    
+    // initializing hit collection
+    // in geant4 this comes with two arguments
+    // in gemc the two are the same
+    gHitsCollection = new GHitsCollection(GetName(), collectionName[0]);
+    
+    // adding gHitsCollection to the G4HCofThisEvent
+    // hcID is incrememnted by 1 every time we instantiate it with the above command
+    // it can then be retrieved at the end of the event
+    auto hcID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
+    g4hc->AddHitsCollection(hcID, gHitsCollection);
+    
 }
 
 
@@ -65,16 +76,16 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 	// process touchable. if not defined by plugin, base class will return vector
 	vector<GTouchable*> thisStepProcessedTouchables = gDigiLocal->processTouchable(getGTouchable(thisStep), thisStep);
 
-
 	
 	// PRAGMA TODO:
 	// add verbosity for debug mode?
 	for(auto thisGTouchable: thisStepProcessedTouchables) {
-		//G4cout << " ASD " << gHitBitSet << G4endl;
 		// new hit
 		if(isThisANewTouchable(thisGTouchable)) {
-			GHit *newGhit = new GHit(thisGTouchable, thisStep, gHitBitSet);
-		}
+            gHitsCollection->insert(new GHit(thisGTouchable, thisStep, gHitBitSet));
+        } else {
+            // retrieve hit from hit collection
+        }
 	}
 	
 
@@ -105,5 +116,12 @@ GTouchable* GSensitiveDetector::getGTouchable(const G4Step* thisStep)
 }
 
 
+void GSensitiveDetector::registerGVolumeTouchable(string name, GTouchable* gt)
+{
+    if(verbosity >= GVERBOSITY_DETAILS) {
+        G4cout << "Registering " << name << " touchable in " << GetName() << " with value: " << gt->getGTouchableDescriptionString() << G4endl;
+    }
+    gTouchableMap[name] = gt;
+}
 
 
