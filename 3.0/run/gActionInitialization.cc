@@ -9,8 +9,12 @@
 #include <iostream>
 using namespace std;
 
-GActionInitialization::GActionInitialization(GOptions* opt) : GFlowMessage(opt, "GActionInitialization"), gopt(opt)
+GActionInitialization::GActionInitialization(GOptions* opt, map<string, GDynamic*> *gDigitization) :
+GFlowMessage(opt, "GActionInitialization"),
+gopt(opt),
+gDigitizationGlobal(gDigitization)
 {
+	flowMessage("GActionInitialization Constructor");
 }
 
 GActionInitialization::~GActionInitialization()
@@ -21,7 +25,7 @@ void GActionInitialization::Build() const
 {
 	flowMessage("Thread Build");
 
-	SetUserAction(new GRunAction(gopt));
+	SetUserAction(new GRunAction(gopt, gDigitizationGlobal));
 	SetUserAction(new GPrimaryGeneratorAction);
 	SetUserAction(new GEventAction(gopt));
 }
@@ -29,7 +33,7 @@ void GActionInitialization::Build() const
 void GActionInitialization::BuildForMaster() const
 {
 	flowMessage("Master Build");
-	SetUserAction(new GRunAction(gopt));
+	SetUserAction(new GRunAction(gopt, gDigitizationGlobal));
 }
 
 

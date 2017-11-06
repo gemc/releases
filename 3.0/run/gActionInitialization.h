@@ -6,6 +6,7 @@
 
 // mlibrary
 #include "goptions.h"
+#include "gdynamic.h"
 
 // gemc
 #include "gLog.h"
@@ -22,7 +23,7 @@
 class GActionInitialization : public G4VUserActionInitialization, public GFlowMessage 
 {
 public:
-	GActionInitialization(GOptions* gopt);
+	GActionInitialization(GOptions* gopt, map<string, GDynamic*> *gDigitization);
 	virtual ~GActionInitialization();
 
 	virtual void Build() const;
@@ -30,6 +31,8 @@ public:
 
 private:
 	GOptions* gopt;
+	map<string, GDynamic*> *gDigitizationGlobal;
+
 
 };
 

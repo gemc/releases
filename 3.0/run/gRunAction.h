@@ -9,13 +9,13 @@
 
 // mlibrary
 #include "goptions.h"
-#include "gruns.h"
+#include "gdynamic.h"
 
 class GRunAction : public G4UserRunAction, public GFlowMessage
 {
 public:
 	// constructor and destructor
-	GRunAction(GOptions* gopt);
+	GRunAction(GOptions* gopt, map<string, GDynamic*> *gDigitization);
 	virtual ~GRunAction();
 
 
@@ -26,7 +26,8 @@ private:
 	virtual void EndOfRunAction(const G4Run*);
 	
 	GOptions* gopt;
-	
+	map<string, GDynamic*> *gDigitizationGlobal;
+
 };
 
 

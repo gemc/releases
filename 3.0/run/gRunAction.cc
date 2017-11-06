@@ -12,7 +12,11 @@
 using namespace std;
 
 // Constructor for workers
-GRunAction::GRunAction(GOptions* opt) : G4UserRunAction(), GFlowMessage(opt, "GRunAction"), gopt(opt)
+GRunAction::GRunAction(GOptions* opt, map<string, GDynamic*> *gDigitization) :
+G4UserRunAction(),
+GFlowMessage(opt, "GRunAction"),
+gopt(opt),
+gDigitizationGlobal(gDigitization)
 {
 }
 
@@ -27,7 +31,7 @@ G4Run* GRunAction::GenerateRun()
 {
 	flowMessage("GenerateRun");
 
-	return new G4GRun(gopt);
+	return new G4GRun(gopt, gDigitizationGlobal);
 }
 
 // executed after BeamOn
