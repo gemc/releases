@@ -13,17 +13,17 @@
 // In Geant4 a run consists of a sequence of events.
 // A run is represented by a G4Run class object. A run starts with BeamOn() method of G4RunManager.
 // G4RunManager creates this class
-class GRun : public G4Run, public GFlowMessage
+class G4GRun : public G4Run, public GFlowMessage
 {
 public:
-	GRun(GOptions* gopt);
-	virtual ~GRun();
+	G4GRun(GOptions* gopt);
+	virtual ~G4GRun();
 	virtual void RecordEvent(const G4Event*);
 	virtual void Merge(const G4Run*);
-
+	
+	
 private:
-    G4double fEDep;
-
+	
 };
 
 

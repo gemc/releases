@@ -1,6 +1,6 @@
 // gemc
 #include "gRunAction.h"
-#include "gRun.h"
+#include "g4GRun.h"
 
 // geant4
 #include "globals.hh"
@@ -27,7 +27,7 @@ G4Run* GRunAction::GenerateRun()
 {
 	flowMessage("GenerateRun");
 
-	return new GRun(gopt);
+	return new G4GRun(gopt);
 }
 
 // executed after BeamOn
@@ -45,14 +45,12 @@ void GRunAction::BeginOfRunAction(const G4Run* aRun)
 
 void GRunAction::EndOfRunAction(const G4Run* aRun)
 {
-	const GRun* theRun = static_cast<const GRun*>(aRun);
+	const G4GRun* theRun = static_cast<const G4GRun*>(aRun);
 	if(IsMaster()) {
 		flowMessage("EndOfRunAction Master for run id" + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
 		flowMessage("Total number of events this run: " + to_string(theRun->GetNumberOfEvent()));
-
 	} else {
 		flowMessage("EndOfRunAction for run id" + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
 		flowMessage("Total number of events this thread: " + to_string(theRun->GetNumberOfEvent()));
-
 	}
 }

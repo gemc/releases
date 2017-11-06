@@ -3,7 +3,7 @@ Import('env')
 env.Prepend(LIBS = 'grun')
 
 sources = Split("""
-	gRun.cc
+	g4GRun.cc
     gRunAction.cc
     gActionInitialization.cc
 	""")
