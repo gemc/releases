@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
 	g4MTRunManager->SetUserInitialization(physicsList);
 	
 	// action
-	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts));
+	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts, globalDigitization));
 
 	
 	// this calls Construct in GDetectorConstruction

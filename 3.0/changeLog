@@ -1,3 +1,12 @@
+11/7/17
+ - fixed called to non-existing GHitAllocator
+ - implemented G4GRun RecordEvent and Merge. Merge will write the output file
+ - fixed call to non-existing digitization routine if the plugin does not exists
+
+11/6/17
+ - renamed grun to g4grun to distinguish from mlibrary gruns.
+ - adding gDigitizationGlobal private member of runAction and run.
+
 11/3/17
  - starting event recording and merging
 

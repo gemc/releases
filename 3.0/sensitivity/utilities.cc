@@ -1,9 +1,9 @@
 // gemc
 #include "gSensitiveDetector.h"
 
-/*! \fn map<string, GOption> G4Setup::defineOptions()
+/*! \fn map<string, GOption> GSensitiveDetector::defineOptions()
 
- \return defines G4Setup specific options
+ \return defines GSensitiveDetector specific options
 
  */
 map<string, GOption> GSensitiveDetector::defineOptions()

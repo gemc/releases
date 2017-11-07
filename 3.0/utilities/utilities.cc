@@ -1,13 +1,13 @@
 // gemc
 #include "utilities.h"
 #include "gActionInitialization.h"
+#include "g4GRun.h"
 
 // Qt
 #include <QtWidgets>
 
 // geant4 headers
 #include "G4UImanager.hh"
-#include "gRun.h"
 
 // mlibrary
 #include "gruns.h"

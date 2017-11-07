@@ -18,18 +18,20 @@ GFlowMessage(opt, "GRunAction"),
 gopt(opt),
 gDigitizationGlobal(gDigitization)
 {
+	flowMessage("GRunAction Constructor");
 }
 
 
 // Destructor
 GRunAction::~GRunAction()
 {
+	flowMessage("GRunAction Destructor");
 }
 
 // this is not local?
 G4Run* GRunAction::GenerateRun()
 {
-	flowMessage("GenerateRun");
+	flowMessage("GRunAction GenerateRun");
 
 	return new G4GRun(gopt, gDigitizationGlobal);
 }
@@ -50,6 +52,7 @@ void GRunAction::BeginOfRunAction(const G4Run* aRun)
 void GRunAction::EndOfRunAction(const G4Run* aRun)
 {
 	const G4GRun* theRun = static_cast<const G4GRun*>(aRun);
+	
 	if(IsMaster()) {
 		flowMessage("EndOfRunAction Master for run id" + to_string(aRun->GetRunID()) + " in g4thread " + to_string(G4Threading::G4GetThreadId()) );
 		flowMessage("Total number of events this run: " + to_string(theRun->GetNumberOfEvent()));

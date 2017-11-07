@@ -1,5 +1,5 @@
-#ifndef GRUN_H
-#define GRUN_H 1
+#ifndef G4GRUN_H
+#define G4GRUN_H 1
 
 // geant4
 #include "G4Run.hh"
@@ -10,7 +10,7 @@
 // mlibrary
 #include "goptions.h"
 #include "gdynamic.h"
-
+#include "gdata.h"
 
 // In Geant4 a run consists of a sequence of events.
 // A run is represented by a G4Run class object. A run starts with BeamOn() method of G4RunManager.
@@ -26,6 +26,12 @@ public:
 	
 private:
 	map<string, GDynamic*> *gDigitizationGlobal;
+	
+	// vector of events data in the local run
+	vector<GEventData*> *runData;
+	
+private:
+	GDynamic *getDigitizationForHitCollection(string name);
 
 };
 

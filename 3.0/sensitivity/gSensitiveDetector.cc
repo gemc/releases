@@ -29,17 +29,18 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 		gDigiLocal = (*gDigitizationGlobal)[GetName()];
 	}
 	
+	// protecting against pluging loading failures
+	if(!gDigiLocal) {
+		G4cout << GWARNING << " Plugin " << GetName() << " not loaded." << G4endl;
+		return;
+	}
+	
 	// clearing touchableSet at the start of the event
 	touchableSet.clear();
 	
 	// setting bitset
 	gHitBitSet = gDigiLocal->gSensitiveParameters->getHitBitSet();
 	
-	// protecting against pluging loading failures
-	if(!gDigiLocal) {
-		G4cout << GWARNING << " Plugin " << GetName() << " not loaded." << G4endl;
-	}
-    
     // initializing hit collection
     // in geant4 this comes with two arguments
     // in gemc the two are the same
@@ -50,7 +51,7 @@ void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
     // it can then be retrieved at the end of the event
     auto hcID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
     g4hc->AddHitsCollection(hcID, gHitsCollection);
-    
+	
 }
 
 
@@ -82,7 +83,7 @@ G4bool GSensitiveDetector::ProcessHits(G4Step* thisStep, G4TouchableHistory* g4t
 	for(auto thisGTouchable: thisStepProcessedTouchables) {
 		// new hit
 		if(isThisANewTouchable(thisGTouchable)) {
-            gHitsCollection->insert(new GHit(thisGTouchable, thisStep, gHitBitSet));
+			gHitsCollection->insert(new GHit(thisGTouchable, thisStep, gHitBitSet));
         } else {
             // retrieve hit from hit collection
         }
