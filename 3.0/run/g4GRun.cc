@@ -15,6 +15,9 @@ gDigitizationGlobal(gDigitization)
 {
 	flowMessage("GRun:Constructor");
 	runData = new vector<GEventData*>;
+	
+	// loading gmedia factories
+	
 }
 
 // Destructor

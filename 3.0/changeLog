@@ -2,6 +2,7 @@
  - fixed called to non-existing GHitAllocator
  - implemented G4GRun RecordEvent and Merge. Merge will write the output file
  - fixed call to non-existing digitization routine if the plugin does not exists
+ - starting loading GMedia factories
 
 11/6/17
  - renamed grun to g4grun to distinguish from mlibrary gruns.

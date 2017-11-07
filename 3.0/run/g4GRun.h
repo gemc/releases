@@ -11,6 +11,7 @@
 #include "goptions.h"
 #include "gdynamic.h"
 #include "gdata.h"
+#include "gmedia.h"
 
 // In Geant4 a run consists of a sequence of events.
 // A run is represented by a G4Run class object. A run starts with BeamOn() method of G4RunManager.
@@ -30,6 +31,9 @@ private:
 	// vector of events data in the local run
 	vector<GEventData*> *runData;
 	
+	// output factories
+	map<string, GMedia*> gmediaFactory;
+
 private:
 	GDynamic *getDigitizationForHitCollection(string name);
 
