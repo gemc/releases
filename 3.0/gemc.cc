@@ -146,7 +146,7 @@ int main(int argc, char* argv[])
 	// alla prossima!
 	delete g4MTRunManager;
 	delete gopts;
-	cout << GEMCLOGMSGITEM << " Simulation completed, arrivederci! " << endl;
+	cout << GEMCLOGMSGITEM << " Simulation completed, arrivederci! " << endl << endl;
 	return 1;
 }
 

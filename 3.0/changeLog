@@ -2,6 +2,7 @@
  - formatting options with GOPTIONITEM
  - creating and passing gmediaFactory map to run
  - creating pointer to gmediaFactory
+ - opening, closing plugin connections in ActionInitialization
 
 11/7/17
  - fixed called to non-existing GHitAllocator

@@ -145,8 +145,8 @@ int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic
 		}
 	}
 	
-	if(verbosity > GVERBOSITY_SILENT) {
-		cout << GEMCLOGMSGITEM << " Number of digitization plugin loaded: " << gDigiGlobal->size() << ", numbero of good plugins: " << goodPlugins << endl;
+	if(verbosity > GVERBOSITY_DETAILS) {
+		cout << GEMCLOGMSGITEM << " Number of digitization plugin loaded: " << gDigiGlobal->size() << endl;
 	}
 	
 	return goodPlugins;

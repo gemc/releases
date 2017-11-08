@@ -95,6 +95,10 @@ void G4GRun::Merge(const G4Run *aRun)
 	
 //	cout << " local run data size " << localRun->runData->size() << "  global size: " << runData->size() << endl;
 	
+	// output data to all available plugins
+	for(auto gmf: (*gmediaFactory)) {
+		gmf.second->publishData(localRun->runData);
+	}
 	
 	G4Run::Merge(aRun);
 }
