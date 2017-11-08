@@ -37,7 +37,7 @@ private:
 	map<string, GDynamic*> *gDigitizationGlobal;
 
 	// output factories map, loaded in GActionInitialization constructor
-	map<string, GMedia*> gmediaFactory;
+	map<string, GMedia*> *gmediaFactory;
 
 };
 

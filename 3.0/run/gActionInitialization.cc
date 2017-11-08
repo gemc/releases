@@ -19,17 +19,21 @@ gopt(opt),
 gDigitizationGlobal(gDigitization)
 {
 	flowMessage("GActionInitialization Constructor");
+	gmediaFactory = new map<string, GMedia*>;
 	
 	int verbosity = gopt->getInt("gemcv");
 	vector<string> requestedMedias = getStringVectorFromStringWithDelimiter(gopt->getString("output"), ",");
 	
-	GManager gOutputManager(verbosity-1, "Output Manager");
+	GManager gOutputManager(verbosity-1);
 
 	// first string is filename
 	// the available plugins names are formatted as "xxxGMedia".
 	for(unsigned f=1; f<requestedMedias.size(); f++) {
 		string pluginName = requestedMedias[f] + "GMedia";
-		gmediaFactory[requestedMedias[f]] = gOutputManager.LoadObjectFromLibrary<GMedia>(pluginName);
+		// need path here
+		gOutputManager.registerDL(pluginName);
+		
+		(*gmediaFactory)[requestedMedias[f]] = gOutputManager.LoadObjectFromLibrary<GMedia>(pluginName);
 	}
 }
 

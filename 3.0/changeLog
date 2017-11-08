@@ -1,6 +1,7 @@
 11/8/17
  - formatting options with GOPTIONITEM
  - creating and passing gmediaFactory map to run
+ - creating pointer to gmediaFactory
 
 11/7/17
  - fixed called to non-existing GHitAllocator

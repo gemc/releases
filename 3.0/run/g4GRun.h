@@ -19,7 +19,7 @@
 class G4GRun : public G4Run, public GFlowMessage
 {
 public:
-	G4GRun(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> gmedia);
+	G4GRun(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> *gmedia);
 	virtual ~G4GRun();
 	virtual void RecordEvent(const G4Event*);
 	virtual void Merge(const G4Run*);
@@ -30,7 +30,7 @@ private:
 	map<string, GDynamic*> *gDigitizationGlobal;
 	
 	// output factories map, loaded in GActionInitialization constructor and passed here
-	map<string, GMedia*> gmediaFactory;
+	map<string, GMedia*> *gmediaFactory;
 
 	// vector of events data in the local run
 	vector<GEventData*> *runData;

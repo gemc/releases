@@ -16,7 +16,7 @@ class GRunAction : public G4UserRunAction, public GFlowMessage
 {
 public:
 	// constructor and destructor
-	GRunAction(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> gmedia);
+	GRunAction(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> *gmedia);
 	virtual ~GRunAction();
 
 
@@ -32,7 +32,7 @@ private:
 	map<string, GDynamic*> *gDigitizationGlobal;
 	
 	// output factories map, loaded in GActionInitialization constructor and passed here
-	map<string, GMedia*> gmediaFactory;
+	map<string, GMedia*> *gmediaFactory;
 
 };
 

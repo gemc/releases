@@ -12,7 +12,7 @@
 using namespace std;
 
 // Constructor for workers
-GRunAction::GRunAction(GOptions* opt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> gmedia) :
+GRunAction::GRunAction(GOptions* opt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> *gmedia) :
 G4UserRunAction(),
 GFlowMessage(opt, "GRunAction"),
 gopt(opt),

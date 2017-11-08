@@ -8,7 +8,7 @@
 #include "ghit.h"
 
 // Constructor
-G4GRun::G4GRun(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> gmedia) :
+G4GRun::G4GRun(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> *gmedia) :
 G4Run(),
 GFlowMessage(gopt, "GRun"),
 gDigitizationGlobal(gDigitization),
