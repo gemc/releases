@@ -7,6 +7,7 @@
 // mlibrary
 #include "goptions.h"
 #include "gdynamic.h"
+#include "gmedia.h"
 
 // gemc
 #include "gLog.h"
@@ -31,8 +32,12 @@ public:
 
 private:
 	GOptions* gopt;
+	
+	// digitization map, loaded in main(), passed here
 	map<string, GDynamic*> *gDigitizationGlobal;
 
+	// output factories map, loaded in GActionInitialization constructor
+	map<string, GMedia*> gmediaFactory;
 
 };
 

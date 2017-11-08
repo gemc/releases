@@ -1,3 +1,7 @@
+11/8/17
+ - formatting options with GOPTIONITEM
+ - creating and passing gmediaFactory map to run
+
 11/7/17
  - fixed called to non-existing GHitAllocator
  - implemented G4GRun RecordEvent and Merge. Merge will write the output file

@@ -4,6 +4,10 @@
 #include "gRunAction.h"
 #include "gEventAction.h"
 
+// mlibrary
+#include "gfactory.h"
+#include "gstring.h"
+using namespace gstring;
 
 // c++
 #include <iostream>
@@ -15,6 +19,18 @@ gopt(opt),
 gDigitizationGlobal(gDigitization)
 {
 	flowMessage("GActionInitialization Constructor");
+	
+	int verbosity = gopt->getInt("gemcv");
+	vector<string> requestedMedias = getStringVectorFromStringWithDelimiter(gopt->getString("output"), ",");
+	
+	GManager gOutputManager(verbosity-1, "Output Manager");
+
+	// first string is filename
+	// the available plugins names are formatted as "xxxGMedia".
+	for(unsigned f=1; f<requestedMedias.size(); f++) {
+		string pluginName = requestedMedias[f] + "GMedia";
+		gmediaFactory[requestedMedias[f]] = gOutputManager.LoadObjectFromLibrary<GMedia>(pluginName);
+	}
 }
 
 GActionInitialization::~GActionInitialization()
@@ -25,7 +41,7 @@ void GActionInitialization::Build() const
 {
 	flowMessage("Thread Build");
 
-	SetUserAction(new GRunAction(gopt, gDigitizationGlobal));
+	SetUserAction(new GRunAction(gopt, gDigitizationGlobal, gmediaFactory));
 	SetUserAction(new GPrimaryGeneratorAction);
 	SetUserAction(new GEventAction(gopt));
 }
@@ -33,7 +49,7 @@ void GActionInitialization::Build() const
 void GActionInitialization::BuildForMaster() const
 {
 	flowMessage("Master Build");
-	SetUserAction(new GRunAction(gopt, gDigitizationGlobal));
+	SetUserAction(new GRunAction(gopt, gDigitizationGlobal, gmediaFactory));
 }
 
 

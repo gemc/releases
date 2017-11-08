@@ -12,11 +12,12 @@
 using namespace std;
 
 // Constructor for workers
-GRunAction::GRunAction(GOptions* opt, map<string, GDynamic*> *gDigitization) :
+GRunAction::GRunAction(GOptions* opt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> gmedia) :
 G4UserRunAction(),
 GFlowMessage(opt, "GRunAction"),
 gopt(opt),
-gDigitizationGlobal(gDigitization)
+gDigitizationGlobal(gDigitization),
+gmediaFactory(gmedia)
 {
 	flowMessage("GRunAction Constructor");
 }
@@ -33,7 +34,7 @@ G4Run* GRunAction::GenerateRun()
 {
 	flowMessage("GRunAction GenerateRun");
 
-	return new G4GRun(gopt, gDigitizationGlobal);
+	return new G4GRun(gopt, gDigitizationGlobal, gmediaFactory);
 }
 
 // executed after BeamOn

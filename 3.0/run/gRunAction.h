@@ -10,12 +10,13 @@
 // mlibrary
 #include "goptions.h"
 #include "gdynamic.h"
+#include "gmedia.h"
 
 class GRunAction : public G4UserRunAction, public GFlowMessage
 {
 public:
 	// constructor and destructor
-	GRunAction(GOptions* gopt, map<string, GDynamic*> *gDigitization);
+	GRunAction(GOptions* gopt, map<string, GDynamic*> *gDigitization, map<string, GMedia*> gmedia);
 	virtual ~GRunAction();
 
 
@@ -26,7 +27,12 @@ private:
 	virtual void EndOfRunAction(const G4Run*);
 	
 	GOptions* gopt;
+	
+	// digitization map, loaded in main(), passed here
 	map<string, GDynamic*> *gDigitizationGlobal;
+	
+	// output factories map, loaded in GActionInitialization constructor and passed here
+	map<string, GMedia*> gmediaFactory;
 
 };
 
