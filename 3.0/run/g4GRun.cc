@@ -41,13 +41,21 @@ void G4GRun::RecordEvent(const G4Event *aEvent)
 	flowMessage("GRun:Local RecordEvent");
 	// HitsCollections of This Event
 	G4HCofThisEvent* HCsThisEvent = aEvent->GetHCofThisEvent();
-	if (!HCsThisEvent) return;
+	if(!HCsThisEvent) return;
+	
+	string randomStatus = "na";
+	// PRAGMA TODO: see https://twiki.cern.ch/twiki/bin/view/Geant4/Geant4MTTipsAndTricks#11_How_are_exactly_random_number
+	// currently this returns null, but perhaps need some activating?
+	// Or we need to save the random status in separate file ?
+//	if(aEvent->GetRandomNumberStatusForProcessing()) {
+//		randomStatus = aEvent->GetRandomNumberStatusForProcessing();
+//	}
 	
 	// header
 	GHeader gheader(aEvent->GetEventID(),                            // local event number
 					G4Threading::G4GetThreadId(),                    // thread ID
-					aEvent->GetRandomNumberStatusForProcessing());   // random number
-	
+					randomStatus);   // random number
+
 	// thread-local event data
 	GEventData *eventData = new GEventData(gheader);
 	
