@@ -24,7 +24,6 @@ public:
 	virtual void RecordEvent(const G4Event*);
 	virtual void Merge(const G4Run*);
 	
-	
 private:
 	// digitization map, loaded in main(), passed here
 	map<string, GDynamic*> *gDigitizationGlobal;

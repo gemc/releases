@@ -17,7 +17,6 @@ gmediaFactory(gmedia)
 	flowMessage("GRun:Constructor");
 	runData = new vector<GEventData*>;
 	
-	// loading gmedia factories
 	
 }
 
@@ -44,36 +43,46 @@ void G4GRun::RecordEvent(const G4Event *aEvent)
 	G4HCofThisEvent* HCsThisEvent = aEvent->GetHCofThisEvent();
 	if (!HCsThisEvent) return;
 	
+	// header
+	GHeader gheader(aEvent->GetEventID(),                            // local event number
+					G4Threading::G4GetThreadId(),                    // thread ID
+					aEvent->GetRandomNumberStatusForProcessing());   // random number
+	
 	// thread-local event data
-	GEventData *eventData = new GEventData();
+	GEventData *eventData = new GEventData(gheader);
 	
 	// looping over all collections
 	for(unsigned hci = 0; hci < HCsThisEvent->GetNumberOfCollections(); hci++) {
+		
 		GHitsCollection *thisGHC = (GHitsCollection*) HCsThisEvent->GetHC(hci);
 		
 		if(thisGHC) {
 			
 			// G4cout << " Collection number  " << hci + 1 << " " << thisGHC << " name " << thisGHC->GetSDname() <<  G4endl ;
 			
+			string hitCollectionSDName = thisGHC->GetSDname();
+			
 			// getting digitization for this hit collection
-			GDynamic* detectorDigitization = getDigitizationForHitCollection(thisGHC->GetSDname());
+			GDynamic* detectorDigitization = getDigitizationForHitCollection(hitCollectionSDName);
 			
 			if(detectorDigitization != nullptr) {
 				
 				// collection of observables for this detector
-				GDetectorObservables *detectorObservables = new GDetectorObservables();
+				GDetectorObservables *detectorObservables = new GDetectorObservables(hitCollectionSDName);
 				
 				// looping over hits in this collection
 				for(size_t hitIndex = 0; hitIndex<thisGHC->GetSize(); hitIndex++) {
 					GHit *thisHit = (GHit*) thisGHC->GetHit(hitIndex);
-				
-				// digitize hit and add it to detector data
-				detectorObservables->addDetectorObservables(detectorDigitization->digitizeHit(thisHit));
-				
-				//					vector<double> edep = thisHit->getStepEdep();
-				//					for(unsigned i=0; i<edep.size(); i++ )
-				//						G4cout << " Hit number  " << hitIndex+1 << " step: " << i << "  edep: " << edep[i] <<  G4endl ;
-					}
+					
+					// digitize hit and add it to detector data
+					// PRAGMA TODO: switch this on/off with option
+					detectorObservables->addDetectorObservables(detectorDigitization->digitizeHit(thisHit));
+
+					// digitize true info and add it to detector data
+					// PRAGMA TODO: switch this on/off with option
+					detectorObservables->addDetectorObservables(detectorDigitization->trueInfoHit(thisHit), true);
+
+				}
 				eventData->addDetectorData(detectorObservables);
 			}
 		}
@@ -93,7 +102,7 @@ void G4GRun::Merge(const G4Run *aRun)
 	
 	const G4GRun *localRun = static_cast<const G4GRun *> (aRun);
 	
-//	cout << " local run data size " << localRun->runData->size() << "  global size: " << runData->size() << endl;
+	//	cout << " local run data size " << localRun->runData->size() << "  global size: " << runData->size() << endl;
 	
 	// output data to all available plugins
 	for(auto gmf: (*gmediaFactory)) {
