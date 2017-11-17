@@ -22,23 +22,33 @@ gDigitizationGlobal(gDigitization)
 	gmediaFactory = new map<string, GMedia*>;
 	
 	int verbosity = gopt->getInt("gemcv");
-	vector<string> requestedMedias = getStringVectorFromStringWithDelimiter(gopt->getString("output"), ",");
 	
-	if(requestedMedias.size() > 1) {
-		
+	string gmediaOption        = gopt->getString("output");
+	auto cpos = gmediaOption.find(":");
+	
+	if(cpos == string::npos) {
+		cout << GWARNING << " output option cannot be parsed. " << endl;
+	}
+	
+	string fileNameWOExtension = gmediaOption.substr(0, cpos); // until :
+	string requestedExtensions = gmediaOption.substr(cpos+1);  // after :
+
+	vector<string> requestedMedias = getStringVectorFromStringWithDelimiter(requestedExtensions, ",");
+	
+	if(requestedMedias.size() > 0) {
+
 		GManager gOutputManager(verbosity);
-		
-		// first string is filename
+
 		// the available plugins names are formatted as "xxxGMedia".
-		for(unsigned f=1; f<requestedMedias.size(); f++) {
+		for(unsigned f=0; f<requestedMedias.size(); f++) {
 			string pluginName = requestedMedias[f] + "GMedia";
 			// need path here
 			gOutputManager.registerDL(pluginName);
-			
+
 			(*gmediaFactory)[requestedMedias[f]] = gOutputManager.LoadObjectFromLibrary<GMedia>(pluginName);
-						
+
 			// set file name, open the connection
-			(*gmediaFactory)[requestedMedias[f]]->setOutputName(requestedMedias[0]);
+			(*gmediaFactory)[requestedMedias[f]]->setOutputName(fileNameWOExtension);
 		}
 	}
 }
