@@ -16,8 +16,6 @@ gmediaFactory(gmedia)
 {
 	flowMessage("GRun:Constructor");
 	runData = new vector<GEventData*>;
-	
-	
 }
 
 // Destructor
