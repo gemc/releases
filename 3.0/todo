@@ -1,6 +1,6 @@
 current command to verify run:
 
-gia ; ./gemc -gui=0 -n=100 -runWeightsFile=runWeights.txt  test.gcard
+gia ; ./gemc -gui=0 -n=100 -runWeightsFile=runWeights.txt  test.gcard -output="out: txt, root"
 
 -grunv=3
 -gsensitivityv=3

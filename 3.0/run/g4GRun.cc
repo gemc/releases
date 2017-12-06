@@ -112,7 +112,10 @@ void G4GRun::Merge(const G4Run *aRun)
 	
 	// output data to all available plugins
 	for(auto gmf: (*gmediaFactory)) {
-		gmf.second->publishData(localRun->runData);
+		// protecting against DL failure
+		if(gmf.second != nullptr) {
+			gmf.second->publishData(localRun->runData);
+		}
 	}
 	
 	G4Run::Merge(aRun);

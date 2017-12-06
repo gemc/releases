@@ -48,7 +48,10 @@ gDigitizationGlobal(gDigitization)
 			(*gmediaFactory)[requestedMedias[f]] = gOutputManager.LoadObjectFromLibrary<GMedia>(pluginName);
 
 			// set file name, open the connection
-			(*gmediaFactory)[requestedMedias[f]]->setOutputName(fileNameWOExtension);
+			// protect against DL loading failure
+			if((*gmediaFactory)[requestedMedias[f]]  != nullptr) {
+				(*gmediaFactory)[requestedMedias[f]]->setOutputName(fileNameWOExtension);
+			}
 		}
 	}
 }
@@ -57,7 +60,10 @@ GActionInitialization::~GActionInitialization()
 {
 	// close output connections
 	for(auto gmf: (*gmediaFactory)) {
-		gmf.second->closeConnection();
+		// protecting against DL failure
+		if(gmf.second != nullptr) {
+			gmf.second->closeConnection();
+		}
 	}
 }
 
