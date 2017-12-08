@@ -134,14 +134,13 @@ int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic
 		(*gDigiGlobal)[p.first] = manager.LoadObjectFromLibrary<GDynamic>(pluginName);
 		
 		// checkPlugin shoud return true
+		// plugin not existance is already warned at load time
 		if((*gDigiGlobal)[p.first]) {
 			if((*gDigiGlobal)[p.first]->checkPlugin() == false) {
-				cout <<  GWARNING  << " Warning: Plugin " << pluginName << " checkPlugin() returned false. Load failure, or did you forget to implement it?" << endl;
+				cout <<  GWARNING  << " Warning: Plugin " << pluginName << " checkPlugin() returned false. Did you forget to implement it?" << endl;
 			} else {
 				goodPlugins++;
 			}
-		} else {
-			cout <<  GWARNING  << " Warning: Plugin " << pluginName << " could not be loaded." << endl;
 		}
 	}
 	
