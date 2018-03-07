@@ -1,0 +1,12 @@
+
+Instructions on how to create a new gemc release
+
+
+1. make sure var is up-to-date in gemc.cc: const char *GEMC_VERSION = "gemc 2.6"
+2. in source: scons -c 
+3. copy the source in the release directory. Make sure to delete the .git subdir
+4. create a new release notes file
+5. create the dmg - and test
+6. make sure there are new releases of:
+   - banks
+   - mlibrary 
