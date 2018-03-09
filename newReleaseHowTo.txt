@@ -1,12 +1,29 @@
 
 Instructions on how to create a new gemc release
 
+Starting with gemc 3.0 the gemc releases will be git releases.
+
+In the meanwhile, each release is kept in the repository.
+
 
 1. make sure var is up-to-date in gemc.cc: const char *GEMC_VERSION = "gemc 2.6"
 2. in source: scons -c 
 3. copy the source in the release directory. Make sure to delete the .git subdir
 4. create a new release notes file
-5. create the dmg - and test
-6. make sure there are new releases of:
+5. make sure there are new releases of:
    - banks
-   - mlibrary 
+        Go to git and add new release:
+      - Tag v1.4 
+      - Title v 1.4
+
+
+    - mlibrary:
+ 	1. make sure you get the latest cadmesh release: https://github.com/christopherpoole/CADMesh.git
+	2. use intallCmesh
+ 	3. commit changes to mlibrary
+
+     Go to git and add new release:
+      - Tag v1.2
+      - Title v 1.2 
+
+6. create the dmg - and test
