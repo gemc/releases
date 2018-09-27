@@ -9,7 +9,7 @@ Starting with gemc 2.7 the gemc releases are github releases of the source repo.
       - Title v 1.4
 
     - mlibrary:
- 	1. make sure you get the latest cadmesh release: https://github.com/christopherpoole/CADMesh.git
+ 	1. make sure you get the latest cadmesh release (not master), currently v1.1: https://github.com/christopherpoole/CADMesh.git
 	2. use installCmesh
  	3. commit changes to mlibrary
       - Tag v1.2
