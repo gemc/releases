@@ -1,15 +1,10 @@
 
-Instructions on how to create a new gemc release
-
 Starting with gemc 2.7 the gemc releases are github releases of the source repo.
-
-In the meanwhile, each release is kept in the repository.
 
 
 1. create a new release notes file in the gemc webpage
 2. make sure there are new releases of:
    - banks
-        Go to git and add new release:
       - Tag v1.4 
       - Title v 1.4
 
@@ -17,8 +12,6 @@ In the meanwhile, each release is kept in the repository.
  	1. make sure you get the latest cadmesh release: https://github.com/christopherpoole/CADMesh.git
 	2. use installCmesh
  	3. commit changes to mlibrary
-
-     Go to git and add new release:
       - Tag v1.2
       - Title v 1.2 
 
