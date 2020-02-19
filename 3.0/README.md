@@ -11,6 +11,7 @@ GEMC
  - instances start with lowercase letter
  - shared variables should contain "shared" / "globabl" in the name
  - thread-local variable should contain "local" / "tlocal" / "thread"
+ - source filenames starts with Capital letters
 
 
 
