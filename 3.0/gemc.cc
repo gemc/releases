@@ -70,8 +70,6 @@ int main(int argc, char* argv[])
 	UIM->SetCoutDestination(new GSession);
 
 	// init geant4 run manager with number of threads coming from options
-	// this also register the GActionInitialization and initialize the geant4 kernel
-	// SetUserInitialization:
 	G4MTRunManager *g4MTRunManager = new G4MTRunManager;
 	g4MTRunManager->SetNumberOfThreads(getNumberOfThreads(gopts));
 
@@ -89,6 +87,7 @@ int main(int argc, char* argv[])
 	g4MTRunManager->SetUserInitialization(physicsList);
 	
 	// action
+    // this also register the GActionInitialization and initialize the geant4 kernel
 	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts, globalDigitization));
 
 	
