@@ -1,19 +1,3 @@
-GEMC 3 reminders:
-
-1. set MT option in go_geant4
-2. set DG4MULTITHREADED in loadgeant4.py
-
-GEMC
-
- Code conventions
- - camel case for all variable names, class definitions
- - type definitions start with Capital letter
- - instances start with lowercase letter
- - shared variables should contain "shared" / "globabl" in the name
- - thread-local variable should contain "local" / "tlocal" / "thread"
- - source filenames starts with Capital letters
-
-
 
 
  Pre-processor
@@ -23,7 +7,7 @@ GEMC
  -DG4OPTIMISE -DG4_STORE_TRAJECTORY -DG4VIS_USE_OPENGL -DG4UI_USE_TCSH -DG4INTY_USE_QT  -DG4UI_USE_QT -DG4VIS_USE_OPENGLQT -DG4USE_STD11 -DG4MULTITHREADED
    G4OPTIMISE=1 G4_STORE_TRAJECTORY=1 G4VIS_USE_OPENGL=1 G4UI_USE_TCSH=1 G4INTY_USE_QT=1  G4UI_USE_QT=1 G4VIS_USE_OPENGLQT=1 G4USE_STD11=1 G4MULTITHREADED=1
 
-Remember add the preprocessor in g4display, g4volume also
+Remember add the preprocessor in the libraries using geant4: g4display, g4volume 
 
  Add ALL external libraries to COPY in build phases, but not the products like g4display.
  We also need to add 2 additional qt frameworks: printing and qtopengl, due to.
@@ -56,10 +40,12 @@ G4RunManager::GetRunManager() returns the following pointer:
  Log output
  G4cout is used for the geant4 master log (physics initialization and detector construction). It is redirected to a file by the glog class
  G4cout coming from the worker thread is re-directed to output by UIManager command.
- cout is used for sequential log on screen by gemc.
+
+cout is used for sequential log on screen by gemc.
 
 
  Memory usage
+ 
  First run valgrind (Linux): valgrind --tool=callgrind gemc /group/clas12/gemc/4a.1.1/clas12.gcard -USE_GUI=0 -N=100
  qcachegrind can be installed with brew on mac
  qcachegrind callgrind.out.<pid>

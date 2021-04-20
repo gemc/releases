@@ -49,16 +49,6 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	// init option map
-	// the option are loaded in utilities/defineOptions.cc
-	// they include the gemc core options and any frameworks options
-	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
-
-	// init qt app
-	// createQtApplication defined in utilities
-	// it returns a QCore application either in interactive or batch mode
-	bool gui = gopts->getBool("gui");
-	createQtApplication(argc, argv, gui);
 
 	// init splash screen
 	// message is streamed always
