@@ -14,7 +14,9 @@ gHitsCollection(nullptr)
     // protected from G4VSensitiveDetector: it's a G4CollectionNameVector
     // not really used in gemc but it's no overhead here
     collectionName.insert(name);
-    
+
+	// should run loadReadoutSpecs here?
+
 	flowMessage("Instantiating GSensitiveDetector " + name);
 }
 

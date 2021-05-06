@@ -1,7 +1,6 @@
 #ifndef GUTILITIES_H
 #define GUTILITIES_H 1
 
-#define GEMCLOGMSGITEM  " ⌘"
 
 // gemc
 #include "gDetectorConstruction.h"
@@ -36,9 +35,6 @@ vector<string> interactiveCommands(GOptions* gopt);
 // - gui (if needed)
 void applyInitialUIManagerCommands(GOptions* gopt);
 
-// return number of cores from options. If 0 or none given,
-// returns max number of available cores
-int getNumberOfThreads(GOptions* gopt);
 
 // initialize run manager
 void initGemcG4RunManager(G4MTRunManager *grm, GOptions* gopt);

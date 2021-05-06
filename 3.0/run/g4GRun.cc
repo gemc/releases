@@ -24,9 +24,12 @@ G4GRun::~G4GRun()
 	flowMessage("GRun:Destructor");
 	
 	// PRAGMA TODO: isn't the last line enough?
-	for (GEventData* evtData : *runData)
+	for (GEventData* evtData : *runData) {
 		delete evtData;
-	runData->clear();
+	}
+	
+	runData->clear(); // i think this is not enough. we need to go over each member of ALL the maps and delete
+	// each pointer
 	delete runData;
 }
 
