@@ -56,6 +56,12 @@ int main(int argc, char* argv[])
 	// this is global, changed at main scope
 	GDetectorConstruction *gDetectorGlobal = new GDetectorConstruction(gopts, globalDigitization);
 	g4MTRunManager->SetUserInitialization(gDetectorGlobal);
+
+
+
+
+
+
 	
 	// g4MTRunManager->SetUserInitialization(new QGS_BIC());
 	auto physicsList = new QGS_BIC;

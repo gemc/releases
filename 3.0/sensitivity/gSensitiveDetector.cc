@@ -4,38 +4,13 @@
 // geant4
 #include "G4SDManager.hh"
 
-// this is thread-local
-GSensitiveDetector::GSensitiveDetector(string name, GOptions* gopt, map<string, GDynamic*> *gDigiGlobal) : G4VSensitiveDetector(name),
-GFlowMessage(gopt, "GSensitiveDetector " + name),
-gDigitizationGlobal(gDigiGlobal),
-gHitsCollection(nullptr)
-{
-	verbosity = gopt->getInt("gsensitivityv");
-    // protected from G4VSensitiveDetector: it's a G4CollectionNameVector
-    // not really used in gemc but it's no overhead here
-    collectionName.insert(name);
 
-	// should run loadReadoutSpecs here?
-
-	flowMessage("Instantiating GSensitiveDetector " + name);
-}
 
 
 // thread local
 void GSensitiveDetector::Initialize(G4HCofThisEvent* g4hc)
 {
-	flowMessage("Initializing GSensitiveDetector " + GetName());
 
-	// picking the digitization from the global map
-	if(gDigitizationGlobal->find(GetName()) != gDigitizationGlobal->end()) {
-		gDigiLocal = (*gDigitizationGlobal)[GetName()];
-	}
-	
-	// protecting against pluging loading failures
-	if(!gDigiLocal) {
-		G4cout << GWARNING << " Plugin " << GetName() << " not loaded." << G4endl;
-		return;
-	}
 	
 	// clearing touchableSet at the start of the event
 	touchableSet.clear();
@@ -116,15 +91,6 @@ GTouchable* GSensitiveDetector::getGTouchable(const G4Step* thisStep)
 	// PRAGMA TODO: throw exception here if not found?
 	// this assumes the name exists in the map
 	return gTouchableMap[thisStep->GetPreStepPoint()->GetTouchable()->GetVolume()->GetName()];
-}
-
-
-void GSensitiveDetector::registerGVolumeTouchable(string name, GTouchable* gt)
-{
-    if(verbosity >= GVERBOSITY_DETAILS) {
-        G4cout << "Registering " << name << " touchable in " << GetName() << " with value: " << gt->getGTouchableDescriptionString() << G4endl;
-    }
-    gTouchableMap[name] = gt;
 }
 
 

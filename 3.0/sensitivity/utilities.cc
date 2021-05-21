@@ -20,16 +20,16 @@ map<string, GOption> GSensitiveDetector::defineOptions()
 	return optionsMap;
 }
 
-
-// check if a touchable already exists in the event
-// by checking if it is present in the set. If not, add it.
-bool GSensitiveDetector::isThisANewTouchable(GTouchable* thisTouchable)
-{
-	// not found. Insert it and return false
-	if(touchableSet.find(thisTouchable) == touchableSet.end()) {
-		touchableSet.insert(thisTouchable);
-		return true;
-	}
-	
-	return false;
-}
+//
+//// check if a touchable already exists in the event
+//// by checking if it is present in the set. If not, add it.
+//bool GSensitiveDetector::isThisANewTouchable(GTouchable* thisTouchable)
+//{
+//	// not found. Insert it and return false
+//	if(touchableSet.find(thisTouchable) == touchableSet.end()) {
+//		touchableSet.insert(thisTouchable);
+//		return true;
+//	}
+//	
+//	return false;
+//}
