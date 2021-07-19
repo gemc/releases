@@ -1,23 +1,10 @@
-// gemc
-#include "gDetectorConstruction.h"
-
-// mlibrary
-#include "g4volume.h"
 
 // geant4
 #include "G4SDManager.hh"
 
 
-GDetectorConstruction::GDetectorConstruction(GOptions* opt, map<string, GDynamic*> *gDigiGlobal) :
-G4VUserDetectorConstruction(), GFlowMessage(opt, "GDetectorConstruction"), gopt(opt), gDigitizationGlobal(gDigiGlobal)
-{
-	// making this explicit in case of access before Construct()
-	// (should never happen anyway)
-	gsetup  = nullptr;
-	g4setup = nullptr;
-}
 
-GDetectorConstruction::~GDetectorConstruction() {}
+
 
 G4VPhysicalVolume* GDetectorConstruction::Construct()
 {
