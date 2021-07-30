@@ -102,8 +102,7 @@ void G4GRun::RecordEvent(const G4Event *aEvent)
 }
 
 // This is global
-// Method to be overwritten by the user for merging local
-// Run objects to the global Run object
+// Method to be overwritten by the user for merging local Run objects to the global Run object
 // PRAGMA: But I can use it to save output right? No need to accumulate
 void G4GRun::Merge(const G4Run *aRun)
 {
