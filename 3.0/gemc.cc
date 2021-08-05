@@ -1,13 +1,3 @@
-// mlibrary
-#include "g4display.h"
-#include "gdynamic.h"
-#include "gruns.h"
-
-// gemc
-#include "utilities.h"
-#include "gui.h"
-#include "gActionInitialization.h"
-#include "gLog.h"
 
 // geant4
 #include "G4UImanager.hh"
@@ -27,14 +17,8 @@ int main(int argc, char* argv[])
 {
 
 	
-	// action
-    // this also register the GActionInitialization and initialize the geant4 kernel
-	g4MTRunManager->SetUserInitialization(new GActionInitialization(gopts, globalDigitization));
 
 	
-	// this calls Construct in GDetectorConstruction
-	// which in turns builds gsetup, g4setup and, in each thread, the sensitive detectors
-	initGemcG4RunManager(g4MTRunManager, gopts);
 
 	// loading plugins must be done after GDetectorConstruction::Construct
 	// - this includes digitization routines, constants
@@ -43,6 +27,7 @@ int main(int argc, char* argv[])
 	loadGPlugins(gopts, gDetectorGlobal->getSensitiveVolumes(), globalDigitization);
 	
 	// init gruns. Default run number if no configuration file specified
+	// this is the weighted runs, not g4run
 	GRuns *gruns = new GRuns(gopts, globalDigitization);
 
 	

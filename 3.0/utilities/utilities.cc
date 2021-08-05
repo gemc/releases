@@ -14,13 +14,6 @@
 #include "gstring.h"
 using namespace gstring;
 
-// distinguishing between graphical and batch mode
-QCoreApplication* createQtApplication(int &argc, char *argv[], bool gui)
-{
-	if(!gui)
-		return new QCoreApplication(argc, argv);
-	return new QApplication(argc, argv);
-}
 
 
 // loads a qt resource (images)
@@ -89,18 +82,6 @@ void applyInitialUIManagerCommands(GOptions* gopt)
 }
 
 
-
-// initialize run manager
-void initGemcG4RunManager(G4MTRunManager *grm, GOptions* gopt)
-{
-	int threadLog = gopt->getOption("threadLog").getIntValue();
-	
-	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
-	g4uim->ApplyCommand("/control/cout/setCoutFile gthread.log");
-	g4uim->ApplyCommand("/control/cout/ignoreThreadsExcept " + to_string(threadLog));
-	
-	grm->Initialize();
-}
 
 // loads plugins from sensitive map <names, paths>
 // returns number of loaded plugins
