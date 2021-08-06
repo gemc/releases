@@ -37,7 +37,4 @@ void applyInitialUIManagerCommands(GOptions* gopt);
 
 
 
-// loads plugins from sensitive map <names, paths>
-int loadGPlugins(GOptions* gopt, map<string, string> sensD, map<string, GDynamic*> *gDigiGlobal);
-
 #endif

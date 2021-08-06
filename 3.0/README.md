@@ -13,13 +13,7 @@ Remember add the preprocessor in the libraries using geant4: g4display, g4volume
  We also need to add 2 additional qt frameworks: printing and qtopengl, due to.
 
 
- Add the env variable for run time:
- G4ENSDFSTATEDATA     /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4ENSDFSTATE2.1
- G4NEUTRONXSDATA     /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4NEUTRONXS1.4
- G4LEDATA                       /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4EMLOW6.50
- G4SAIDXSDATA              /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/G4SAIDDATA1.1
- G4LEVELGAMMADATA  /opt/jlab_software/devel/Darwin_macosx10.13-x86_64-clang9.0.0/geant4/4.10.03.p02/data/Geant4-10.3.2/data/PhotonEvaporation4.3.2
-
+ 
  Instrument:
  https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/
 

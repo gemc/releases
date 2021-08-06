@@ -1,8 +1,5 @@
 
 // geant4
-#include "G4UImanager.hh"
-#include "G4VisExecutive.hh"
-#include "G4UIQt.hh"
 #include "G4MTRunManager.hh"
 #include "G4Version.hh"
 #include "G4StepLimiterPhysics.hh"
