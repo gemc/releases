@@ -1,6 +1,0 @@
-<gcard>
-	<system name="/opt/projects/gemc/detectors/clas12/ctof/ctof" factory="text" variation="original"/>
-	<!--
-	<system name="/opt/projects/gemc/detectors/clas12/beamline/cadBeamline" factory="cad"/>
-	 -->
-</gcard>
